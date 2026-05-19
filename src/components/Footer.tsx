@@ -1,14 +1,23 @@
+import type { LucideIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { Facebook, Github, Instagram, Linkedin, Twitter } from 'lucide-react'
+import { Github, Linkedin } from 'lucide-react'
 import { siteImages } from '@/lib/siteImages'
 
-const socialLinks = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/moonsofts', icon: Linkedin },
-  { label: 'GitHub', href: 'https://github.com/moonsofts', icon: Github },
-  { label: 'Facebook', href: 'https://www.facebook.com/moonsofts', icon: Facebook },
-  { label: 'Instagram', href: 'https://www.instagram.com/moonsofts', icon: Instagram },
-  { label: 'Twitter', href: 'https://twitter.com/moonsofts', icon: Twitter },
-] as const
+const CONTACT_EMAIL = 'yuji@moonsofts.net'
+
+function MediumIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42zm3.38 0c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75c.66 0 1.19 2.58 1.19 5.75z" />
+    </svg>
+  )
+}
+
+const socialLinks: { label: string; href: string; icon: LucideIcon | typeof MediumIcon }[] = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/evofuse', icon: Linkedin },
+  { label: 'GitHub', href: 'https://github.com/MoonSofts-Net', icon: Github },
+  { label: 'Medium', href: 'https://moonsofts.medium.com/', icon: MediumIcon },
+]
 
 const columns = [
   {
@@ -64,10 +73,10 @@ export function Footer() {
             Software consulting and delivery for enterprises that measure success in shipped outcomes—not slide decks.
           </p>
           <a
-            href="mailto:contact@moonsofts.net"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="mt-[12px] inline-block text-sm font-medium text-[white]/90 transition hover:text-[white]"
           >
-            contact@moonsofts.net
+            {CONTACT_EMAIL}
           </a>
           <p className="mt-[20px] text-xs font-semibold uppercase tracking-[0.14em] text-[white]/55">Follow us</p>
           <div className="mt-[12px] flex flex-wrap items-center gap-[12px]">
