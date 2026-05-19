@@ -34,6 +34,18 @@ for (const [localRel, cdnKey] of entries) {
   copied += 1
 }
 
+const logoSrc = path.join(assetsRoot, 'brand/logo.png')
+const faviconDest = path.resolve(__dirname, '../public/favicon.png')
+if (fs.existsSync(logoSrc)) {
+  fs.mkdirSync(path.dirname(faviconDest), { recursive: true })
+  fs.copyFileSync(logoSrc, faviconDest)
+  console.log('Updated public/favicon.png from brand/logo.png')
+} else if (fs.existsSync(path.join(outRoot, 'brand/logo.png'))) {
+  fs.mkdirSync(path.dirname(faviconDest), { recursive: true })
+  fs.copyFileSync(path.join(outRoot, 'brand/logo.png'), faviconDest)
+  console.log('Updated public/favicon.png from cdn-upload/brand/logo.png')
+}
+
 console.log(`\nPrepared ${copied} file(s) in cdn-upload/`)
 if (missing > 0) {
   console.log(`${missing} file(s) missing — add PNGs under src/assets/ (see scripts/cdn-asset-manifest.json)`)
