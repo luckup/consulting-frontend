@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --shadow-soft: 0 4px 24px rgba(42, 42, 42, 0.06);
+  --shadow-card: 0 12px 40px rgba(255, 85, 0, 0.1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper-50 text-ink-900 antialiased;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+::selection {
+  @apply bg-brand/20 text-ink-900;
+}
+
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-brand;
+}
+
+@layer utilities {
+  .container-pad {
+    @apply mx-auto max-w-[1280px] px-[16px] sm:px-[24px] lg:px-[32px];
+  }
+
+  .section-spacing {
+    @apply py-[56px] sm:py-[72px];
+  }
+
+  .section-intro {
+    @apply max-w-3xl text-base leading-relaxed text-ink-600 sm:text-lg;
+  }
+
+  .heading-display {
+    @apply text-2xl font-semibold tracking-tight text-ink-900 sm:text-3xl;
+  }
+
+  .card {
+    @apply overflow-hidden rounded-[4px] border border-ink-900/10 bg-paper-50;
+    box-shadow: var(--shadow-soft);
+    transition:
+      transform 0.42s var(--ease-out),
+      box-shadow 0.42s var(--ease-out),
+      border-color 0.42s var(--ease-out);
+  }
+
+  .card:hover {
+    border-color: rgba(255, 85, 0, 0.28);
+    box-shadow: var(--shadow-card);
+    transform: translateY(-4px);
+  }
+
+  .card-static {
+    @apply overflow-hidden rounded-[4px] border border-ink-900/10 bg-paper-50;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .card-soft {
+    @apply rounded-[4px] border border-ink-900/10 bg-paper-100;
+    box-shadow: 0 2px 12px rgba(12, 28, 34, 0.04);
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-[8px] rounded-[4px] px-[20px] py-[11px] text-sm font-semibold transition duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-brand text-[white] hover:bg-brand-600 active:bg-brand-700;
+  }
+
+  .btn-secondary {
+    @apply border border-ink-900/15 bg-paper-50 text-ink-900 hover:border-brand hover:text-brand;
+  }
+
+  .btn-ghost-light {
+    @apply border border-[white]/35 bg-[white]/10 text-[white] backdrop-blur-sm hover:border-[white] hover:bg-[white]/15;
+  }
+
+  .section-label {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-brand;
+  }
+
+  .section-label-light {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-moon-sky;
+  }
+
+  .link-text {
+    @apply inline-flex items-center gap-[8px] text-sm font-semibold text-brand transition hover:text-brand-600;
+  }
+
+  .field-label {
+    @apply block text-sm font-medium text-ink-800;
+  }
+
+  .field-input {
+    @apply mt-[8px] w-full rounded-[4px] border border-ink-900/10 bg-paper-50 px-[14px] py-[11px] text-sm text-ink-900 transition placeholder:text-ink-400 focus:border-brand focus:ring-2 focus:ring-brand/15;
+  }
+
+  .nav-dropdown {
+    @apply invisible absolute left-0 top-full z-50 min-w-[240px] translate-y-[6px] border border-ink-900/10 bg-paper-50 py-[8px] opacity-0 shadow-[0_16px_48px_rgba(255,85,0,0.12)] transition-all duration-200;
+  }
+
+  .group:hover .nav-dropdown,
+  .group:focus-within .nav-dropdown {
+    @apply visible translate-y-0 opacity-100;
+  }
+
+  .hero-scrim-page {
+    background: linear-gradient(
+      105deg,
+      rgba(43, 43, 43, 0.88) 0%,
+      rgba(43, 43, 43, 0.58) 48%,
+      rgba(43, 43, 43, 0.32) 100%
+    );
+  }
+
+  .hero-scrim-page-bottom {
+    background: linear-gradient(to top, rgba(43, 43, 43, 0.5) 0%, transparent 55%);
+  }
+
+  .photo-bright {
+    @apply brightness-[1.06] contrast-[0.95] saturate-[1.04];
+  }
+
+  .prose-body {
+    @apply space-y-[16px] text-sm leading-[1.75] text-ink-600 sm:text-base;
+  }
+
+  .card-image-shine {
+    background: linear-gradient(
+      105deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.42) 50%,
+      transparent 62%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.85s var(--ease-out);
+  }
+
+  .group:hover .card-image-shine {
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card-image-shine {
+    display: none;
+  }
+
+  .nav-dropdown {
+    transition: none;
+  }
+}
+
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .sr-only:focus,
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}

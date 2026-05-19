@@ -1,0 +1,92 @@
+import { cdnUrl } from '@/lib/cdn'
+
+const industryPhotos = {
+  ecommerce: {
+    hero: cdnUrl('home/services/e-commerce-upper.png'),
+    page: cdnUrl('home/services/ecommerce.png'),
+  },
+  logistics: {
+    hero: cdnUrl('home/services/logistics-upper.png'),
+    page: cdnUrl('home/services/logistics.png'),
+  },
+  financial: {
+    hero: cdnUrl('home/services/fintech-upper.png'),
+    page: cdnUrl('home/services/fintech.png'),
+  },
+  healthcare: {
+    hero: cdnUrl('home/services/healthcar-upper.png'),
+    page: cdnUrl('home/services/healthcare.png'),
+  },
+  construction: {
+    hero: cdnUrl('home/services/construction-upper.png'),
+    page: cdnUrl('home/services/construction.png'),
+  },
+} as const
+
+export const siteImages = {
+  brand: { logo: cdnUrl('brand/logo.png') },
+  hero: {
+    home: cdnUrl('pages/home/section1.png'),
+    homeBanner: cdnUrl('pages/home/section1.png'),
+    default: cdnUrl('pages/about/history.png'),
+    about: cdnUrl('heroes/about.png'),
+    stack: cdnUrl('heroes/stack.png'),
+    careers: cdnUrl('heroes/careers.png'),
+    contact: cdnUrl('heroes/contact.png'),
+    privacy: cdnUrl('heroes/privacy.png'),
+    news: cdnUrl('pages/about/commitments-split.png'),
+    team: cdnUrl('heroes/team.png'),
+    clients: cdnUrl('home/services/fintech.png'),
+    services: cdnUrl('heroes/stack.png'),
+    industries: cdnUrl('home/services/logistics-upper.png'),
+  },
+  industries: industryPhotos,
+  home: {
+    spotlight: [
+      cdnUrl('pages/home/section1.png'),
+      cdnUrl('pages/home/section2.png'),
+      cdnUrl('pages/home/section3.png'),
+    ] as const,
+    whoWeAre: cdnUrl('home/services/remote-teams.png'),
+    whatWeDo: cdnUrl('home/services/fullstack.png'),
+    businesses: cdnUrl('home/services/cloud-infrastructure.png'),
+    ecommerce: cdnUrl('home/services/ecommerce.png'),
+    logistics: cdnUrl('home/services/logistics.png'),
+    fintech: cdnUrl('home/services/fintech.png'),
+    healthcare: cdnUrl('home/services/healthcare.png'),
+    construction: cdnUrl('home/services/construction.png'),
+  },
+  cta: {
+    careers: cdnUrl('heroes/careers.png'),
+    platform: cdnUrl('home/services/cloud-infrastructure.png'),
+  },
+  news: {
+    launch: cdnUrl('news/launch.png'),
+    ceoVision: cdnUrl('news/ceo-vision.png'),
+    aiDevelopment: cdnUrl('news/ai-development.png'),
+    industrySolutions: cdnUrl('news/industry-solutions.png'),
+    reliablePartner: cdnUrl('news/reliable-partner.png'),
+  },
+  split: {
+    aboutCommitments: cdnUrl('pages/about/commitments-split.png'),
+    stackPlatform: cdnUrl('heroes/stack.png'),
+    careersStudents: cdnUrl('pages/about/commitments.png'),
+  },
+  about: {
+    history: cdnUrl('pages/about/history.png'),
+  },
+  contact: {
+    global: cdnUrl('pages/about/history.png'),
+  },
+  stack: {
+    product: cdnUrl('pages/stack/product_engineering.png'),
+    cloud: cdnUrl('pages/stack/platform_and_cloud.png'),
+    data: cdnUrl('pages/stack/data_and_ai.png'),
+  },
+  team: {
+    banner: cdnUrl('pages/team/banner.png'),
+    walter: cdnUrl('pages/team/walter-picher.png'),
+    reza: cdnUrl('pages/team/reza-nozari.png'),
+    adryan: cdnUrl('pages/team/adryan-andrade-daniel.png'),
+  },
+} as const
