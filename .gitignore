@@ -1,0 +1,26 @@
+node_modules
+dist
+cdn-upload
+
+# Environment (never commit secrets or production CDN URL)
+.env
+.env.local
+.env.production
+.env.vercel-blob
+scripts/vercel-blob-urls.json
+
+# High-resolution images — host on CDN, not in git (see src/assets/ASSETS.txt)
+src/assets/**/*.png
+src/assets/**/*.jpg
+src/assets/**/*.jpeg
+src/assets/**/*.webp
+src/assets/**/*.gif
+!src/assets/**/.gitkeep
+!src/assets/**/ASSETS.txt
+
+# Optional: Vercel static copy of CDN bundle (run npm run vercel:sync — do not commit)
+public/brand/
+public/heroes/
+public/home/
+public/news/
+public/pages/

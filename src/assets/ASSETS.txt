@@ -1,0 +1,14 @@
+Do not commit PNG/JPEG files here — they are gitignored (too large for GitHub).
+
+1. Place originals here only on your machine (same paths as scripts/cdn-asset-manifest.json).
+2. npm run cdn:prepare   → creates cdn-upload/
+3. Upload cdn-upload/:
+     Vercel Blob: add BLOB_READ_WRITE_TOKEN to .env.local → npm run vercel:blob:upload
+     Or use R2/S3: npm run cdn:upload
+4. Set VITE_CDN_BASE_URL in .env (dev) and .env.production (build)
+5. npm run build
+
+Vercel Blob base URL:
+  https://kmbR6bCYbcA9kB47.public.blob.vercel-storage.com
+
+The app loads images from siteImages.cdn.ts using your CDN base URL.
