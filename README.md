@@ -64,8 +64,6 @@ High-resolution PNGs live on [Vercel Blob](https://vercel.com/docs/vercel-blob/p
 3. Build command: `npm run build`  
    Output: `dist`
 
-`vercel.json` rewrites all routes to `index.html` so React Router subpages (e.g. `/about`, `/news/...`) work on refresh and direct links. Without this, Vercel returns **404 NOT_FOUND** for paths that are not real files.
-
 ## Git
 
 `src/assets/**/*.png` and `cdn-upload/` are gitignored so pushes stay small. Only application code is in the repo.
