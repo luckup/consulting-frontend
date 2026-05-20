@@ -28,6 +28,8 @@ export const industriesNav: NavItem[] = [
   { label: 'Financial services', to: '/industries/financial' },
   { label: 'Healthcare', to: '/industries/healthcare' },
   { label: 'Construction', to: '/industries/construction' },
+  { label: 'Manufacturing', to: '/industries/manufacturing' },
+  { label: 'Education', to: '/industries/education' },
 ]
 
 export const stackNav: NavItem[] = [

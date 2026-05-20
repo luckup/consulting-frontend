@@ -21,6 +21,14 @@ const industryPhotos = {
     hero: cdnUrl('home/services/construction-upper.png'),
     page: cdnUrl('home/services/construction.png'),
   },
+  manufacturing: {
+    hero: cdnUrl('home/services/manufacturing-upper.png'),
+    page: cdnUrl('home/services/manufacturing.png'),
+  },
+  education: {
+    hero: cdnUrl('home/services/education-upper.png'),
+    page: cdnUrl('home/services/education.png'),
+  },
 } as const
 
 export const siteImages = {
@@ -55,6 +63,16 @@ export const siteImages = {
     fintech: cdnUrl('home/services/fintech.png'),
     healthcare: cdnUrl('home/services/healthcare.png'),
     construction: cdnUrl('home/services/construction.png'),
+    manufacturing: cdnUrl('home/services/manufacturing.png'),
+    education: cdnUrl('home/services/education.png'),
+    careersBackground: cdnUrl('pages/home/background.png'),
+    certificates: [
+      cdnUrl('pages/home/certificates/1.png'),
+      cdnUrl('pages/home/certificates/2.png'),
+      cdnUrl('pages/home/certificates/3.png'),
+      cdnUrl('pages/home/certificates/5.png'),
+      cdnUrl('pages/home/certificates/6.png'),
+    ] as const,
   },
   cta: {
     careers: cdnUrl('heroes/careers.png'),

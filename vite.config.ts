@@ -24,6 +24,17 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (!id.includes('node_modules')) return
+            if (id.includes('framer-motion')) return 'motion'
+            if (id.includes('lenis')) return 'lenis'
+          },
+        },
+      },
+    },
     server: {
       port: 3000,
       proxy: {

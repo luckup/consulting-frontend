@@ -2,6 +2,7 @@ import type { LucideIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Github, Linkedin } from 'lucide-react'
 import { siteImages } from '@/lib/siteImages'
+import { routePrefetchHandlers } from '@/lib/routePrefetch'
 
 const CONTACT_EMAIL = 'yuji@moonsofts.net'
 
@@ -28,6 +29,8 @@ const columns = [
       { to: '/industries/healthcare', label: 'Healthcare' },
       { to: '/industries/construction', label: 'Construction' },
       { to: '/industries/financial', label: 'Financial services' },
+      { to: '/industries/manufacturing', label: 'Manufacturing' },
+      { to: '/industries/education', label: 'Education' },
     ],
   },
   {
@@ -58,27 +61,27 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="bg-brand-700 text-[white]/90">
+    <footer className="border-t border-ink-900/10 bg-paper-50">
       <div className="container-pad grid gap-[32px] py-[48px] sm:grid-cols-2 lg:grid-cols-5">
         <div className="sm:col-span-2 lg:col-span-1">
           <Link to="/" className="inline-flex items-center gap-[12px]">
             <img
               src={siteImages.brand.logo}
               alt=""
-              className="h-[48px] w-auto max-w-[160px] shrink-0 bg-transparent object-contain brightness-0 invert"
+              className="h-[48px] w-auto max-w-[160px] shrink-0 bg-transparent object-contain"
             />
-            <span className="text-xl font-semibold tracking-tight text-[white]">oonsofts</span>
+            <span className="text-xl font-semibold tracking-tight text-ink-900">MoonSofts</span>
           </Link>
-          <p className="mt-[16px] max-w-xs text-sm leading-relaxed text-[white]/75">
+          <p className="mt-[16px] max-w-xs text-sm leading-relaxed text-ink-600">
             Software consulting and delivery for enterprises that measure success in shipped outcomes—not slide decks.
           </p>
           <a
             href={`mailto:${CONTACT_EMAIL}`}
-            className="mt-[12px] inline-block text-sm font-medium text-[white]/90 transition hover:text-[white]"
+            className="mt-[12px] inline-block text-sm font-medium text-brand transition hover:text-brand-600"
           >
             {CONTACT_EMAIL}
           </a>
-          <p className="mt-[20px] text-xs font-semibold uppercase tracking-[0.14em] text-[white]/55">Follow us</p>
+          <p className="mt-[20px] text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">Follow us</p>
           <div className="mt-[12px] flex flex-wrap items-center gap-[12px]">
             {socialLinks.map(({ label, href, icon: Icon }) => (
               <a
@@ -87,7 +90,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[4px] border border-[white]/25 text-[white]/90 transition hover:border-[white] hover:bg-[white]/15 hover:text-[white]"
+                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[4px] border border-ink-900/10 text-ink-700 transition hover:border-brand hover:bg-brand-light hover:text-brand"
               >
                 <Icon className="h-[18px] w-[18px]" aria-hidden />
               </a>
@@ -96,11 +99,15 @@ export function Footer() {
         </div>
         {columns.map((col) => (
           <div key={col.title}>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[white]/55">{col.title}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">{col.title}</p>
             <ul className="mt-[16px] flex flex-col gap-[10px]">
               {col.links.map((link) => (
                 <li key={link.to + link.label}>
-                  <Link to={link.to} className="text-sm text-[white]/80 hover:text-[white]">
+                  <Link
+                    to={link.to}
+                    {...routePrefetchHandlers(link.to)}
+                    className="text-sm text-ink-600 transition hover:text-brand"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -110,17 +117,17 @@ export function Footer() {
         ))}
       </div>
 
-      <div className="border-t border-[white]/20">
-        <div className="container-pad flex flex-col items-center justify-between gap-[12px] py-[20px] text-xs text-[white]/55 sm:flex-row">
-          <p>© {new Date().getFullYear()} oonsofts. All rights reserved.</p>
+      <div className="border-t border-ink-900/10">
+        <div className="container-pad flex flex-col items-center justify-between gap-[12px] py-[20px] text-xs text-ink-500 sm:flex-row">
+          <p>© {new Date().getFullYear()} MoonSofts. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-[16px]">
-            <Link to="/privacy" className="hover:text-[white]">
+            <Link to="/privacy" {...routePrefetchHandlers('/privacy')} className="transition hover:text-brand">
               Terms of Use
             </Link>
-            <Link to="/privacy" className="hover:text-[white]">
+            <Link to="/privacy" {...routePrefetchHandlers('/privacy')} className="transition hover:text-brand">
               Privacy &amp; Data Protection
             </Link>
-            <a href="#top" className="hover:text-[white]">
+            <a href="#top" className="transition hover:text-brand">
               Back to top
             </a>
           </div>

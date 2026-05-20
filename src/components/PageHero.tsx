@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import { clsx } from 'clsx'
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { heroContentReveal, heroItemReveal } from '@/lib/motionPresets'
 
 type Crumb = { label: string; to?: string }
 
@@ -13,10 +16,11 @@ type Props = {
   backgroundImage?: string
 }
 
-const HERO_HEIGHT = 'h-[300px] sm:h-[340px] lg:h-[380px]'
+const HERO_HEIGHT = 'h-[75vh] min-h-[75vh]'
 
 export function PageHero({ section, title, description, breadcrumbs, cta, backgroundImage }: Props) {
   const hasImage = Boolean(backgroundImage)
+  const reduced = usePrefersReducedMotion()
 
   return (
     <section
@@ -35,14 +39,21 @@ export function PageHero({ section, title, description, breadcrumbs, cta, backgr
             fetchPriority="high"
             decoding="async"
           />
+          <div className="hero-scrim-page-tint absolute inset-0" aria-hidden />
           <div className="hero-scrim-page absolute inset-0" aria-hidden />
           <div className="hero-scrim-page-bottom absolute inset-0" aria-hidden />
         </>
       ) : null}
 
-      <div className="container-pad relative z-10 flex h-full flex-col justify-end pb-[28px] pt-[24px] sm:pb-[32px] sm:pt-[28px]">
+      <motion.div
+        className="container-pad relative z-10 flex h-full flex-col justify-end pb-[28px] pt-[24px] sm:pb-[32px] sm:pt-[28px]"
+        initial={reduced ? false : 'hidden'}
+        animate={reduced ? undefined : 'visible'}
+        variants={reduced ? undefined : heroContentReveal}
+      >
         {breadcrumbs && breadcrumbs.length > 0 ? (
-          <nav
+          <motion.nav
+            variants={reduced ? undefined : heroItemReveal}
             aria-label="Breadcrumb"
             className={clsx(
               'mb-[16px] flex shrink-0 flex-wrap items-center gap-[6px] text-xs',
@@ -76,10 +87,10 @@ export function PageHero({ section, title, description, breadcrumbs, cta, backgr
                 )
               })}
             </ol>
-          </nav>
+          </motion.nav>
         ) : null}
 
-        <div className="max-w-4xl">
+        <motion.div className="max-w-4xl" variants={reduced ? undefined : heroItemReveal}>
           <p className={hasImage ? 'section-label-light' : 'section-label'}>{section}</p>
           <h1
             className={clsx(
@@ -105,8 +116,8 @@ export function PageHero({ section, title, description, breadcrumbs, cta, backgr
           >
             {cta.label}
           </Link>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }

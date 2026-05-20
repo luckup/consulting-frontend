@@ -50,6 +50,10 @@ export const siteImagePaths = {
     healthcareUpper: 'home/services/healthcar-upper.png',
     construction: 'home/services/construction.png',
     constructionUpper: 'home/services/construction-upper.png',
+    manufacturing: 'home/services/manufacturing.png',
+    manufacturingUpper: 'home/services/manufacturing-upper.png',
+    education: 'home/services/education.png',
+    educationUpper: 'home/services/education-upper.png',
     fullstack: 'home/services/fullstack.png',
   },
   news: {

@@ -43,7 +43,7 @@ export function HomeSpotlightHero() {
 
   return (
     <section
-      className="relative w-full overflow-hidden border-b border-ink-900/10"
+      className="relative w-full overflow-hidden border-b border-transparent"
       aria-roledescription="carousel"
       aria-label="Featured highlights"
       onMouseEnter={() => setPaused(true)}
@@ -53,7 +53,7 @@ export function HomeSpotlightHero() {
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setPaused(false)
       }}
     >
-      <div className="relative h-[min(85vh,720px)] min-h-[420px] w-full sm:min-h-[480px] lg:min-h-[560px]">
+      <div className="relative h-[100vh] min-h-[100vh] w-full">
         {spotlightSlides.map((s, index) => {
           const isActive = index === active
           return (
@@ -79,12 +79,13 @@ export function HomeSpotlightHero() {
           )
         })}
 
+        <div className="pointer-events-none absolute inset-0 z-[2] bg-black/20" aria-hidden />
         <div
-          className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-r from-ink-900/75 via-ink-900/45 to-ink-900/20"
+          className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-r from-ink-900/80 via-ink-900/50 to-ink-900/25"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-ink-900/60 via-transparent to-ink-900/15"
+          className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-ink-900/65 via-transparent to-ink-900/20"
           aria-hidden
         />
 

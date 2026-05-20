@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { CheckCircle2 } from 'lucide-react'
 import { ContentBlock } from '@/components/ContentBlock'
+import { SectionReveal } from '@/components/SectionReveal'
 import { PageShell } from '@/components/PageShell'
 import { SplitFeature } from '@/components/SplitFeature'
 import { careersNav } from '@/lib/pageNav'
@@ -39,7 +40,7 @@ export function EngineersPage() {
         </ContentBlock>
 
         <div className="grid gap-[24px] lg:grid-cols-2">
-          <section className="card border-l-4 border-l-brand p-[28px]">
+          <SectionReveal as="section" accent className="card border-l-4 border-l-brand p-[28px]">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">United States</p>
             <h2 className="mt-[12px] text-xl font-semibold text-ink-900">Lead from the front—or scale thoughtfully.</h2>
             <p className="mt-[12px] text-sm leading-relaxed text-ink-600">
@@ -53,9 +54,9 @@ export function EngineersPage() {
                 </li>
               ))}
             </ul>
-          </section>
+          </SectionReveal>
 
-          <section className="card border-l-4 border-l-moon-sky p-[28px]">
+          <SectionReveal as="section" accent className="card border-l-4 border-l-moon-sky p-[28px]">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">Global collaboration</p>
             <h2 className="mt-[12px] text-xl font-semibold text-ink-900">Remote execution with U.S.-side partnership.</h2>
             <p className="mt-[12px] text-sm leading-relaxed text-ink-600">
@@ -69,7 +70,7 @@ export function EngineersPage() {
                 </li>
               ))}
             </ul>
-          </section>
+          </SectionReveal>
         </div>
 
         <SplitFeature

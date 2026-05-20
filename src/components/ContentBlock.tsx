@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import { SectionReveal } from '@/components/SectionReveal'
 
 type Props = {
   id?: string
@@ -12,8 +13,10 @@ type Props = {
 
 export function ContentBlock({ id, label, title, children, cta, variant = 'default' }: Props) {
   return (
-    <section
+    <SectionReveal
+      as="section"
       id={id}
+      accent
       className={
         variant === 'highlight'
           ? 'scroll-mt-[120px] rounded-[4px] border border-brand/25 bg-brand-light/80 p-[28px] shadow-soft sm:p-[36px]'
@@ -29,6 +32,6 @@ export function ContentBlock({ id, label, title, children, cta, variant = 'defau
           <ArrowRight className="h-4 w-4" />
         </Link>
       ) : null}
-    </section>
+    </SectionReveal>
   )
 }

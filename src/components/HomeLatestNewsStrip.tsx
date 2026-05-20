@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import { AnimatedHomeSection } from '@/components/AnimatedHomeSection'
+import { HomeSectionHeader } from '@/components/HomeSectionHeader'
+import { RevealItem, RevealStagger, RevealStaggerItem } from '@/components/SectionReveal'
 import { latestHeadlines } from '@/lib/homeNewsHeadlines'
 
 const featured = latestHeadlines[0]
@@ -7,29 +10,19 @@ const more = latestHeadlines.slice(1)
 
 export function HomeLatestNewsStrip() {
   return (
-    <section id="insights" className="scroll-mt-[100px] border-b border-ink-900/10 bg-paper-50">
-      <div className="container-pad section-spacing">
-        <div className="flex flex-wrap items-end justify-between gap-[16px]">
-          <div className="max-w-2xl">
-            <p className="section-label">Insights</p>
-            <h2 className="mt-[12px] text-2xl font-semibold text-ink-900 sm:text-3xl">
-              News, thought leadership &amp; client stories
-            </h2>
-            <p className="mt-[12px] text-base leading-relaxed text-ink-600">
-              Updates from MoonSofts on delivery, technology, and the industries we serve.
-            </p>
-          </div>
-          <Link
-            to="/news"
-            className="inline-flex items-center gap-[8px] text-sm font-semibold text-brand hover:text-brand-600"
-          >
-            Visit newsroom
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+    <AnimatedHomeSection id="insights" className="scroll-mt-[100px]">
+      <RevealItem>
+        <HomeSectionHeader
+          label="Insights"
+          title="News, thought leadership & client stories"
+          description="Updates from MoonSofts on delivery, technology, and the industries we serve."
+          action={{ to: '/news', label: 'Visit newsroom' }}
+        />
+      </RevealItem>
 
-        <div className="mt-[40px] grid gap-[24px] lg:grid-cols-[1.2fr_1fr]">
-          <Link to={featured.to} className="card group grid overflow-hidden lg:grid-cols-2">
+      <RevealStagger className="mt-[40px] grid gap-[24px] lg:grid-cols-[1.2fr_1fr]">
+        <RevealStaggerItem>
+          <Link to={featured.to} className="home-card group grid h-full overflow-hidden lg:grid-cols-2">
             <div className="relative min-h-[220px] overflow-hidden bg-paper-100 lg:min-h-full">
               <img
                 src={featured.image}
@@ -52,14 +45,12 @@ export function HomeLatestNewsStrip() {
               </span>
             </div>
           </Link>
+        </RevealStaggerItem>
 
+        <RevealStaggerItem>
           <div className="flex flex-col gap-[16px]">
             {more.map((item) => (
-              <Link
-                key={item.id}
-                to={item.to}
-                className="card-soft group flex gap-[16px] bg-paper-50 p-[16px] transition hover:border-brand/30 sm:p-[20px]"
-              >
+              <Link key={item.id} to={item.to} className="home-card-soft group flex gap-[16px] p-[16px] sm:p-[20px]">
                 <div className="relative h-[88px] w-[120px] shrink-0 overflow-hidden rounded-[4px] bg-paper-100 sm:h-[96px] sm:w-[140px]">
                   <img
                     src={item.image}
@@ -79,8 +70,8 @@ export function HomeLatestNewsStrip() {
               </Link>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
+        </RevealStaggerItem>
+      </RevealStagger>
+    </AnimatedHomeSection>
   )
 }

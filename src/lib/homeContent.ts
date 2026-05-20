@@ -30,24 +30,6 @@ export const spotlightSlides = [
   },
 ] as const
 
-export const uniquePillars = [
-  {
-    title: 'Speed to action',
-    subtitle: 'Through proven delivery rituals',
-    body: 'Structured discovery, security gates, and sprint cadence so programs move from alignment to build without losing signal.',
-  },
-  {
-    title: 'Speed to value',
-    subtitle: 'Through industry expertise',
-    body: 'Consultants and engineers who understand commerce, logistics, healthcare, construction, and regulated environments—not generic templates.',
-  },
-  {
-    title: 'Speed to scale',
-    subtitle: 'Through platform & partnerships',
-    body: 'A delivery operating system, cloud-native stack, and integration patterns that compound as your roadmap grows.',
-  },
-] as const
-
 export const homeServices = [
   {
     title: 'Consulting & discovery',
@@ -87,6 +69,18 @@ export const homeIndustries = [
   { label: 'Healthcare', body: 'Secure clinical and operational systems.', to: '/industries/healthcare', image: siteImages.home.healthcare },
   { label: 'Construction', body: 'Field operations and project controls.', to: '/industries/construction', image: siteImages.home.construction },
   { label: 'Financial services', body: 'Regulated, audit-ready delivery.', to: '/industries/financial', image: siteImages.home.fintech },
+  {
+    label: 'Manufacturing',
+    body: 'Shop-floor, quality, and production systems.',
+    to: '/industries/manufacturing',
+    image: siteImages.home.manufacturing,
+  },
+  {
+    label: 'Education',
+    body: 'Learning platforms and campus operations.',
+    to: '/industries/education',
+    image: siteImages.home.education,
+  },
 ] as const
 
 export const recognitions = [

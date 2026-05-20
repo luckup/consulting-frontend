@@ -141,6 +141,62 @@ const industryContent = [
     },
     cta: { label: 'Discuss construction software', to: '/contact' },
   },
+  {
+    id: 'manufacturing',
+    label: 'Manufacturing',
+    title: 'Manufacturing & industrial operations',
+    body: 'MES, quality systems, supply planning, and shop-floor software that connects production lines, inventory, and enterprise ERP without brittle spreadsheets.',
+    heroImage: siteImages.industries.manufacturing.hero,
+    pageImage: siteImages.industries.manufacturing.page,
+    highlights: [
+      'Manufacturing execution and work-instruction systems',
+      'Quality, traceability, and non-conformance workflows',
+      'Production planning tied to demand and materials',
+      'OT/IT integration with ERP, PLM, and warehouse systems',
+    ],
+    support: {
+      intro:
+        'Manufacturers need software that survives shift changes, partial connectivity on the floor, and auditors who ask for evidence—not screenshots. MoonSofts embeds with operations, quality, and IT to modernize without stopping the line.',
+      detail:
+        'We map value streams before we commit to platforms: where data is created, who owns exceptions, and what must stay available when a line goes down. Squads include engineers comfortable with industrial integrations, not only greenfield web apps.',
+      services: [
+        'Gemba-style discovery with production, quality, and maintenance leaders',
+        'MES-adjacent workflows, dashboards, and mobile tools for operators',
+        'Integration with ERP, PLM, SCADA, and warehouse systems',
+        'Pilot lines or plants before enterprise rollout with clear success metrics',
+        'Retained support for new SKUs, plants, acquisitions, and compliance changes',
+      ],
+    },
+    cta: { label: 'Discuss manufacturing programs', to: '/contact' },
+  },
+  {
+    id: 'education',
+    label: 'Education',
+    title: 'Education & learning platforms',
+    body: 'Learning management, student information, and campus operations built for accessibility, privacy, and the pace of academic calendars.',
+    heroImage: siteImages.industries.education.hero,
+    pageImage: siteImages.industries.education.page,
+    highlights: [
+      'LMS, cohort, and assessment experiences',
+      'Student information and enrollment workflows',
+      'Accessibility and inclusive design by default',
+      'Integrations with SIS, payment, and identity providers',
+    ],
+    support: {
+      intro:
+        'Schools, universities, and training providers run on tight calendars and diverse stakeholders—faculty, registrars, students, and parents. MoonSofts delivers platforms that respect FERPA-style privacy expectations and the reality of understaffed IT teams.',
+      detail:
+        'We partner with academic and operations leaders to phase rollouts around terms and accreditation cycles. Faculty see tools that fit how courses actually run; administrators get reporting they trust; students get experiences that work on mobile and assistive technology.',
+      services: [
+        'Stakeholder workshops with academic affairs, IT, and student success teams',
+        'Privacy-by-design delivery with documented data flows and access controls',
+        'LMS extensions, portals, and custom learning workflows',
+        'SIS, identity, and payment integrations with clear ownership',
+        'Term-based hypercare and enhancement retainers aligned to academic calendars',
+      ],
+    },
+    cta: { label: 'Explore education solutions', to: '/contact' },
+  },
 ] as const
 
 export const industries = industryContent

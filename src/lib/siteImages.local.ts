@@ -7,6 +7,12 @@ import logo from '@/assets/brand/logo.png'
 import homeSpotlight01 from '@/assets/pages/home/section1.png'
 import homeSpotlight02 from '@/assets/pages/home/section2.png'
 import homeSpotlight03 from '@/assets/pages/home/section3.png'
+import homeCareersBackground from '@/assets/pages/home/background.png'
+import homeCertificate01 from '@/assets/pages/home/certificates/1.png'
+import homeCertificate02 from '@/assets/pages/home/certificates/2.png'
+import homeCertificate03 from '@/assets/pages/home/certificates/3.png'
+import homeCertificate05 from '@/assets/pages/home/certificates/5.png'
+import homeCertificate06 from '@/assets/pages/home/certificates/6.png'
 import heroHomeBanner from '@/assets/pages/home/section1.png'
 import heroAbout from '@/assets/heroes/about.png'
 import heroStack from '@/assets/heroes/stack.png'
@@ -39,6 +45,10 @@ import serviceHealthcare from '@/assets/home/services/healthcare.png'
 import serviceHealthcareUpper from '@/assets/home/services/healthcar-upper.png'
 import serviceConstruction from '@/assets/home/services/construction.png'
 import serviceConstructionUpper from '@/assets/home/services/construction-upper.png'
+import serviceManufacturing from '@/assets/home/services/manufacturing.png'
+import serviceManufacturingUpper from '@/assets/home/services/manufacturing-upper.png'
+import serviceEducation from '@/assets/home/services/education.png'
+import serviceEducationUpper from '@/assets/home/services/education-upper.png'
 import serviceFullstack from '@/assets/home/services/fullstack.png'
 
 import newsLaunch from '@/assets/news/Launches as a Global Software Consulting.png'
@@ -53,6 +63,8 @@ const industryPhotos = {
   financial: { hero: serviceFintechUpper, page: serviceFintech },
   healthcare: { hero: serviceHealthcareUpper, page: serviceHealthcare },
   construction: { hero: serviceConstructionUpper, page: serviceConstruction },
+  manufacturing: { hero: serviceManufacturingUpper, page: serviceManufacturing },
+  education: { hero: serviceEducationUpper, page: serviceEducation },
 } as const
 
 export const siteImages = {
@@ -83,6 +95,16 @@ export const siteImages = {
     fintech: serviceFintech,
     healthcare: serviceHealthcare,
     construction: serviceConstruction,
+    manufacturing: serviceManufacturing,
+    education: serviceEducation,
+    careersBackground: homeCareersBackground,
+    certificates: [
+      homeCertificate01,
+      homeCertificate02,
+      homeCertificate03,
+      homeCertificate05,
+      homeCertificate06,
+    ] as const,
   },
   cta: {
     careers: heroCareers,

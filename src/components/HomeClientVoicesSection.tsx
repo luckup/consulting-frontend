@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { AnimatedHomeSection } from '@/components/AnimatedHomeSection'
+import { HomeSectionHeader } from '@/components/HomeSectionHeader'
+import { RevealItem, RevealStagger, RevealStaggerItem } from '@/components/SectionReveal'
 import { TestimonialCard } from '@/components/TestimonialCard'
 import { clientStats, testimonials } from '@/lib/clientsData'
 
@@ -7,43 +8,38 @@ const featured = testimonials.slice(0, 3)
 
 export function HomeClientVoicesSection() {
   return (
-    <section id="client-voices" className="border-t border-ink-900/10 bg-paper-100">
-      <div className="container-pad section-spacing">
-        <div className="flex flex-wrap items-end justify-between gap-[16px]">
-          <div className="max-w-2xl">
-            <p className="section-label">Customer testimonials</p>
-            <h2 className="mt-[8px] text-2xl font-semibold text-ink-900 sm:text-3xl">
-              Hear what our customers say
-            </h2>
-            <p className="mt-[12px] text-base leading-relaxed text-ink-600">
-              Leaders across commerce, logistics, healthcare, and growth technology partner with MoonSofts for accountable
-              engineering and software that ships with discipline.
-            </p>
-          </div>
-          <Link
-            to="/clients"
-            className="inline-flex items-center gap-[8px] text-sm font-semibold text-brand hover:text-brand-600"
-          >
-            Read all client stories
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
+    <AnimatedHomeSection id="client-voices" className="scroll-mt-[100px]">
+      <RevealItem>
+        <HomeSectionHeader
+          label="Customer testimonials"
+          title="Hear what our customers say"
+          description="Leaders across commerce, logistics, healthcare, and growth technology partner with MoonSofts for accountable engineering and software that ships with discipline."
+          action={{ to: '/clients', label: 'Read all client stories' }}
+        />
+      </RevealItem>
 
-        <div className="mt-[32px] grid gap-[16px] sm:grid-cols-2 lg:grid-cols-4">
+      <RevealStagger className="mt-[40px] grid gap-[20px] sm:grid-cols-2 lg:grid-cols-4 lg:gap-[24px]">
           {clientStats.map((stat) => (
-            <div key={stat.label} className="card-soft p-[20px] text-center sm:text-left">
-              <p className="text-2xl font-semibold text-brand sm:text-3xl">{stat.value}</p>
-              <p className="mt-[8px] text-sm leading-relaxed text-ink-600">{stat.label}</p>
-            </div>
+            <RevealStaggerItem key={stat.label}>
+              <div className="client-stat-card relative flex min-h-[148px] flex-col justify-center overflow-hidden rounded-[4px] border-2 border-transparent bg-gradient-to-br from-brand-light via-paper-50 to-paper-50 p-[28px] text-center shadow-[0_12px_40px_rgba(255,85,0,0.16)] transition duration-300 hover:shadow-[0_16px_48px_rgba(255,85,0,0.22)] sm:min-h-[168px] sm:p-[32px] sm:text-left">
+                <div
+                  className="pointer-events-none absolute -right-[20%] -top-[30%] h-[120px] w-[120px] rounded-full bg-brand/10 blur-[40px]"
+                  aria-hidden
+                />
+                <p className="relative text-4xl font-bold tracking-tight text-brand sm:text-5xl">{stat.value}</p>
+                <p className="relative mt-[12px] text-base font-semibold leading-snug text-ink-800">{stat.label}</p>
+              </div>
+            </RevealStaggerItem>
           ))}
-        </div>
+      </RevealStagger>
 
-        <div className="mt-[32px] grid gap-[24px] md:grid-cols-3">
+      <RevealStagger className="mt-[32px] grid gap-[24px] md:grid-cols-3">
           {featured.map((item) => (
-            <TestimonialCard key={item.id} item={item} />
+            <RevealStaggerItem key={item.id}>
+              <TestimonialCard item={item} />
+            </RevealStaggerItem>
           ))}
-        </div>
-      </div>
-    </section>
+      </RevealStagger>
+    </AnimatedHomeSection>
   )
 }

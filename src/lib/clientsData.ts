@@ -20,6 +20,8 @@ export const trustedIndustries = [
   'Financial services',
   'Healthcare operations',
   'Construction & infrastructure',
+  'Manufacturing & industrial',
+  'Education & learning',
 ] as const
 
 export const testimonials: Testimonial[] = [
@@ -98,6 +100,8 @@ export const industryTestimonialIds: Record<string, string> = {
   financial: 't6',
   healthcare: 't2',
   construction: 't7',
+  manufacturing: 't4',
+  education: 't5',
 }
 
 export function getTestimonialForIndustry(industryId: string) {

@@ -1,14 +1,12 @@
 import type { MouseEvent } from 'react'
 import type { Location, NavigateFunction } from 'react-router-dom'
+import { SECTION_SCROLL_OFFSET } from '@/lib/scroll/constants'
+import { scrollToSectionElement, scrollWindowTo } from '@/lib/smoothScroll'
 
-export const SECTION_SCROLL_OFFSET = 120
+export { SECTION_SCROLL_OFFSET }
 
 export function scrollToSectionId(id: string, behavior: ScrollBehavior = 'smooth') {
-  const el = document.getElementById(id)
-  if (!el) return false
-  const top = el.getBoundingClientRect().top + window.scrollY - SECTION_SCROLL_OFFSET
-  window.scrollTo({ top: Math.max(0, top), behavior })
-  return true
+  return scrollToSectionElement(id, { immediate: behavior === 'auto' })
 }
 
 export function isSectionNavActive(to: string, location: Location) {
@@ -35,6 +33,6 @@ export function handleSectionNavClick(
     navigate(`${path}#${id}`, { replace: true })
     return
   }
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  scrollWindowTo(0)
   navigate(path, { replace: true })
 }

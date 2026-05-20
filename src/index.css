@@ -10,7 +10,19 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 body {
@@ -33,6 +45,44 @@ body {
 
   .section-spacing {
     @apply py-[56px] sm:py-[72px];
+  }
+
+  .home-section {
+    @apply border-b border-transparent bg-paper-50;
+  }
+
+  .home-section-inner {
+    @apply container-pad flex min-h-[560px] flex-col justify-center py-[56px] sm:min-h-[600px] sm:py-[72px];
+  }
+
+  .home-section-title {
+    @apply mt-[8px] text-2xl font-semibold text-ink-900 sm:text-3xl;
+  }
+
+  .home-card {
+    @apply overflow-hidden rounded-[4px] border border-transparent bg-paper-50;
+    box-shadow: var(--shadow-soft);
+    transition:
+      transform 0.42s var(--ease-out),
+      box-shadow 0.42s var(--ease-out);
+  }
+
+  .home-card:hover {
+    box-shadow: var(--shadow-card);
+    transform: translateY(-4px);
+  }
+
+  .home-card-soft {
+    @apply rounded-[4px] border border-transparent bg-paper-50;
+    box-shadow: 0 2px 12px rgba(12, 28, 34, 0.04);
+    transition:
+      transform 0.42s var(--ease-out),
+      box-shadow 0.42s var(--ease-out);
+  }
+
+  .home-card-soft:hover {
+    box-shadow: var(--shadow-card);
+    transform: translateY(-2px);
   }
 
   .section-intro {
@@ -64,7 +114,7 @@ body {
   }
 
   .card-soft {
-    @apply rounded-[4px] border border-ink-900/10 bg-paper-100;
+    @apply rounded-[4px] border border-ink-900/10 bg-paper-50;
     box-shadow: 0 2px 12px rgba(12, 28, 34, 0.04);
   }
 
@@ -113,21 +163,57 @@ body {
     @apply visible translate-y-0 opacity-100;
   }
 
+  .hero-scrim-page-tint {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
   .hero-scrim-page {
     background: linear-gradient(
       105deg,
-      rgba(43, 43, 43, 0.88) 0%,
-      rgba(43, 43, 43, 0.58) 48%,
-      rgba(43, 43, 43, 0.32) 100%
+      rgba(0, 0, 0, 0.62) 0%,
+      rgba(0, 0, 0, 0.4) 48%,
+      rgba(0, 0, 0, 0.22) 100%
     );
   }
 
   .hero-scrim-page-bottom {
-    background: linear-gradient(to top, rgba(43, 43, 43, 0.5) 0%, transparent 55%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.48) 0%, transparent 55%);
   }
 
   .photo-bright {
     @apply brightness-[1.06] contrast-[0.95] saturate-[1.04];
+  }
+
+  .page-loader-hero {
+    @apply h-[75vh] min-h-[75vh] w-full bg-ink-900/15;
+  }
+
+  .page-loader-line,
+  .page-loader-card {
+    @apply bg-paper-200;
+  }
+
+  .page-loader-card {
+    @apply min-h-[200px];
+  }
+
+  .page-loader-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(240, 240, 240, 0.85) 0%,
+      rgba(255, 255, 255, 0.95) 50%,
+      rgba(240, 240, 240, 0.85) 100%
+    );
+    background-size: 200% 100%;
+    animation: page-loader-shimmer 1.4s ease-in-out infinite;
+  }
+
+  .page-enter {
+    animation: page-enter 0.25s var(--ease-out) both;
+  }
+
+  .section-reveal-accent {
+    @apply mb-[24px] h-[3px] w-[56px] origin-left rounded-full bg-brand;
   }
 
   .prose-body {
@@ -206,6 +292,62 @@ body {
   }
 }
 
+.careers-section-bg {
+  animation: careers-bg-ken-burns 24s var(--ease-out) infinite alternate;
+}
+
+.careers-section-shimmer {
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 58%
+  );
+  background-size: 200% 100%;
+  animation: careers-bg-shimmer 10s ease-in-out infinite;
+}
+
+@keyframes page-loader-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes careers-bg-ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes careers-bg-shimmer {
+  0%,
+  100% {
+    background-position: 200% 0;
+    opacity: 0.35;
+  }
+  50% {
+    background-position: -100% 0;
+    opacity: 0.85;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -238,6 +380,27 @@ body {
   .hero-slide-hidden {
     opacity: 0;
     transform: none;
+  }
+
+  .careers-section-bg,
+  .careers-section-shimmer {
+    animation: none !important;
+  }
+
+  .page-loader-shimmer {
+    animation: none !important;
+    background: rgb(240, 240, 240);
+  }
+
+  .page-enter {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .section-reveal-accent {
+    transform: none;
+    opacity: 1;
   }
 }
 

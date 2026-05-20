@@ -11,7 +11,7 @@ export function IndustriesPage() {
     <PageShell
       section="What we do"
       title="Industries we serve"
-      description="Software consulting and delivery tailored to the operational reality of commerce, logistics, finance, healthcare, and construction."
+      description="Software consulting and delivery tailored to commerce, logistics, finance, healthcare, construction, manufacturing, and education."
       breadcrumbs={[{ label: 'What we do', to: '/services' }, { label: 'Industries' }]}
       heroCta={{ label: 'Talk to our consultants', to: '/contact' }}
       heroImage={siteImages.hero.industries}

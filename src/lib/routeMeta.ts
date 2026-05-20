@@ -25,7 +25,7 @@ const exact: Record<string, RouteMeta> = {
   },
   '/industries': {
     title: 'Industries | MoonSofts',
-    description: 'Sector-specific software practices for e-commerce, healthcare, fintech, logistics, and more.',
+    description: 'Sector-specific software practices for e-commerce, healthcare, manufacturing, education, logistics, and more.',
   },
   '/clients': {
     title: 'Client voices | MoonSofts',

@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { useEffect } from 'react'
 import { PageShell } from '@/components/PageShell'
+import { SectionReveal } from '@/components/SectionReveal'
 import { getNewsBySlug, newsArticles } from '@/lib/newsData'
 import { newsPath } from '@/lib/newsPath'
 import { newsNav } from '@/lib/pageNav'
@@ -40,7 +41,11 @@ export function NewsArticlePage() {
 
         <div className="mt-[32px] space-y-[32px]">
           {article.sections.map((section) => (
-            <section key={section.heading ?? section.paragraphs[0].slice(0, 40)}>
+            <SectionReveal
+              as="section"
+              key={section.heading ?? section.paragraphs[0].slice(0, 40)}
+              accent
+            >
               {section.heading ? (
                 <h2 className="text-lg font-semibold text-ink-900 sm:text-xl">{section.heading}</h2>
               ) : null}
@@ -49,7 +54,7 @@ export function NewsArticlePage() {
                   <p key={paragraph.slice(0, 60)}>{paragraph}</p>
                 ))}
               </div>
-            </section>
+            </SectionReveal>
           ))}
         </div>
 
