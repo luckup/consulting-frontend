@@ -1,7 +1,6 @@
-import { siteFeatures } from '@/lib/siteFeatures'
 import { siteImages } from '@/lib/siteImages'
 
-const allSpotlightSlides = [
+export const spotlightSlides = [
   {
     id: 'delivery',
     eyebrow: 'Software consulting',
@@ -26,14 +25,10 @@ const allSpotlightSlides = [
     title: 'Trusted by leaders who measure delivery in outcomes',
     description:
       'Enterprise and growth-stage teams partner with MoonSofts for accountable squads—not ad-hoc capacity.',
-    cta: { label: 'Hear from clients', to: '/clients' },
+    cta: { label: 'Start a conversation', to: '/contact' },
     image: siteImages.home.spotlight[2],
   },
 ] as const
-
-export const spotlightSlides = allSpotlightSlides.filter(
-  (slide) => siteFeatures.clientVoices || slide.id !== 'clients',
-)
 
 export const homeServices = [
   {
