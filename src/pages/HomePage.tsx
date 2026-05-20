@@ -6,6 +6,7 @@ import { HomeLatestNewsStrip } from '@/components/HomeLatestNewsStrip'
 import { HomeSpotlightHero } from '@/components/HomeSpotlightHero'
 import { HomeStudioSection } from '@/components/HomeStudioSection'
 import { HomeWhatWeDoSection } from '@/components/HomeWhatWeDoSection'
+import { siteFeatures } from '@/lib/siteFeatures'
 
 export function HomePage() {
   return (
@@ -15,7 +16,7 @@ export function HomePage() {
       <HomeIndustriesSection />
       <HomeConsultingSection />
       <HomeLatestNewsStrip />
-      <HomeClientVoicesSection />
+      {siteFeatures.clientVoices ? <HomeClientVoicesSection /> : null}
       <HomeStudioSection />
       <HomeFinalCta />
     </>

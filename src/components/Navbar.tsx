@@ -7,6 +7,7 @@ import { TopUtilityBar } from '@/components/TopUtilityBar'
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll'
 import { useScrollThreshold } from '@/hooks/useScrollThreshold'
 import { routePrefetchHandlers } from '@/lib/routePrefetch'
+import { filterNavLinks } from '@/lib/siteFeatures'
 
 const navItems = [
   {
@@ -49,7 +50,10 @@ const navItems = [
       { to: '/privacy', label: 'Legal & privacy' },
     ],
   },
-]
+].map((item) => ({
+  ...item,
+  children: filterNavLinks(item.children),
+}))
 
 export function Navbar() {
   const [open, setOpen] = useState(false)

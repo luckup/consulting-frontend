@@ -1,6 +1,7 @@
+import { siteFeatures } from '@/lib/siteFeatures'
 import { siteImages } from '@/lib/siteImages'
 
-export const spotlightSlides = [
+const allSpotlightSlides = [
   {
     id: 'delivery',
     eyebrow: 'Software consulting',
@@ -29,6 +30,10 @@ export const spotlightSlides = [
     image: siteImages.home.spotlight[2],
   },
 ] as const
+
+export const spotlightSlides = allSpotlightSlides.filter(
+  (slide) => siteFeatures.clientVoices || slide.id !== 'clients',
+)
 
 export const homeServices = [
   {

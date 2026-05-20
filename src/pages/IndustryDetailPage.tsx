@@ -6,6 +6,7 @@ import { TestimonialRow } from '@/components/TestimonialRow'
 import { getTestimonialForIndustry } from '@/lib/clientsData'
 import { getIndustryBySlug, industries, industryPath } from '@/lib/industriesData'
 import { industriesNav } from '@/lib/pageNav'
+import { siteFeatures } from '@/lib/siteFeatures'
 
 export function IndustryDetailPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -100,7 +101,7 @@ export function IndustryDetailPage() {
           </ul>
         </ContentBlock>
 
-        {testimonial ? (
+        {siteFeatures.clientVoices && testimonial ? (
           <ContentBlock label="Client voice" title="What our clients say">
             <p className="mb-[24px] text-sm text-ink-600">
               Leaders in {sector.label.toLowerCase()} partner with MoonSofts for delivery they can trust. Here is how one
@@ -125,10 +126,14 @@ export function IndustryDetailPage() {
             <Link to="/services" className="font-semibold text-brand hover:text-brand-600">
               consulting services
             </Link>
-            , read more{' '}
-            <Link to="/clients" className="font-semibold text-brand hover:text-brand-600">
-              client outcomes
-            </Link>
+            {siteFeatures.clientVoices ? (
+              <>
+                , read more{' '}
+                <Link to="/clients" className="font-semibold text-brand hover:text-brand-600">
+                  client outcomes
+                </Link>
+              </>
+            ) : null}
             , or{' '}
             <Link to={sector.cta.to} className="font-semibold text-brand hover:text-brand-600">
               start a conversation

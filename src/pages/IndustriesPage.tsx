@@ -4,6 +4,7 @@ import { MediaImage } from '@/components/MediaImage'
 import { PageShell } from '@/components/PageShell'
 import { industries, industryPath } from '@/lib/industriesData'
 import { industriesNav } from '@/lib/pageNav'
+import { siteFeatures } from '@/lib/siteFeatures'
 import { siteImages } from '@/lib/siteImages'
 
 export function IndustriesPage() {
@@ -54,11 +55,18 @@ export function IndustriesPage() {
 
         <ContentBlock label="Cross-industry" title="One delivery standard, many contexts">
           <p>
-            Regardless of sector, MoonSofts applies the same delivery platform, access hygiene, and quality bar.{' '}
-            <Link to="/clients" className="font-semibold text-brand hover:text-brand-600">
-              See client feedback
-            </Link>{' '}
-            or{' '}
+            Regardless of sector, MoonSofts applies the same delivery platform, access hygiene, and quality bar.
+            {siteFeatures.clientVoices ? (
+              <>
+                {' '}
+                <Link to="/clients" className="font-semibold text-brand hover:text-brand-600">
+                  See client feedback
+                </Link>{' '}
+                or{' '}
+              </>
+            ) : (
+              ' '
+            )}
             <Link to="/services" className="font-semibold text-brand hover:text-brand-600">
               review how we engage
             </Link>

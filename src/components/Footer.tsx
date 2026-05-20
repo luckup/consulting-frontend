@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import { Github, Linkedin } from 'lucide-react'
 import { siteImages } from '@/lib/siteImages'
 import { routePrefetchHandlers } from '@/lib/routePrefetch'
+import { filterNavLinks } from '@/lib/siteFeatures'
 
-const CONTACT_EMAIL = 'yuji@moonsofts.net'
+import { CONTACT_INBOX } from '@/lib/contactEmail'
 
 function MediumIcon({ className }: { className?: string }) {
   return (
@@ -76,10 +77,10 @@ export function Footer() {
             Software consulting and delivery for enterprises that measure success in shipped outcomes—not slide decks.
           </p>
           <a
-            href={`mailto:${CONTACT_EMAIL}`}
+            href={`mailto:${CONTACT_INBOX}`}
             className="mt-[12px] inline-block text-sm font-medium text-brand transition hover:text-brand-600"
           >
-            {CONTACT_EMAIL}
+            {CONTACT_INBOX}
           </a>
           <p className="mt-[20px] text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">Follow us</p>
           <div className="mt-[12px] flex flex-wrap items-center gap-[12px]">
@@ -101,7 +102,7 @@ export function Footer() {
           <div key={col.title}>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">{col.title}</p>
             <ul className="mt-[16px] flex flex-col gap-[10px]">
-              {col.links.map((link) => (
+              {filterNavLinks(col.links).map((link) => (
                 <li key={link.to + link.label}>
                   <Link
                     to={link.to}

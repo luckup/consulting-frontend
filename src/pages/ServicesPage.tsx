@@ -3,6 +3,7 @@ import { ContentBlock } from '@/components/ContentBlock'
 import { PageShell } from '@/components/PageShell'
 import { useHashSectionScroll } from '@/hooks/useHashSectionScroll'
 import { servicesNav } from '@/lib/pageNav'
+import { siteFeatures } from '@/lib/siteFeatures'
 import { deliveryPhases, engagementModels } from '@/lib/servicesData'
 import { siteImages } from '@/lib/siteImages'
 
@@ -89,11 +90,13 @@ export function ServicesPage() {
               Honest scoping and escalation paths when trade-offs matter under pressure.
             </li>
           </ul>
-          <p className="mt-[24px]">
-            <Link to="/clients" className="font-semibold text-brand hover:text-brand-600">
-              Read what clients say about us →
-            </Link>
-          </p>
+          {siteFeatures.clientVoices ? (
+            <p className="mt-[24px]">
+              <Link to="/clients" className="font-semibold text-brand hover:text-brand-600">
+                Read what clients say about us →
+              </Link>
+            </p>
+          ) : null}
         </ContentBlock>
       </div>
     </PageShell>

@@ -43,7 +43,7 @@ export const careersNav: NavItem[] = [
   { label: 'Join us', to: '/engineers' },
   { label: 'Students & graduates', to: '/engineers#students' },
   { label: 'Earn & learn', to: '/engineers#earn-learn' },
-  { label: 'Current openings', to: '/contact' },
+  { label: 'Current openings', to: '/engineers#openings' },
 ]
 
 export const teamNav: NavItem[] = [

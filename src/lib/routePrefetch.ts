@@ -1,16 +1,18 @@
+import { siteFeatures } from '@/lib/siteFeatures'
+
 type RouteLoader = () => Promise<unknown>
 
 const exactRoutes: Record<string, RouteLoader> = {
   '/about': () => import('@/pages/AboutPage'),
-  '/clients': () => import('@/pages/ClientsPage'),
   '/services': () => import('@/pages/ServicesPage'),
   '/industries': () => import('@/pages/IndustriesPage'),
   '/engineers': () => import('@/pages/EngineersPage'),
-  '/team': () => import('@/pages/TeamPage'),
   '/news': () => import('@/pages/NewsPage'),
   '/privacy': () => import('@/pages/PrivacyPage'),
   '/stack': () => import('@/pages/StackPage'),
   '/contact': () => import('@/pages/ContactPage'),
+  ...(siteFeatures.clientVoices ? { '/clients': () => import('@/pages/ClientsPage') } : {}),
+  ...(siteFeatures.leadershipPage ? { '/team': () => import('@/pages/TeamPage') } : {}),
 }
 
 const dynamicRoutes: { test: (path: string) => boolean; load: RouteLoader }[] = [
@@ -28,6 +30,7 @@ const warmed = new Set<string>()
 
 export function prefetchRoute(path: string) {
   const normalized = path.split('?')[0].split('#')[0]
+  if (!exactRoutes[normalized] && !dynamicRoutes.some((route) => route.test(normalized))) return
   if (warmed.has(normalized)) return
 
   const exact = exactRoutes[normalized]
@@ -53,7 +56,7 @@ export function routePrefetchHandlers(path: string) {
 }
 
 export function prefetchCommonRoutes() {
-  const common = ['/services', '/industries', '/about', '/contact', '/clients']
+  const common = ['/services', '/industries', '/about', '/contact', ...(siteFeatures.clientVoices ? ['/clients'] : [])]
   const run = () => common.forEach(prefetchRoute)
 
   if (typeof requestIdleCallback === 'function') {

@@ -5,6 +5,7 @@ import { HomeCertificationsGrid } from '@/components/HomeCertificationsGrid'
 import { HomeSectionHeader } from '@/components/HomeSectionHeader'
 import { RevealItem, RevealStagger, RevealStaggerItem } from '@/components/SectionReveal'
 import { homeServices } from '@/lib/homeContent'
+import { siteFeatures } from '@/lib/siteFeatures'
 
 export function HomeConsultingSection() {
   return (
@@ -33,7 +34,7 @@ export function HomeConsultingSection() {
           ))}
       </RevealStagger>
 
-      <HomeCertificationsGrid />
+      {siteFeatures.homeCertifications ? <HomeCertificationsGrid /> : null}
     </AnimatedHomeSection>
   )
 }

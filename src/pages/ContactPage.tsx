@@ -1,24 +1,34 @@
 import { useMutation } from '@tanstack/react-query'
-import { type FormEvent, useState } from 'react'
+import axios from 'axios'
+import { type FormEvent, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { useSearchParams } from 'react-router-dom'
 import { ContentBlock } from '@/components/ContentBlock'
 import { PageShell } from '@/components/PageShell'
 import { api } from '@/lib/api'
 import { MediaImage } from '@/components/MediaImage'
+import { getOpenPosition } from '@/lib/careersData'
+import {
+  contactRoleLabels,
+  isContactRole,
+  openPositionContactRoles,
+  type ContactRole,
+} from '@/lib/contactRoles'
+import { CONTACT_INBOX } from '@/lib/contactEmail'
 import { contactNav } from '@/lib/pageNav'
 import { siteImages } from '@/lib/siteImages'
 
 type FormState = {
   name: string
   email: string
-  role: 'us-engineer' | 'global-engineer' | 'client' | 'other'
+  role: ContactRole
   message: string
 }
 
 const initial: FormState = {
   name: '',
   email: '',
-  role: 'us-engineer',
+  role: 'other',
   message: '',
 }
 
@@ -28,8 +38,29 @@ const offices = [
   { region: 'APAC', detail: 'Async delivery with documented handoffs and ceremonies.' },
 ]
 
+function buildApplicationMessage(positionTitle: string) {
+  return `Applying for: ${positionTitle}\n\nTell us about relevant experience, portfolio or shipped work, and your availability:\n\n`
+}
+
 export function ContactPage() {
+  const [searchParams] = useSearchParams()
   const [form, setForm] = useState<FormState>(initial)
+
+  useEffect(() => {
+    const roleParam = searchParams.get('role')
+    const positionId = searchParams.get('position')
+    if (!roleParam || !isContactRole(roleParam)) return
+
+    const position = positionId ? getOpenPosition(positionId) : undefined
+    setForm((current) => ({
+      ...current,
+      role: roleParam,
+      message:
+        position && !current.message.trim()
+          ? buildApplicationMessage(position.title)
+          : current.message,
+    }))
+  }, [searchParams])
 
   const mutation = useMutation({
     mutationFn: async (payload: FormState) => {
@@ -37,11 +68,19 @@ export function ContactPage() {
       return data
     },
     onSuccess: () => {
-      toast.success('Thanks — we will get back to you shortly.')
+      toast.success(`Message sent to ${CONTACT_INBOX}. We will get back to you shortly.`)
       setForm(initial)
     },
-    onError: () => {
-      toast.error('Something went wrong. Please try again or email us directly.')
+    onError: (error) => {
+      const apiMessage =
+        axios.isAxiosError(error) &&
+        error.response?.data &&
+        typeof error.response.data === 'object' &&
+        'error' in error.response.data &&
+        typeof error.response.data.error === 'string'
+          ? error.response.data.error
+          : null
+      toast.error(apiMessage ?? `Could not send your message. Please email ${CONTACT_INBOX} directly.`)
     },
   })
 
@@ -49,6 +88,10 @@ export function ContactPage() {
     e.preventDefault()
     mutation.mutate(form)
   }
+
+  const selectedOpening = openPositionContactRoles.includes(form.role)
+    ? contactRoleLabels[form.role]
+    : null
 
   return (
     <PageShell
@@ -64,13 +107,22 @@ export function ContactPage() {
       <div className="space-y-[48px]">
         <ContentBlock label="Contact us" title="We respond to every serious inquiry">
           <p>
-            Use the form below for partnerships, careers, or client engagements. Submissions are stored securely via the
-            MoonSofts API for your team to triage.
+            Use the form below for partnerships, careers, or client engagements. When you click Send message, your note
+            is emailed directly to{' '}
+            <a href={`mailto:${CONTACT_INBOX}`} className="font-semibold text-brand hover:text-brand-600">
+              {CONTACT_INBOX}
+            </a>
+            .
           </p>
         </ContentBlock>
 
         <div className="grid gap-[32px] lg:grid-cols-[1fr,320px]">
           <form id="contact-form" onSubmit={handleSubmit} className="card-static scroll-mt-[120px] space-y-[24px] p-[32px]">
+            {selectedOpening ? (
+              <p className="rounded-[4px] border border-brand/20 bg-brand-light/60 px-[16px] py-[12px] text-sm text-ink-700">
+                Applying for: <span className="font-semibold text-ink-900">{selectedOpening}</span>
+              </p>
+            ) : null}
             <div>
               <label htmlFor="name" className="field-label">
                 Name
@@ -104,12 +156,21 @@ export function ContactPage() {
                 id="role"
                 className="field-input"
                 value={form.role}
-                onChange={(e) => setForm((f) => ({ ...f, role: e.target.value as FormState['role'] }))}
+                onChange={(e) => setForm((f) => ({ ...f, role: e.target.value as ContactRole }))}
               >
-                <option value="us-engineer">U.S.-based engineer</option>
-                <option value="global-engineer">Engineer outside the U.S.</option>
-                <option value="client">Hiring manager / client</option>
-                <option value="other">Other</option>
+                <optgroup label="Current openings">
+                  {openPositionContactRoles.map((role) => (
+                    <option key={role} value={role}>
+                      {contactRoleLabels[role]}
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="General">
+                  <option value="us-engineer">{contactRoleLabels['us-engineer']}</option>
+                  <option value="global-engineer">{contactRoleLabels['global-engineer']}</option>
+                  <option value="client">{contactRoleLabels.client}</option>
+                  <option value="other">{contactRoleLabels.other}</option>
+                </optgroup>
               </select>
             </div>
             <div>
@@ -121,6 +182,11 @@ export function ContactPage() {
                 required
                 rows={5}
                 className="field-input"
+                placeholder={
+                  selectedOpening
+                    ? 'Share links to work, relevant wins, and when you could start.'
+                    : undefined
+                }
                 value={form.message}
                 onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
               />

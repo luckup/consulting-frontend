@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { MainLayout } from '@/layouts/MainLayout'
 import {
   AboutPage,
@@ -15,6 +15,7 @@ import {
   TeamPage,
 } from '@/lib/routes'
 import { HomePage } from '@/pages/HomePage'
+import { siteFeatures } from '@/lib/siteFeatures'
 
 export default function App() {
   return (
@@ -22,12 +23,18 @@ export default function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/clients" element={<ClientsPage />} />
+        <Route
+          path="/clients"
+          element={siteFeatures.clientVoices ? <ClientsPage /> : <Navigate to="/" replace />}
+        />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/industries" element={<IndustriesPage />} />
         <Route path="/industries/:slug" element={<IndustryDetailPage />} />
         <Route path="/engineers" element={<EngineersPage />} />
-        <Route path="/team" element={<TeamPage />} />
+        <Route
+          path="/team"
+          element={siteFeatures.leadershipPage ? <TeamPage /> : <Navigate to="/about" replace />}
+        />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/news/:slug" element={<NewsArticlePage />} />
         <Route path="/privacy" element={<PrivacyPage />} />

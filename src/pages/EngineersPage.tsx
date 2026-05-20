@@ -4,6 +4,7 @@ import { ContentBlock } from '@/components/ContentBlock'
 import { SectionReveal } from '@/components/SectionReveal'
 import { PageShell } from '@/components/PageShell'
 import { SplitFeature } from '@/components/SplitFeature'
+import { OpenPositionsList } from '@/components/OpenPositionsList'
 import { careersNav } from '@/lib/pageNav'
 import { siteImages } from '@/lib/siteImages'
 
@@ -26,7 +27,7 @@ export function EngineersPage() {
       title="Working at MoonSofts"
       description="Our technology advances human potential and frees people to do what they were born to do – change the world."
       breadcrumbs={[{ label: 'Careers', to: '/engineers' }, { label: 'Join us' }]}
-      heroCta={{ label: 'Current openings', to: '/contact' }}
+      heroCta={{ label: 'Current openings', to: '/engineers#openings' }}
       heroImage={siteImages.hero.careers}
       sidebarTitle="In this section"
       sidebarItems={careersNav}
@@ -72,6 +73,22 @@ export function EngineersPage() {
             </ul>
           </SectionReveal>
         </div>
+
+        <ContentBlock
+          id="openings"
+          label="Current openings"
+          title="We are building the founding team"
+          cta={{ label: 'General career inquiry', to: '/contact#contact-form' }}
+        >
+          <p>
+            MoonSofts is early-stage and growing. If you want to help clients ship with discipline—and build a company
+            that treats engineers and operators with respect—the roles below are where we need coworkers now. Each
+            application goes to our founders; tell us what you have shipped and what you want to own next.
+          </p>
+          <div className="mt-[32px]">
+            <OpenPositionsList />
+          </div>
+        </ContentBlock>
 
         <SplitFeature
           label="Students & graduates"
