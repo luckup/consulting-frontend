@@ -1,6 +1,7 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { clsx } from 'clsx'
 import type { NavItem } from '@/lib/pageNav'
+import { externalLinkProps, isExternalNavLink } from '@/lib/navLinks'
 import { handleSectionNavClick, isSectionNavActive } from '@/lib/scrollToSection'
 
 type Props = {
@@ -18,6 +19,20 @@ export function SidebarNav({ title, items }: Props) {
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-500">{title}</p>
         <ul className="mt-[12px] flex flex-col">
           {items.map((item) => {
+            if (isExternalNavLink(item)) {
+              return (
+                <li key={item.to + item.label}>
+                  <a
+                    href={item.to}
+                    {...externalLinkProps}
+                    className="block rounded-[4px] px-[12px] py-[10px] text-sm font-semibold text-brand transition hover:bg-brand-light"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              )
+            }
+
             const active = isSectionNavActive(item.to, location)
             return (
               <li key={item.to + item.label}>

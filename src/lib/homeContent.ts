@@ -81,6 +81,18 @@ export const homeIndustries = [
     to: '/industries/education',
     image: siteImages.home.education,
   },
+  {
+    label: 'Agriculture & farming',
+    body: 'Farm operations, traceability, and ag supply chain.',
+    to: '/industries/agriculture',
+    image: siteImages.home.agriculture,
+  },
+  {
+    label: 'Restaurant & hospitality',
+    body: 'Ordering, kitchen ops, and guest experiences.',
+    to: '/industries/restaurant',
+    image: siteImages.home.restaurant,
+  },
 ] as const
 
 export const recognitions = [

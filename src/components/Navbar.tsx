@@ -7,9 +7,12 @@ import { TopUtilityBar } from '@/components/TopUtilityBar'
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll'
 import { useScrollThreshold } from '@/hooks/useScrollThreshold'
 import { routePrefetchHandlers } from '@/lib/routePrefetch'
+import { contactInfo } from '@/lib/contactInfo'
+import type { AppNavLink } from '@/lib/navLinks'
 import { filterNavLinks } from '@/lib/siteFeatures'
+import { NavMenuLink, ScheduleConsultationButton } from '@/components/NavMenuLink'
 
-const navItems = [
+const navItems: { label: string; to: string; children: AppNavLink[] }[] = [
   {
     label: 'Industries',
     to: '/industries',
@@ -21,6 +24,8 @@ const navItems = [
       { to: '/industries/financial', label: 'Financial services' },
       { to: '/industries/manufacturing', label: 'Manufacturing' },
       { to: '/industries/education', label: 'Education' },
+      { to: '/industries/agriculture', label: 'Agriculture & farming' },
+      { to: '/industries/restaurant', label: 'Restaurant & hospitality' },
     ],
   },
   {
@@ -28,6 +33,7 @@ const navItems = [
     to: '/services',
     children: [
       { to: '/services', label: 'Consulting services' },
+      { to: contactInfo.calendlyUrl, label: contactInfo.calendlyLabel, external: true },
       { to: '/stack', label: 'Technology & platform' },
       { to: '/privacy', label: 'Legal & privacy' },
     ],
@@ -140,31 +146,34 @@ export function Navbar() {
                 </NavLink>
                 <div className="nav-dropdown" role="menu">
                   {item.children.map((child) => (
-                    <Link
+                    <NavMenuLink
                       key={child.to + child.label}
-                      to={child.to}
+                      link={child}
                       role="menuitem"
-                      {...routePrefetchHandlers(child.to)}
                       className="block px-[16px] py-[9px] text-sm text-ink-700 transition hover:bg-brand-light hover:text-brand-600"
-                    >
-                      {child.label}
-                    </Link>
+                    />
                   ))}
                 </div>
               </div>
             ))}
-            <NavLink
-              to="/contact"
-              {...routePrefetchHandlers('/contact')}
-              className={clsx(
-                'btn ml-[12px]',
-                overHero && !open
-                  ? 'border border-[white] bg-[white] text-brand hover:bg-[white]/90'
-                  : 'btn-primary',
-              )}
-            >
-              Contact us
-            </NavLink>
+            <div className="ml-[12px] flex items-center gap-[8px]">
+              <ScheduleConsultationButton
+                variant={overHero && !open ? 'nav-hero' : 'secondary'}
+                className="hidden px-[16px] py-[10px] text-sm lg:inline-flex"
+              />
+              <NavLink
+                to="/contact"
+                {...routePrefetchHandlers('/contact')}
+                className={clsx(
+                  'btn',
+                  overHero && !open
+                    ? 'border border-[white] bg-[white] text-brand hover:bg-[white]/90'
+                    : 'btn-primary',
+                )}
+              >
+                Contact us
+              </NavLink>
+            </div>
           </nav>
 
           <button
@@ -216,20 +225,23 @@ export function Navbar() {
                 {expanded === item.label ? (
                   <div className="mb-[8px] ml-[12px] flex flex-col gap-[4px] border-l border-ink-900/10 pl-[12px]">
                     {item.children.map((child) => (
-                      <Link
+                      <NavMenuLink
                         key={child.to + child.label}
-                        to={child.to}
-                        {...routePrefetchHandlers(child.to)}
+                        link={child}
                         className="py-[6px] text-sm text-ink-600 hover:text-brand"
                         onClick={closeMenu}
-                      >
-                        {child.label}
-                      </Link>
+                      />
                     ))}
                   </div>
                 ) : null}
               </div>
             ))}
+            <ScheduleConsultationButton
+              className="mt-[8px] w-full justify-center"
+              variant="secondary"
+              showIcon
+              onClick={closeMenu}
+            />
             <Link
               to="/contact"
               {...routePrefetchHandlers('/contact')}

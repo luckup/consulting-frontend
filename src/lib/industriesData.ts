@@ -197,6 +197,62 @@ const industryContent = [
     },
     cta: { label: 'Explore education solutions', to: '/contact' },
   },
+  {
+    id: 'agriculture',
+    label: 'Agriculture & farming',
+    title: 'Agriculture & farm operations software',
+    body: 'Farm management, crop planning, traceability, and supply-chain platforms that connect fields, equipment, and distributors without spreadsheet chaos.',
+    heroImage: siteImages.industries.agriculture.hero,
+    pageImage: siteImages.industries.agriculture.page,
+    highlights: [
+      'Farm and field management dashboards',
+      'Crop planning, inputs, and yield tracking',
+      'Traceability from harvest to distributor',
+      'Equipment, labor, and seasonal workforce tools',
+    ],
+    support: {
+      intro:
+        'Growers, co-ops, and agribusiness operators need software that works in the field—patchy connectivity, seasonal peaks, and compliance paperwork included. MoonSofts partners with operations and IT leaders to modernize without disrupting harvest windows.',
+      detail:
+        'We map how data moves from soil to shelf before we commit to platforms: who records applications, how lots are traced, and what auditors expect at each gate. Squads include engineers comfortable with mobile-first field tools and ERP-adjacent integrations.',
+      services: [
+        'Field and operations discovery with growers, agronomists, and logistics teams',
+        'Mobile workflows for scouting, applications, and harvest capture',
+        'Integrations with ERP, grain buyers, cold chain, and compliance systems',
+        'Pilot regions or facilities before enterprise rollout with clear KPIs',
+        'Retained support for new crops, acquisitions, and regulatory changes',
+      ],
+    },
+    cta: { label: 'Discuss agriculture programs', to: '/contact' },
+  },
+  {
+    id: 'restaurant',
+    label: 'Restaurant & hospitality',
+    title: 'Restaurant & hospitality technology',
+    body: 'Ordering, kitchen operations, reservations, and multi-location management for restaurants, cafés, and hospitality brands that need reliable peak-hour performance.',
+    heroImage: siteImages.industries.restaurant.hero,
+    pageImage: siteImages.industries.restaurant.page,
+    highlights: [
+      'Online ordering, menus, and delivery integrations',
+      'POS, kitchen display, and table management',
+      'Reservations, waitlists, and guest messaging',
+      'Multi-location reporting and franchise controls',
+    ],
+    support: {
+      intro:
+        'Hospitality runs on thin margins and brutal peak windows—software has to be fast, simple for staff, and honest about inventory and tickets. MoonSofts works with operators, franchisees, and product teams to ship systems guests and crews actually use.',
+      detail:
+        'We design for Friday-night load, menu changes at noon, and managers who cannot afford a two-week training program. Your brand gets consistent guest experiences across locations; your kitchen and front-of-house get tools that fail gracefully when integrations hiccup.',
+      services: [
+        'Operational workshops with GMs, kitchen leads, and franchise owners',
+        'Custom ordering sites, apps, and loyalty experiences',
+        'POS, delivery marketplace, and payment integrations with clear ownership',
+        'Phased rollouts by location or brand before network-wide launch',
+        'Hypercare and enhancement retainers aligned to seasonal menus and expansions',
+      ],
+    },
+    cta: { label: 'Discuss hospitality solutions', to: '/contact' },
+  },
 ] as const
 
 export const industries = industryContent

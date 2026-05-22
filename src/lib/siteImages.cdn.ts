@@ -29,6 +29,14 @@ const industryPhotos = {
     hero: cdnUrl('home/services/education-upper.png'),
     page: cdnUrl('home/services/education.png'),
   },
+  agriculture: {
+    hero: cdnUrl('home/services/agriculture-upper.png'),
+    page: cdnUrl('home/services/agriculture.png'),
+  },
+  restaurant: {
+    hero: cdnUrl('home/services/restaurant-upper.png'),
+    page: cdnUrl('home/services/restaurant.png'),
+  },
 } as const
 
 export const siteImages = {
@@ -65,6 +73,8 @@ export const siteImages = {
     construction: cdnUrl('home/services/construction.png'),
     manufacturing: cdnUrl('home/services/manufacturing.png'),
     education: cdnUrl('home/services/education.png'),
+    agriculture: cdnUrl('home/services/agriculture.png'),
+    restaurant: cdnUrl('home/services/restaurant.png'),
     careersBackground: cdnUrl('pages/home/background.png'),
     certificates: [
       cdnUrl('pages/home/certificates/1.png'),
@@ -106,5 +116,21 @@ export const siteImages = {
     walter: cdnUrl('pages/team/walter-picher.png'),
     reza: cdnUrl('pages/team/reza-nozari.png'),
     adryan: cdnUrl('pages/team/adryan-andrade-daniel.png'),
+  },
+  services: {
+    websiteOfferings: {
+      'personal-portfolio': cdnUrl('pages/services/personal-portfolio.png'),
+      'business-landing': cdnUrl('pages/services/business-landing.png'),
+      'company-website': cdnUrl('pages/services/company-website.png'),
+      ecommerce: cdnUrl('pages/services/ecommerce.png'),
+      booking: cdnUrl('pages/services/booking.png'),
+      saas: cdnUrl('pages/services/saas.png'),
+      'real-estate': cdnUrl('pages/services/real-estate.png'),
+      restaurant: cdnUrl('pages/services/restaurant.png'),
+      agency: cdnUrl('pages/services/agency.png'),
+      mvp: cdnUrl('pages/services/mvp.png'),
+      blog: cdnUrl('pages/services/blog.png'),
+      community: cdnUrl('pages/services/community.png'),
+    },
   },
 } as const

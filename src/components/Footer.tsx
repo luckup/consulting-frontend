@@ -1,11 +1,14 @@
 import type { LucideIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { Github, Linkedin } from 'lucide-react'
+import { Github, Linkedin, MapPin, Phone } from 'lucide-react'
 import { siteImages } from '@/lib/siteImages'
 import { routePrefetchHandlers } from '@/lib/routePrefetch'
 import { filterNavLinks } from '@/lib/siteFeatures'
 
-import { CONTACT_INBOX } from '@/lib/contactEmail'
+import { FooterLink } from '@/components/FooterLink'
+import { ScheduleConsultationButton } from '@/components/NavMenuLink'
+import { contactInfo } from '@/lib/contactInfo'
+import type { AppNavLink } from '@/lib/navLinks'
 
 function MediumIcon({ className }: { className?: string }) {
   return (
@@ -21,7 +24,7 @@ const socialLinks: { label: string; href: string; icon: LucideIcon | typeof Medi
   { label: 'Medium', href: 'https://moonsofts.medium.com/', icon: MediumIcon },
 ]
 
-const columns = [
+const columns: { title: string; links: AppNavLink[] }[] = [
   {
     title: 'Industries',
     links: [
@@ -32,12 +35,15 @@ const columns = [
       { to: '/industries/financial', label: 'Financial services' },
       { to: '/industries/manufacturing', label: 'Manufacturing' },
       { to: '/industries/education', label: 'Education' },
+      { to: '/industries/agriculture', label: 'Agriculture & farming' },
+      { to: '/industries/restaurant', label: 'Restaurant & hospitality' },
     ],
   },
   {
     title: 'Services',
     links: [
       { to: '/services', label: 'Consulting services' },
+      { to: contactInfo.calendlyUrl, label: contactInfo.calendlyLabel, external: true },
       { to: '/stack', label: 'Technology & platform' },
       { to: '/privacy', label: 'Information security' },
     ],
@@ -76,12 +82,36 @@ export function Footer() {
           <p className="mt-[16px] max-w-xs text-sm leading-relaxed text-ink-600">
             Software consulting and delivery for enterprises that measure success in shipped outcomes—not slide decks.
           </p>
-          <a
-            href={`mailto:${CONTACT_INBOX}`}
-            className="mt-[12px] inline-block text-sm font-medium text-brand transition hover:text-brand-600"
-          >
-            {CONTACT_INBOX}
-          </a>
+          <ul className="mt-[16px] flex flex-col gap-[10px] text-sm text-ink-600">
+            <li>
+              <a
+                href={`mailto:${contactInfo.email}`}
+                className="font-medium text-brand transition hover:text-brand-600"
+              >
+                {contactInfo.email}
+              </a>
+            </li>
+            <li>
+              <a
+                href={`tel:${contactInfo.phone}`}
+                className="inline-flex items-start gap-[8px] transition hover:text-brand"
+              >
+                <Phone className="mt-[2px] h-4 w-4 shrink-0 text-brand" aria-hidden />
+                <span>{contactInfo.phoneDisplay}</span>
+              </a>
+            </li>
+            <li className="inline-flex items-start gap-[8px]">
+              <MapPin className="mt-[2px] h-4 w-4 shrink-0 text-brand" aria-hidden />
+              <address className="not-italic leading-relaxed">
+                {contactInfo.addressLines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </address>
+            </li>
+          </ul>
+          <ScheduleConsultationButton className="mt-[20px] w-full sm:w-auto" variant="primary" showIcon />
           <p className="mt-[20px] text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">Follow us</p>
           <div className="mt-[12px] flex flex-wrap items-center gap-[12px]">
             {socialLinks.map(({ label, href, icon: Icon }) => (
@@ -104,13 +134,7 @@ export function Footer() {
             <ul className="mt-[16px] flex flex-col gap-[10px]">
               {filterNavLinks(col.links).map((link) => (
                 <li key={link.to + link.label}>
-                  <Link
-                    to={link.to}
-                    {...routePrefetchHandlers(link.to)}
-                    className="text-sm text-ink-600 transition hover:text-brand"
-                  >
-                    {link.label}
-                  </Link>
+                  <FooterLink link={link} className="text-sm text-ink-600 transition hover:text-brand" />
                 </li>
               ))}
             </ul>
