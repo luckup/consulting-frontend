@@ -290,6 +290,10 @@ body {
   .hero-copy-reveal {
     animation: hero-copy-reveal 0.75s var(--ease-out) 0.12s both;
   }
+
+  .hero-trust-reveal {
+    animation: hero-copy-reveal 0.65s var(--ease-out) 0.05s both;
+  }
 }
 
 @keyframes hero-image-reveal {
@@ -398,7 +402,8 @@ body {
 
   .hero-slide-hidden,
   .hero-slide-visible,
-  .hero-copy-reveal {
+  .hero-copy-reveal,
+  .hero-trust-reveal {
     animation: none !important;
     transition: none !important;
   }

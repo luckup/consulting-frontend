@@ -5,6 +5,7 @@ import { HomeIndustriesSection } from '@/components/HomeIndustriesSection'
 import { HomeLatestNewsStrip } from '@/components/HomeLatestNewsStrip'
 import { HomeSpotlightHero } from '@/components/HomeSpotlightHero'
 import { HomeStudioSection } from '@/components/HomeStudioSection'
+import { HomeTrustReviewsSection } from '@/components/HomeTrustReviewsSection'
 import { HomeWhatWeDoSection } from '@/components/HomeWhatWeDoSection'
 import { siteFeatures } from '@/lib/siteFeatures'
 
@@ -13,6 +14,7 @@ export function HomePage() {
     <>
       <HomeSpotlightHero />
       <HomeWhatWeDoSection />
+      <HomeTrustReviewsSection />
       <HomeIndustriesSection />
       <HomeConsultingSection />
       <HomeLatestNewsStrip />

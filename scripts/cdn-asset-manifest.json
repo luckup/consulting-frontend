@@ -2,6 +2,10 @@
   "description": "Map each file under src/assets/ to the path to use when uploading to the CDN (relative to CDN root).",
   "assets": {
     "brand/logo.png": "brand/logo.png",
+    "brand/clutch-logo-light.svg": "brand/clutch-logo-light.svg",
+    "brand/clutch-logo-dark.svg": "brand/clutch-logo-dark.svg",
+    "brand/trustpilot-logo-light.svg": "brand/trustpilot-logo-light.svg",
+    "brand/trustpilot-logo-dark.svg": "brand/trustpilot-logo-dark.svg",
     "heroes/about.png": "heroes/about.png",
     "heroes/careers.png": "heroes/careers.png",
     "heroes/contact.png": "heroes/contact.png",
