@@ -72,6 +72,37 @@ body {
     transform: translateY(-4px);
   }
 
+  .service-offering-card {
+    transition:
+      transform 0.35s var(--ease-out),
+      border-color 0.35s var(--ease-out),
+      box-shadow 0.35s var(--ease-out);
+  }
+
+  .service-offering-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 85, 0, 0.22);
+    box-shadow: 0 20px 48px rgba(12, 28, 34, 0.12);
+  }
+
+  .service-offering-cta {
+    transition:
+      transform 0.35s var(--ease-out),
+      box-shadow 0.35s var(--ease-out);
+  }
+
+  .service-offering-cta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(12, 28, 34, 0.1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-offering-card:hover,
+    .service-offering-cta:hover {
+      transform: none;
+    }
+  }
+
   .home-card-soft {
     @apply rounded-[4px] border border-transparent bg-paper-50;
     box-shadow: 0 2px 12px rgba(12, 28, 34, 0.04);

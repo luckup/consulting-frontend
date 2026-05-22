@@ -13,5 +13,7 @@ export function isPublicRoute(path: string) {
 }
 
 export function filterNavLinks<T extends { to: string }>(links: readonly T[]): T[] {
-  return links.filter((link) => isPublicRoute(link.to))
+  return links.filter(
+    (link) => link.to.startsWith('http://') || link.to.startsWith('https://') || isPublicRoute(link.to),
+  )
 }

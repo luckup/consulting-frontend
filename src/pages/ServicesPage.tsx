@@ -4,6 +4,9 @@ import { PageShell } from '@/components/PageShell'
 import { useHashSectionScroll } from '@/hooks/useHashSectionScroll'
 import { servicesNav } from '@/lib/pageNav'
 import { siteFeatures } from '@/lib/siteFeatures'
+import { ScheduleConsultationButton } from '@/components/NavMenuLink'
+import { ServiceWebsiteOfferings } from '@/components/ServiceWebsiteOfferings'
+import { contactInfo } from '@/lib/contactInfo'
 import { deliveryPhases, engagementModels } from '@/lib/servicesData'
 import { siteImages } from '@/lib/siteImages'
 
@@ -36,6 +39,38 @@ export function ServicesPage() {
             Whether you are modernizing a legacy platform, launching a new product line, or scaling a distributed team,
             we bring a repeatable operating model that compounds trust over quarters, not weeks.
           </p>
+          <div className="mt-[24px] flex flex-wrap items-center gap-[12px]">
+            <ScheduleConsultationButton variant="primary" showIcon />
+            <p className="text-sm text-ink-600">
+              Book a free 30-minute call on{' '}
+              <a
+                href={contactInfo.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-brand hover:text-brand-600"
+              >
+                Calendly
+              </a>
+              .
+            </p>
+          </div>
+        </ContentBlock>
+
+        <ContentBlock
+          id="websites"
+          label="Website solutions"
+          title="Websites we build for your customers"
+          cta={{ label: 'Request a quote', to: '/contact#contact-form' }}
+          reveal={false}
+        >
+          <p>
+            MoonSofts builds customer-facing websites for startups, creators, and growing businesses—from portfolio and
+            landing pages to e-commerce, booking, SaaS marketing sites, and membership platforms. Each engagement
+            includes discovery, UX, engineering, launch support, and handoff your team can own.
+          </p>
+          <div className="mt-[32px]">
+            <ServiceWebsiteOfferings />
+          </div>
         </ContentBlock>
 
         <ContentBlock id="models" label="Engagement types" title="Ways we partner with you">

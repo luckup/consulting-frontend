@@ -44,10 +44,26 @@
     "home/services/education.png": "home/services/education.png",
     "home/services/education-upper.png": "home/services/education-upper.png",
     "home/services/fullstack.png": "home/services/fullstack.png",
+    "home/services/agriculture.png": "home/services/agriculture.png",
+    "home/services/agriculture-upper.png": "home/services/agriculture-upper.png",
+    "home/services/restuarant.png": "home/services/restaurant.png",
+    "home/services/restuarant-upper.png": "home/services/restaurant-upper.png",
     "news/Launches as a Global Software Consulting.png": "news/launch.png",
     "news/CEO Vision Speech.png": "news/ceo-vision.png",
     "news/AI-Powered Software Development.png": "news/ai-development.png",
     "news/Building Industry-Specific Solutions.png": "news/industry-solutions.png",
-    "news/Why Global Businesses Need.png": "news/reliable-partner.png"
+    "news/Why Global Businesses Need.png": "news/reliable-partner.png",
+    "pages/services/Personal portfolio website.png": "pages/services/personal-portfolio.png",
+    "pages/services/Business landing page.png": "pages/services/business-landing.png",
+    "pages/services/Company website.png": "pages/services/company-website.png",
+    "pages/services/E-commerce website.png": "pages/services/ecommerce.png",
+    "pages/services/Booking  appointment website.png": "pages/services/booking.png",
+    "pages/services/SaaS website.png": "pages/services/saas.png",
+    "pages/services/Real estate website.png": "pages/services/real-estate.png",
+    "pages/services/Restaurant  café website.png": "pages/services/restaurant.png",
+    "pages/services/Agency website.png": "pages/services/agency.png",
+    "pages/services/MVP web app.png": "pages/services/mvp.png",
+    "pages/services/Blog  content website.png": "pages/services/blog.png",
+    "pages/services/Community  membership website.png": "pages/services/community.png"
   }
 }

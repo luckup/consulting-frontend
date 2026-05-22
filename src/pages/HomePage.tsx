@@ -1,6 +1,6 @@
 import { HomeClientVoicesSection } from '@/components/HomeClientVoicesSection'
 import { HomeConsultingSection } from '@/components/HomeConsultingSection'
-import { HomeFinalCta } from '@/components/HomeFinalCta'
+import { HomeFaqSection } from '@/components/HomeFaqSection'
 import { HomeIndustriesSection } from '@/components/HomeIndustriesSection'
 import { HomeLatestNewsStrip } from '@/components/HomeLatestNewsStrip'
 import { HomeSpotlightHero } from '@/components/HomeSpotlightHero'
@@ -18,7 +18,7 @@ export function HomePage() {
       <HomeLatestNewsStrip />
       {siteFeatures.clientVoices ? <HomeClientVoicesSection /> : null}
       <HomeStudioSection />
-      <HomeFinalCta />
+      <HomeFaqSection />
     </>
   )
 }

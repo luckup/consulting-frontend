@@ -49,6 +49,10 @@ import serviceManufacturing from '@/assets/home/services/manufacturing.png'
 import serviceManufacturingUpper from '@/assets/home/services/manufacturing-upper.png'
 import serviceEducation from '@/assets/home/services/education.png'
 import serviceEducationUpper from '@/assets/home/services/education-upper.png'
+import serviceAgriculture from '@/assets/home/services/agriculture.png'
+import serviceAgricultureUpper from '@/assets/home/services/agriculture-upper.png'
+import serviceRestaurantIndustry from '@/assets/home/services/restuarant.png'
+import serviceRestaurantIndustryUpper from '@/assets/home/services/restuarant-upper.png'
 import serviceFullstack from '@/assets/home/services/fullstack.png'
 
 import newsLaunch from '@/assets/news/Launches as a Global Software Consulting.png'
@@ -56,6 +60,34 @@ import newsCeoVision from '@/assets/news/CEO Vision Speech.png'
 import newsAiDevelopment from '@/assets/news/AI-Powered Software Development.png'
 import newsIndustrySolutions from '@/assets/news/Building Industry-Specific Solutions.png'
 import newsReliablePartner from '@/assets/news/Why Global Businesses Need.png'
+
+import servicePersonalPortfolio from '@/assets/pages/services/Personal portfolio website.png'
+import serviceBusinessLanding from '@/assets/pages/services/Business landing page.png'
+import serviceCompanyWebsite from '@/assets/pages/services/Company website.png'
+import serviceEcommerceWebsite from '@/assets/pages/services/E-commerce website.png'
+import serviceBookingWebsite from '@/assets/pages/services/Booking  appointment website.png'
+import serviceSaasWebsite from '@/assets/pages/services/SaaS website.png'
+import serviceRealEstateWebsite from '@/assets/pages/services/Real estate website.png'
+import serviceRestaurantWebsite from '@/assets/pages/services/Restaurant  café website.png'
+import serviceAgencyWebsite from '@/assets/pages/services/Agency website.png'
+import serviceMvpWebApp from '@/assets/pages/services/MVP web app.png'
+import serviceBlogWebsite from '@/assets/pages/services/Blog  content website.png'
+import serviceCommunityWebsite from '@/assets/pages/services/Community  membership website.png'
+
+const websiteOfferingImages = {
+  'personal-portfolio': servicePersonalPortfolio,
+  'business-landing': serviceBusinessLanding,
+  'company-website': serviceCompanyWebsite,
+  ecommerce: serviceEcommerceWebsite,
+  booking: serviceBookingWebsite,
+  saas: serviceSaasWebsite,
+  'real-estate': serviceRealEstateWebsite,
+  restaurant: serviceRestaurantWebsite,
+  agency: serviceAgencyWebsite,
+  mvp: serviceMvpWebApp,
+  blog: serviceBlogWebsite,
+  community: serviceCommunityWebsite,
+} as const
 
 const industryPhotos = {
   ecommerce: { hero: serviceEcommerceUpper, page: serviceEcommerce },
@@ -65,6 +97,8 @@ const industryPhotos = {
   construction: { hero: serviceConstructionUpper, page: serviceConstruction },
   manufacturing: { hero: serviceManufacturingUpper, page: serviceManufacturing },
   education: { hero: serviceEducationUpper, page: serviceEducation },
+  agriculture: { hero: serviceAgricultureUpper, page: serviceAgriculture },
+  restaurant: { hero: serviceRestaurantIndustryUpper, page: serviceRestaurantIndustry },
 } as const
 
 export const siteImages = {
@@ -97,6 +131,8 @@ export const siteImages = {
     construction: serviceConstruction,
     manufacturing: serviceManufacturing,
     education: serviceEducation,
+    agriculture: serviceAgriculture,
+    restaurant: serviceRestaurantIndustry,
     careersBackground: homeCareersBackground,
     certificates: [
       homeCertificate01,
@@ -138,5 +174,8 @@ export const siteImages = {
     walter: teamWalter,
     reza: teamReza,
     adryan: teamAdryan,
+  },
+  services: {
+    websiteOfferings: websiteOfferingImages,
   },
 } as const

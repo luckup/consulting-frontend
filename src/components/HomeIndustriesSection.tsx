@@ -12,7 +12,7 @@ export function HomeIndustriesSection() {
         <HomeSectionHeader
           label="Industries"
           title="Where we deliver software consulting"
-          description="Sector depth across commerce, logistics, healthcare, construction, manufacturing, education, and financial services."
+          description="Sector depth across commerce, logistics, healthcare, construction, manufacturing, education, agriculture, hospitality, and financial services."
           action={{ to: '/industries', label: 'View all industries' }}
         />
       </RevealItem>

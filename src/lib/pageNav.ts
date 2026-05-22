@@ -1,4 +1,6 @@
-export type NavItem = { label: string; to: string }
+import { contactInfo } from '@/lib/contactInfo'
+
+export type NavItem = { label: string; to: string; external?: boolean }
 
 export const whoWeAreNav: NavItem[] = [
   { label: 'About us', to: '/about#about-us' },
@@ -16,6 +18,12 @@ export const clientsNav: NavItem[] = [
 
 export const servicesNav: NavItem[] = [
   { label: 'How we engage', to: '/services#engage' },
+  {
+    label: contactInfo.calendlyLabel,
+    to: contactInfo.calendlyUrl,
+    external: true,
+  },
+  { label: 'Website solutions', to: '/services#websites' },
   { label: 'Engagement types', to: '/services#models' },
   { label: 'Delivery model', to: '/services#delivery' },
   { label: 'Why MoonSofts', to: '/services#why-moonsofts' },
@@ -30,6 +38,8 @@ export const industriesNav: NavItem[] = [
   { label: 'Construction', to: '/industries/construction' },
   { label: 'Manufacturing', to: '/industries/manufacturing' },
   { label: 'Education', to: '/industries/education' },
+  { label: 'Agriculture & farming', to: '/industries/agriculture' },
+  { label: 'Restaurant & hospitality', to: '/industries/restaurant' },
 ]
 
 export const stackNav: NavItem[] = [

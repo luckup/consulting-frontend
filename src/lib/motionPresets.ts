@@ -84,3 +84,77 @@ export const heroItemReveal = {
     transition: { duration: 0.28, ease: EASE_OUT },
   },
 } as const
+
+/** Each service card triggers its own reveal when it enters the viewport. */
+export const SERVICE_CARD_VIEWPORT = {
+  once: true,
+  amount: 0.12,
+  margin: '120px 0px -12% 0px',
+} as const
+
+export function serviceOfferingCardReveal(index: number) {
+  const fromLeft = index % 2 === 0
+  return {
+    hidden: {
+      opacity: 0,
+      y: 18,
+      x: fromLeft ? -24 : 24,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: {
+        duration: 0.48,
+        ease: EASE_OUT,
+        staggerChildren: 0.08,
+        delayChildren: 0.06,
+      },
+    },
+  } as const
+}
+
+export const serviceOfferingImageReveal = {
+  hidden: {
+    scale: 0.94,
+    opacity: 0.9,
+  },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.62,
+      ease: EASE_OUT,
+    },
+  },
+} as const
+
+export const serviceOfferingContentReveal = {
+  hidden: {
+    opacity: 0,
+    y: 12,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.42,
+      ease: EASE_OUT,
+    },
+  },
+} as const
+
+export const faqItemReveal = {
+  hidden: { opacity: 0, y: 14 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.38, ease: EASE_OUT },
+  },
+} as const
+
+export const faqPanelTransition = {
+  duration: 0.38,
+  ease: EASE_OUT,
+} as const
+
