@@ -11,6 +11,7 @@ import { contactInfo } from '@/lib/contactInfo'
 import type { AppNavLink } from '@/lib/navLinks'
 import { filterNavLinks } from '@/lib/siteFeatures'
 import { NavMenuLink, ScheduleConsultationButton } from '@/components/NavMenuLink'
+import { trackEvent } from '@/lib/analytics'
 
 const navItems: { label: string; to: string; children: AppNavLink[] }[] = [
   {
@@ -84,6 +85,15 @@ export function Navbar() {
     setExpanded(null)
   }
 
+  function trackTopMenuClick(label: string, context: 'desktop' | 'mobile') {
+    const normalized = label.toLowerCase()
+    if (!['services', 'industries', 'company'].includes(normalized)) return
+    trackEvent('menu_button_click', {
+      menu_item: normalized,
+      menu_context: context,
+    })
+  }
+
   const navSolid = scrolled || open
 
   return (
@@ -128,6 +138,7 @@ export function Navbar() {
                 <NavLink
                   to={item.to}
                   {...routePrefetchHandlers(item.to)}
+                  onClick={() => trackTopMenuClick(item.label, 'desktop')}
                   className={({ isActive }) =>
                     clsx(
                       'inline-flex items-center gap-[4px] rounded-[4px] px-[12px] py-[8px] text-sm font-medium transition',
@@ -215,7 +226,10 @@ export function Navbar() {
                   type="button"
                   className="flex w-full items-center justify-between rounded-[4px] px-[12px] py-[8px] text-left text-sm font-medium text-ink-700 hover:bg-paper-100"
                   aria-expanded={expanded === item.label}
-                  onClick={() => setExpanded(expanded === item.label ? null : item.label)}
+                  onClick={() => {
+                    trackTopMenuClick(item.label, 'mobile')
+                    setExpanded(expanded === item.label ? null : item.label)
+                  }}
                 >
                   {item.label}
                   <ChevronDown className={clsx('h-4 w-4 transition', expanded === item.label && 'rotate-180')} />

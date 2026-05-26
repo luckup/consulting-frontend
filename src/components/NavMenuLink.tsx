@@ -5,6 +5,7 @@ import { contactInfo } from '@/lib/contactInfo'
 import type { AppNavLink } from '@/lib/navLinks'
 import { externalLinkProps, isExternalNavLink } from '@/lib/navLinks'
 import { routePrefetchHandlers } from '@/lib/routePrefetch'
+import { trackEvent } from '@/lib/analytics'
 
 type Props = {
   link: AppNavLink
@@ -48,11 +49,19 @@ export function ScheduleConsultationButton({
   showIcon = false,
   onClick,
 }: ScheduleButtonProps) {
+  function handleClick() {
+    trackEvent('schedule_consultation_click', {
+      location: variant,
+      target: 'calendly',
+    })
+    onClick?.()
+  }
+
   return (
     <a
       href={contactInfo.calendlyUrl}
       {...externalLinkProps}
-      onClick={onClick}
+      onClick={handleClick}
       className={clsx(
         'btn inline-flex items-center justify-center gap-[8px]',
         variant === 'primary' && 'btn-primary',
