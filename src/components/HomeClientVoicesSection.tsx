@@ -21,7 +21,7 @@ export function HomeClientVoicesSection() {
       <RevealStagger className="mt-[40px] grid gap-[20px] sm:grid-cols-2 lg:grid-cols-4 lg:gap-[24px]">
           {clientStats.map((stat) => (
             <RevealStaggerItem key={stat.label}>
-              <div className="client-stat-card relative flex min-h-[148px] flex-col justify-center overflow-hidden rounded-[4px] border-2 border-transparent bg-gradient-to-br from-brand-light via-paper-50 to-paper-50 p-[28px] text-center shadow-[0_12px_40px_rgba(255,85,0,0.16)] transition duration-300 hover:shadow-[0_16px_48px_rgba(255,85,0,0.22)] sm:min-h-[168px] sm:p-[32px] sm:text-left">
+              <div className="client-stat-card relative flex min-h-[148px] flex-col justify-center overflow-hidden rounded-[4px] border-2 border-transparent bg-gradient-to-br from-brand-light via-paper-50 to-paper-50 p-[28px] text-center shadow-[0_12px_40px_rgba(0,217,255,0.16)] transition duration-300 hover:shadow-[0_16px_48px_rgba(0,217,255,0.22)] sm:min-h-[168px] sm:p-[32px] sm:text-left">
                 <div
                   className="pointer-events-none absolute -right-[20%] -top-[30%] h-[120px] w-[120px] rounded-full bg-brand/10 blur-[40px]"
                   aria-hidden

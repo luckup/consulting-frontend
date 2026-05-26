@@ -27,7 +27,7 @@ export function PageHero({ section, title, description, breadcrumbs, cta, backgr
       className={clsx(
         'relative overflow-hidden border-b border-ink-900/10',
         HERO_HEIGHT,
-        hasImage ? 'bg-ink-900' : 'bg-gradient-to-br from-brand-light via-paper-50 to-paper-100 text-ink-900',
+        hasImage ? 'bg-background' : 'bg-gradient-to-br from-brand-light via-paper-50 to-paper-100 text-ink-900',
       )}
     >
       {hasImage ? (
@@ -57,7 +57,7 @@ export function PageHero({ section, title, description, breadcrumbs, cta, backgr
             aria-label="Breadcrumb"
             className={clsx(
               'mb-[16px] flex shrink-0 flex-wrap items-center gap-[6px] text-xs',
-              hasImage ? 'text-ink-200' : 'text-ink-500',
+              hasImage ? 'text-ink-700' : 'text-ink-500',
             )}
           >
             <ol className="flex flex-wrap items-center gap-[6px]">
@@ -77,7 +77,7 @@ export function PageHero({ section, title, description, breadcrumbs, cta, backgr
                       </Link>
                     ) : (
                       <span
-                        className={hasImage ? 'text-ink-100' : 'text-ink-700'}
+                        className={hasImage ? 'text-ink-800' : 'text-ink-700'}
                         aria-current={isLast ? 'page' : undefined}
                       >
                         {crumb.label}
@@ -104,7 +104,7 @@ export function PageHero({ section, title, description, breadcrumbs, cta, backgr
             <p
               className={clsx(
                 'mt-[12px] max-w-2xl text-sm leading-relaxed sm:mt-[16px] sm:text-base lg:text-lg',
-                hasImage ? 'text-ink-100' : 'text-ink-600',
+                hasImage ? 'text-ink-700' : 'text-ink-600',
               )}
             >
               {description}

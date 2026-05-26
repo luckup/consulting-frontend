@@ -27,7 +27,7 @@ export function SplitFeature({ label, title, body, cta, image, reverse = false }
           <div
             className={`flex min-h-[200px] items-end bg-gradient-to-br from-brand to-brand-700 p-[32px] lg:min-h-[260px] ${reverse ? 'lg:[direction:ltr]' : ''}`}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-light">{label}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-background">{label}</p>
           </div>
         )}
         <div className={`flex flex-col justify-center p-[28px] sm:p-[36px] ${reverse ? 'lg:[direction:ltr]' : ''}`}>

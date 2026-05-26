@@ -91,7 +91,7 @@ export function Navbar() {
       className={clsx(
         'fixed left-0 right-0 top-0 z-50 transition-[background-color,box-shadow,border-color] duration-300',
         navSolid
-          ? 'border-b border-ink-900/10 bg-paper-50 shadow-[0_4px_24px_rgba(42,42,42,0.06)]'
+          ? 'border-b border-ink-900/10 bg-paper-50 shadow-[0_4px_24px_rgba(0,0,0,0.35)]'
           : 'border-b border-transparent bg-transparent',
       )}
     >
@@ -179,10 +179,8 @@ export function Navbar() {
           <button
             type="button"
             className={clsx(
-              'inline-flex rounded-[4px] border p-[8px] transition xl:hidden',
-              overHero && !open
-                ? 'border-[white]/40 bg-[white]/10 text-[white] hover:border-[white] hover:bg-[white]/20'
-                : 'border-ink-900/15 bg-paper-50 text-ink-800 hover:border-brand hover:text-brand',
+              'inline-flex p-1 transition xl:hidden',
+              overHero && !open ? 'text-[white] hover:text-brand' : 'text-ink-800 hover:text-brand',
             )}
             aria-expanded={open}
             aria-controls={menuId}

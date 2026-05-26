@@ -31,7 +31,7 @@ export function ClientsPage() {
             MoonSofts is chosen by product, engineering, and operations leaders who need a consulting partner—not just
             capacity. These voices reflect how we show up in discovery, delivery, and long-term collaboration.
           </p>
-          <div className="mt-[40px] overflow-hidden rounded-[4px] border border-ink-900/10 bg-paper-50 shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
+          <div className="mt-[40px] overflow-hidden rounded-[4px] border border-ink-900/10 bg-paper-50 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
             {testimonials.map((item, index) => (
               <div key={item.id} className={index > 0 ? 'border-t border-ink-900/10' : undefined}>
                 <TestimonialRow item={item} reverse={index % 2 === 1} />

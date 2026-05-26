@@ -63,7 +63,7 @@ function TrustBadgeCard({
       <div className="relative flex items-center gap-[16px] sm:gap-[20px]">
         <div className="flex w-[140px] shrink-0 flex-col items-start justify-center gap-[10px] sm:w-[168px]">
           <Logo
-            variant="dark"
+            variant="light"
             className="h-[48px] w-full max-w-[168px] object-left object-contain sm:h-[56px] sm:max-w-[188px]"
           />
           {item.subtitle ? (
@@ -105,7 +105,7 @@ function TrustBadgeCard({
   )
 
   const cardClass =
-    'group relative min-w-[300px] flex-1 overflow-hidden rounded-[6px] border border-ink-900/10 bg-paper-50 p-[20px] shadow-[0_8px_28px_rgba(12,28,34,0.08)] transition duration-300 hover:border-brand/25 hover:shadow-[0_12px_36px_rgba(12,28,34,0.12)] sm:min-w-[340px] sm:p-[24px]'
+    'group relative min-w-[300px] flex-1 overflow-hidden rounded-[6px] border border-ink-900/10 bg-paper-50 p-[20px] shadow-[0_8px_28px_rgba(0,0,0,0.35)] transition duration-300 hover:border-brand/25 hover:shadow-[0_12px_36px_rgba(0,217,255,0.12)] sm:min-w-[340px] sm:p-[24px]'
 
   if (item.href) {
     return (

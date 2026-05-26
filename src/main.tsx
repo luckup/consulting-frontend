@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <App />
-        <Toaster position="bottom-right" toastOptions={{ className: 'bg-ink-800 text-ink-50' }} />
+        <Toaster position="bottom-right" toastOptions={{ className: 'bg-paper-100 text-ink-900' }} />
       </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>,

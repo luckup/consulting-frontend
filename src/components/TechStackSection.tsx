@@ -33,7 +33,7 @@ export function TechStackSection() {
                         <BrandIcon
                           name={item.name}
                           slug={item.slug}
-                          className="h-[22px] w-[22px] object-contain brightness-0 opacity-[0.85]"
+                          className="h-[22px] w-[22px] object-contain brightness-0 invert opacity-[0.85]"
                         />
                       </span>
                       <span className="text-sm font-medium text-ink-800">{item.name}</span>

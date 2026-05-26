@@ -17,7 +17,7 @@ export function BrandLogo({ name, slug, size = 'md' }: Props) {
       <BrandIcon
         name={name}
         slug={slug}
-        className={`${height} w-auto max-w-full object-contain opacity-[0.78] brightness-0 transition-[opacity,filter] duration-[380ms] group-hover:opacity-100 group-hover:brightness-100`}
+        className={`${height} w-auto max-w-full object-contain opacity-[0.78] brightness-0 invert transition-[opacity,filter] duration-[380ms] group-hover:opacity-100 group-hover:brightness-100 group-hover:invert-0`}
       />
     </div>
   )

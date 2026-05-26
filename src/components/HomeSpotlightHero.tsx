@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { clsx } from 'clsx'
 import { spotlightSlides } from '@/lib/homeContent'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
@@ -81,11 +80,11 @@ export function HomeSpotlightHero() {
 
         <div className="pointer-events-none absolute inset-0 z-[2] bg-black/20" aria-hidden />
         <div
-          className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-r from-ink-900/80 via-ink-900/50 to-ink-900/25"
+          className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-r from-paper-50/80 via-paper-50/50 to-paper-50/25"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-ink-900/65 via-transparent to-ink-900/20"
+          className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-paper-50/65 via-transparent to-paper-50/20"
           aria-hidden
         />
 
@@ -100,7 +99,7 @@ export function HomeSpotlightHero() {
             <h1 className="mt-[16px] text-3xl font-bold leading-[1.12] tracking-tight text-[white] sm:text-4xl lg:text-5xl lg:leading-[1.1]">
               {slide.title}
             </h1>
-            <p className="mt-[20px] max-w-2xl text-base leading-relaxed text-ink-100 sm:text-lg">{slide.description}</p>
+            <p className="mt-[20px] max-w-2xl text-base leading-relaxed text-ink-700 sm:text-lg">{slide.description}</p>
             <div className="mt-[32px] flex flex-wrap items-center gap-[12px]">
               <Link
                 to={slide.cta.to}
@@ -117,40 +116,22 @@ export function HomeSpotlightHero() {
             </div>
           </div>
 
-          <div className="mt-[40px] flex items-center gap-[16px]">
-            <button
-              type="button"
-              onClick={goPrev}
-              className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[4px] border border-[white]/30 bg-[white]/10 text-[white] backdrop-blur-sm transition hover:border-brand hover:bg-brand/30"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <div className="flex items-center gap-[8px]" role="tablist" aria-label="Slide navigation">
-              {spotlightSlides.map((s, index) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  role="tab"
-                  onClick={() => setActive(index)}
-                  className={clsx(
-                    'h-[8px] rounded-full transition-all duration-300',
-                    index === active ? 'w-[32px] bg-brand' : 'w-[8px] bg-[white]/40 hover:bg-[white]/70',
-                  )}
-                  aria-label={`Go to slide ${index + 1}: ${s.title}`}
-                  aria-selected={index === active}
-                  aria-current={index === active ? 'true' : undefined}
-                />
-              ))}
-            </div>
-            <button
-              type="button"
-              onClick={goNext}
-              className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[4px] border border-[white]/30 bg-[white]/10 text-[white] backdrop-blur-sm transition hover:border-brand hover:bg-brand/30"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
+          <div className="mt-[40px] flex items-center gap-[8px]" role="tablist" aria-label="Slide navigation">
+            {spotlightSlides.map((s, index) => (
+              <button
+                key={s.id}
+                type="button"
+                role="tab"
+                onClick={() => setActive(index)}
+                className={clsx(
+                  'h-[8px] rounded-full transition-all duration-300',
+                  index === active ? 'w-[32px] bg-brand' : 'w-[8px] bg-[white]/40 hover:bg-[white]/70',
+                )}
+                aria-label={`Go to slide ${index + 1}: ${s.title}`}
+                aria-selected={index === active}
+                aria-current={index === active ? 'true' : undefined}
+              />
+            ))}
           </div>
         </div>
       </div>

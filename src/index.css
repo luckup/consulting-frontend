@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
-  --shadow-soft: 0 4px 24px rgba(42, 42, 42, 0.06);
-  --shadow-card: 0 12px 40px rgba(255, 85, 0, 0.1);
+  color-scheme: dark;
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 12px 40px rgba(0, 217, 255, 0.12);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -81,8 +81,8 @@ body {
 
   .service-offering-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(255, 85, 0, 0.22);
-    box-shadow: 0 20px 48px rgba(12, 28, 34, 0.12);
+    border-color: rgba(0, 217, 255, 0.22);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
   }
 
   .service-offering-cta {
@@ -93,7 +93,7 @@ body {
 
   .service-offering-cta:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(12, 28, 34, 0.1);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -105,7 +105,7 @@ body {
 
   .home-card-soft {
     @apply rounded-[4px] border border-transparent bg-paper-50;
-    box-shadow: 0 2px 12px rgba(12, 28, 34, 0.04);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
     transition:
       transform 0.42s var(--ease-out),
       box-shadow 0.42s var(--ease-out);
@@ -134,7 +134,7 @@ body {
   }
 
   .card:hover {
-    border-color: rgba(255, 85, 0, 0.28);
+    border-color: rgba(0, 217, 255, 0.28);
     box-shadow: var(--shadow-card);
     transform: translateY(-4px);
   }
@@ -146,7 +146,7 @@ body {
 
   .card-soft {
     @apply rounded-[4px] border border-ink-900/10 bg-paper-50;
-    box-shadow: 0 2px 12px rgba(12, 28, 34, 0.04);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
   }
 
   .btn {
@@ -154,7 +154,7 @@ body {
   }
 
   .btn-primary {
-    @apply bg-brand text-[white] hover:bg-brand-600 active:bg-brand-700;
+    @apply bg-brand text-background hover:bg-brand-600 active:bg-brand-700;
   }
 
   .btn-secondary {
@@ -186,7 +186,7 @@ body {
   }
 
   .nav-dropdown {
-    @apply invisible absolute left-0 top-full z-50 min-w-[240px] translate-y-[6px] border border-ink-900/10 bg-paper-50 py-[8px] opacity-0 shadow-[0_16px_48px_rgba(255,85,0,0.12)] transition-all duration-200;
+    @apply invisible absolute left-0 top-full z-50 min-w-[240px] translate-y-[6px] border border-ink-900/10 bg-paper-50 py-[8px] opacity-0 shadow-[0_16px_48px_rgba(0,217,255,0.12)] transition-all duration-200;
   }
 
   .group:hover .nav-dropdown,
@@ -216,7 +216,7 @@ body {
   }
 
   .page-loader-hero {
-    @apply h-[75vh] min-h-[75vh] w-full bg-ink-900/15;
+    @apply h-[75vh] min-h-[75vh] w-full bg-paper-100/50;
   }
 
   .page-loader-line,
@@ -231,9 +231,9 @@ body {
   .page-loader-shimmer {
     background: linear-gradient(
       90deg,
-      rgba(240, 240, 240, 0.85) 0%,
-      rgba(255, 255, 255, 0.95) 50%,
-      rgba(240, 240, 240, 0.85) 100%
+      rgba(28, 37, 64, 0.85) 0%,
+      rgba(35, 46, 74, 0.95) 50%,
+      rgba(28, 37, 64, 0.85) 100%
     );
     background-size: 200% 100%;
     animation: page-loader-shimmer 1.4s ease-in-out infinite;
@@ -255,7 +255,7 @@ body {
     background: linear-gradient(
       105deg,
       transparent 38%,
-      rgba(255, 255, 255, 0.42) 50%,
+      rgba(0, 217, 255, 0.12) 50%,
       transparent 62%
     );
     transform: translateX(-120%);
@@ -425,7 +425,7 @@ body {
 
   .page-loader-shimmer {
     animation: none !important;
-    background: rgb(240, 240, 240);
+    background: rgb(28, 37, 64);
   }
 
   .page-enter {

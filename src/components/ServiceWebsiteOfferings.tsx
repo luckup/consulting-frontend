@@ -46,11 +46,11 @@ function ServiceOfferingCard({ offering, index, animated }: ServiceOfferingCardP
         transition={{ duration: 0.5, ease: EASE_OUT }}
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-900/50 via-ink-900/10 to-transparent"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-paper-50/50 via-paper-50/10 to-transparent"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-900/25 via-transparent to-transparent md:from-ink-900/15"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper-50/25 via-transparent to-transparent md:from-paper-50/15"
         aria-hidden
       />
       <span className="absolute left-[16px] top-[16px] z-[1] rounded-[4px] border border-[white]/20 bg-[white]/10 px-[10px] py-[5px] text-[10px] font-semibold uppercase tracking-[0.14em] text-[white] backdrop-blur-md">
@@ -117,7 +117,7 @@ function ServiceOfferingCard({ offering, index, animated }: ServiceOfferingCardP
   )
 
   const className =
-    'service-offering-card group scroll-mt-[120px] overflow-hidden rounded-[6px] border border-ink-900/[0.08] bg-paper-50 shadow-[0_4px_28px_rgba(12,28,34,0.06)]'
+    'service-offering-card group scroll-mt-[120px] overflow-hidden rounded-[6px] border border-ink-900/[0.08] bg-paper-50 shadow-[0_4px_28px_rgba(0,0,0,0.35)]'
 
   if (!animated) {
     return (
@@ -135,11 +135,11 @@ function ServiceOfferingCard({ offering, index, animated }: ServiceOfferingCardP
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-900/50 via-ink-900/10 to-transparent"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-paper-50/50 via-paper-50/10 to-transparent"
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-900/25 via-transparent to-transparent md:from-ink-900/15"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper-50/25 via-transparent to-transparent md:from-paper-50/15"
               aria-hidden
             />
             <span className="absolute left-[16px] top-[16px] rounded-[4px] border border-[white]/20 bg-[white]/10 px-[10px] py-[5px] text-[10px] font-semibold uppercase tracking-[0.14em] text-[white] backdrop-blur-md">
@@ -225,7 +225,7 @@ function ServiceOfferingCta({ animated }: { animated: boolean }) {
   )
 
   const className =
-    'service-offering-cta group relative overflow-hidden rounded-[6px] border border-ink-900/[0.08] bg-gradient-to-br from-paper-50 via-paper-50 to-brand/[0.04] p-[32px] shadow-[0_4px_24px_rgba(12,28,34,0.05)] sm:p-[40px]'
+    'service-offering-cta group relative overflow-hidden rounded-[6px] border border-ink-900/[0.08] bg-gradient-to-br from-paper-50 via-paper-50 to-brand/[0.04] p-[32px] shadow-[0_4px_24px_rgba(0,0,0,0.35)] sm:p-[40px]'
 
   if (!animated) {
     return <article className={className}>{inner}</article>

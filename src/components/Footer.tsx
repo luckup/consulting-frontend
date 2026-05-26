@@ -121,7 +121,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[4px] border border-ink-900/10 text-ink-700 transition hover:border-brand hover:bg-brand-light hover:text-brand"
+                className="inline-flex p-1 text-ink-700 transition hover:text-brand"
               >
                 <Icon className="h-[18px] w-[18px]" aria-hidden />
               </a>
