@@ -34,7 +34,18 @@ for (const [localRel, cdnKey] of entries) {
   copied += 1
 }
 
-// Tab / PWA icon: use committed `public/favicon.svg` (white mark on dark tile). Do not overwrite from brand PNG.
+// Tab icon uses `public/favicon.svg` (white filter) + `public/brand/logo.png` (source). Copy logo for local/static serving.
+const brandLogoSrc = path.join(assetsRoot, 'brand/logo.png')
+const brandLogoPublic = path.resolve(__dirname, '../public/brand/logo.png')
+if (fs.existsSync(brandLogoSrc)) {
+  fs.mkdirSync(path.dirname(brandLogoPublic), { recursive: true })
+  fs.copyFileSync(brandLogoSrc, brandLogoPublic)
+  console.log('Updated public/brand/logo.png from src/assets/brand/logo.png (favicon source)')
+} else if (fs.existsSync(path.join(outRoot, 'brand/logo.png'))) {
+  fs.mkdirSync(path.dirname(brandLogoPublic), { recursive: true })
+  fs.copyFileSync(path.join(outRoot, 'brand/logo.png'), brandLogoPublic)
+  console.log('Updated public/brand/logo.png from cdn-upload/brand/logo.png (favicon source)')
+}
 
 console.log(`\nPrepared ${copied} file(s) in cdn-upload/`)
 if (missing > 0) {

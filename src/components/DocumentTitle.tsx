@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import { siteImages } from '@/lib/siteImages'
 import { resolvePageSeo, type PageSeo } from '@/lib/routeMeta'
+import { breadcrumbListJsonLd } from '@/lib/seoBreadcrumbs'
 import { MOONSOFTS_SAME_AS } from '@/lib/seoSocial'
 import { absoluteUrl, getSiteOrigin } from '@/lib/siteOrigin'
 
@@ -75,10 +76,16 @@ function setJsonLd(data: unknown) {
   script.textContent = JSON.stringify(data)
 }
 
-function buildJsonLd(origin: string, seo: PageSeo, canonicalUrl: string) {
+function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUrl: string) {
   const orgId = `${origin}/#organization`
   const websiteId = `${origin}/#website`
   const pageId = `${canonicalUrl}#webpage`
+  const logoUrl = `${origin}/brand/logo.png`
+  const logoObject = {
+    '@type': 'ImageObject',
+    url: logoUrl,
+    contentUrl: logoUrl,
+  }
 
   const graph: Record<string, unknown>[] = [
     {
@@ -86,7 +93,7 @@ function buildJsonLd(origin: string, seo: PageSeo, canonicalUrl: string) {
       '@id': orgId,
       name: 'MoonSofts',
       url: origin,
-      logo: `${origin}/favicon.svg`,
+      logo: logoObject,
       description:
         'MoonSofts is a software consulting company delivering remote engineering squads, cloud and AI programs for startups and enterprises worldwide.',
       sameAs: [...MOONSOFTS_SAME_AS],
@@ -106,21 +113,37 @@ function buildJsonLd(origin: string, seo: PageSeo, canonicalUrl: string) {
       name: seo.title,
       description: seo.description,
       isPartOf: { '@id': websiteId },
+      inLanguage: 'en-US',
     },
   ]
 
   if (seo.ogType === 'article') {
     const headline = seo.title.replace(/\s*\|\s*MoonSofts\s*$/i, '').trim()
-    graph.push({
+    const article: Record<string, unknown> = {
       '@type': 'NewsArticle',
       headline,
       description: seo.description,
       url: canonicalUrl,
-      image: seo.ogImage ? [seo.ogImage] : undefined,
       author: { '@type': 'Organization', name: 'MoonSofts' },
-      publisher: { '@id': orgId },
-    })
+      publisher: {
+        '@type': 'Organization',
+        name: 'MoonSofts',
+        logo: logoObject,
+      },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': pageId },
+    }
+    if (seo.articleDatePublished) {
+      article.datePublished = seo.articleDatePublished
+      article.dateModified = seo.articleDatePublished
+    }
+    if (seo.ogImage) {
+      article.image = [seo.ogImage]
+    }
+    graph.push(article)
   }
+
+  const crumbs = breadcrumbListJsonLd(origin, pathname, seo)
+  if (crumbs) graph.push(crumbs)
 
   return {
     '@context': 'https://schema.org',
@@ -140,8 +163,10 @@ export function DocumentTitle() {
 
     document.title = seo.title
 
+    removeMetaName('keywords')
+    removeMetaName('twitter:site')
+
     upsertMetaName('description', seo.description)
-    upsertMetaName('keywords', seo.keywords.join(', '))
     upsertMetaName('author', 'MoonSofts')
     upsertMetaName('robots', seo.robots ?? 'index, follow')
 
@@ -159,14 +184,13 @@ export function DocumentTitle() {
 
     if (ogImage) {
       upsertMetaProperty('og:image', ogImage)
-      upsertMetaProperty('og:image:alt', `${seo.title} - MoonSofts`)
+      upsertMetaProperty('og:image:alt', `${seo.title} — MoonSofts`)
     } else {
       removeMetaProperty('og:image')
       removeMetaProperty('og:image:alt')
     }
 
     upsertMetaName('twitter:card', ogImage ? 'summary_large_image' : 'summary')
-    upsertMetaName('twitter:site', '@moonsofts')
     upsertMetaName('twitter:title', seo.title)
     upsertMetaName('twitter:description', seo.description)
     if (ogImage) {
@@ -186,7 +210,7 @@ export function DocumentTitle() {
     }
 
     if (origin) {
-      setJsonLd(buildJsonLd(origin, seo, canonicalUrl || absoluteUrl(origin, pathname)))
+      setJsonLd(buildJsonLd(origin, pathname, seo, canonicalUrl || absoluteUrl(origin, pathname)))
     }
   }, [pathname, seo])
 

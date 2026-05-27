@@ -113,6 +113,7 @@ export const siteImages = {
   },
   team: {
     banner: cdnUrl('pages/team/banner.png'),
+    thomasJennings: cdnUrl('pages/team/thomas-jennings.png'),
     walter: cdnUrl('pages/team/walter-picher.png'),
     reza: cdnUrl('pages/team/reza-nozari.png'),
     adryan: cdnUrl('pages/team/adryan-andrade-daniel.png'),

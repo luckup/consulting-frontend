@@ -14,6 +14,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+`npm run dev` runs a soft sync first so `public/brand/logo.png` exists for the tab favicon when possible (local `src/assets/brand/logo.png` or `VITE_CDN_BASE_URL` in `.env`). If that step warns and skips, add assets or CDN URL, or run `npm run cdn:prepare`.
+
 ## Environment
 
 | File | Purpose |
@@ -33,6 +35,9 @@ Copy from `.env.example` or `.env.production.example` if needed.
 ## SEO
 
 - **Route titles & descriptions** live in `src/lib/routeMeta.ts` (`resolvePageSeo`). They are applied on every navigation via `DocumentTitle` (meta description, Open Graph, Twitter cards, `link rel="canonical"`, `hreflang`, and JSON-LD for Organization / WebSite / WebPage, plus `NewsArticle` on news posts).
+- **No `meta name="keywords"`**: search engines ignore it; important phrases belong in visible headings and body copy. `DocumentTitle` strips any legacy keywords tag on route change.
+- **Breadcrumbs in structured data**: inner routes append a `BreadcrumbList` graph (see `src/lib/seoBreadcrumbs.ts`) alongside the main JSON-LD block.
+- **NewsArticle dates**: when a news item has a parseable display date, `datePublished` / `dateModified` are emitted for richer article snippets (`src/lib/newsDate.ts`).
 - Set **`VITE_SITE_URL`** (no trailing slash) in `.env.production` so canonicals and structured data use your public domain instead of only the runtime origin.
 - **`public/robots.txt`** and **`public/sitemap.xml`** use `https://moonsofts.com` as the default host; update both if your live domain differs (or automate sitemap generation later).
 
@@ -74,7 +79,7 @@ High-resolution PNGs live on [Vercel Blob](https://vercel.com/docs/vercel-blob/p
 
 `src/assets/**/*.png` and `cdn-upload/` are gitignored so pushes stay small. Only application code is in the repo.
 
-The browser tab icon is `public/favicon.svg` (white mark on a dark tile). `npm run cdn:prepare` no longer overwrites it; optional `public/favicon.png` is a legacy fallback only.
+The browser tab icon is `public/favicon.svg`: it loads **`public/brand/logo.png`** (your `logo.png`) and applies an SVG filter so it renders **white** on a dark tile. Run `npm run cdn:prepare` when `src/assets/brand/logo.png` exists so that file is copied into `public/brand/logo.png` for local/preview. Optional `public/favicon.png` remains a legacy PNG fallback in `index.html`.
 
 ## Project layout
 

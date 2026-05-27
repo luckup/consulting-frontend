@@ -29,6 +29,7 @@ import stackProductEngineering from '@/assets/pages/stack/product_engineering.pn
 import stackPlatformCloud from '@/assets/pages/stack/platform_and_cloud.png'
 import stackDataAi from '@/assets/pages/stack/data_and_ai.png'
 import teamBanner from '@/assets/pages/team/banner.png'
+import teamThomasJennings from '@/assets/pages/team/Thomas Jennings.png'
 import teamWalter from '@/assets/pages/team/Walter Picher.png'
 import teamReza from '@/assets/pages/team/Reza Nozari.png'
 import teamAdryan from '@/assets/pages/team/Adryan Andrade Daniel.png'
@@ -171,6 +172,7 @@ export const siteImages = {
   },
   team: {
     banner: teamBanner,
+    thomasJennings: teamThomasJennings,
     walter: teamWalter,
     reza: teamReza,
     adryan: teamAdryan,

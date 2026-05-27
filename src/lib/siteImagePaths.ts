@@ -32,6 +32,7 @@ export const siteImagePaths = {
     },
     team: {
       banner: 'pages/team/banner.png',
+      thomasJennings: 'pages/team/thomas-jennings.png',
       walter: 'pages/team/Walter Picher.png',
       reza: 'pages/team/Reza Nozari.png',
       adryan: 'pages/team/Adryan Andrade Daniel.png',
