@@ -75,7 +75,7 @@ export function Footer() {
             <img
               src={siteImages.brand.logo}
               alt=""
-              className="h-[48px] w-auto max-w-[160px] shrink-0 bg-transparent object-contain"
+              className="h-[48px] w-auto max-w-[160px] shrink-0 bg-transparent object-contain brightness-0 invert drop-shadow-[0_1px_2px_rgba(12,28,34,0.5)]"
             />
             <span className="text-xl font-semibold tracking-tight text-ink-900">MoonSofts</span>
           </Link>

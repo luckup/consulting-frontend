@@ -15,7 +15,7 @@ type Props = {
 
 const sectionClass = (variant: Props['variant']) =>
   variant === 'highlight'
-    ? 'scroll-mt-[120px] rounded-[4px] border border-brand/25 bg-brand-light/80 p-[28px] shadow-soft sm:p-[36px]'
+    ? 'scroll-mt-[120px] rounded-[4px] border border-brand/30 bg-gradient-to-br from-brand/15 via-paper-100 to-paper-100 p-[28px] shadow-soft ring-1 ring-inset ring-brand/15 sm:p-[36px]'
     : 'scroll-mt-[120px] border-b border-ink-900/10 pb-[48px] last:border-0 last:pb-0'
 
 function ContentBlockBody({

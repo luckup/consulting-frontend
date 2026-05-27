@@ -86,7 +86,7 @@ function buildJsonLd(origin: string, seo: PageSeo, canonicalUrl: string) {
       '@id': orgId,
       name: 'MoonSofts',
       url: origin,
-      logo: `${origin}/favicon.png`,
+      logo: `${origin}/favicon.svg`,
       description:
         'MoonSofts is a software consulting company delivering remote engineering squads, cloud and AI programs for startups and enterprises worldwide.',
       sameAs: [...MOONSOFTS_SAME_AS],
@@ -141,6 +141,9 @@ export function DocumentTitle() {
     document.title = seo.title
 
     upsertMetaName('description', seo.description)
+    upsertMetaName('keywords', seo.keywords.join(', '))
+    upsertMetaName('author', 'MoonSofts')
+    upsertMetaName('robots', seo.robots ?? 'index, follow')
 
     upsertMetaProperty('og:site_name', 'MoonSofts')
     upsertMetaProperty('og:title', seo.title)
@@ -156,11 +159,14 @@ export function DocumentTitle() {
 
     if (ogImage) {
       upsertMetaProperty('og:image', ogImage)
+      upsertMetaProperty('og:image:alt', `${seo.title} - MoonSofts`)
     } else {
       removeMetaProperty('og:image')
+      removeMetaProperty('og:image:alt')
     }
 
     upsertMetaName('twitter:card', ogImage ? 'summary_large_image' : 'summary')
+    upsertMetaName('twitter:site', '@moonsofts')
     upsertMetaName('twitter:title', seo.title)
     upsertMetaName('twitter:description', seo.description)
     if (ogImage) {

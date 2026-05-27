@@ -118,8 +118,8 @@ export function Navbar() {
               src={siteImages.brand.logo}
               alt=""
               className={clsx(
-                'h-[48px] w-auto max-w-[200px] bg-transparent object-contain transition sm:h-[56px]',
-                overHero && !open ? 'brightness-0 invert' : '',
+                'h-[48px] w-auto max-w-[200px] bg-transparent object-contain brightness-0 invert transition sm:h-[56px]',
+                navSolid ? 'drop-shadow-[0_1px_2px_rgba(12,28,34,0.45)]' : '',
               )}
             />
             <span

@@ -74,7 +74,7 @@ High-resolution PNGs live on [Vercel Blob](https://vercel.com/docs/vercel-blob/p
 
 `src/assets/**/*.png` and `cdn-upload/` are gitignored so pushes stay small. Only application code is in the repo.
 
-The browser tab icon is `public/favicon.png` (company logo). It is updated when you run `npm run cdn:prepare`.
+The browser tab icon is `public/favicon.svg` (white mark on a dark tile). `npm run cdn:prepare` no longer overwrites it; optional `public/favicon.png` is a legacy fallback only.
 
 ## Project layout
 
