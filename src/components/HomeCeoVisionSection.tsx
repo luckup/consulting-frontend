@@ -67,15 +67,17 @@ export function HomeCeoVisionSection() {
           </div>
         </RevealStaggerItem>
         <RevealStaggerItem>
-          <div className="relative flex h-full min-h-[280px] overflow-hidden rounded-[4px] border border-ink-900/10 bg-paper-100 shadow-soft">
-            <MediaImage
-              src={siteImages.team.thomasJennings}
-              alt="Thomas Jennings, Chief Executive Officer of MoonSofts"
-              className="absolute inset-0 h-full w-full min-h-0"
-              imageClassName="object-top"
-              overlay="none"
-            />
-            <div className="relative mt-auto w-full bg-gradient-to-t from-paper-50 via-paper-50/95 to-transparent p-[24px] sm:p-[28px]">
+          <div className="flex h-full flex-col overflow-hidden rounded-[4px] border border-ink-900/10 bg-paper-100 shadow-soft">
+            <div className="flex min-h-[300px] flex-1 items-center justify-center bg-paper-100 p-[16px] sm:min-h-[360px] sm:p-[20px]">
+              <MediaImage
+                src={siteImages.team.thomasJennings}
+                alt="Thomas Jennings, Chief Executive Officer of MoonSofts"
+                className="h-full max-h-[440px] w-full"
+                imageClassName="object-contain object-center"
+                overlay="none"
+              />
+            </div>
+            <div className="shrink-0 border-t border-ink-900/10 bg-paper-50 p-[24px] sm:p-[28px]">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand">First-stage focus</p>
               <ul className="mt-[12px] space-y-[10px] text-sm leading-relaxed text-ink-700">
                 <li>MVPs and marketing websites for early customers with a clear problem and serious intent</li>

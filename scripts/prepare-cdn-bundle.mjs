@@ -34,16 +34,25 @@ for (const [localRel, cdnKey] of entries) {
   copied += 1
 }
 
-// Tab icon uses `public/favicon.svg` (white filter) + `public/brand/logo.png` (source). Copy logo for local/static serving.
+// Tab icon uses `public/brand/logo.png` (+ `public/favicon.svg` / `public/favicon.png`). Copy logo for local/static serving.
 const brandLogoSrc = path.join(assetsRoot, 'brand/logo.png')
 const brandLogoPublic = path.resolve(__dirname, '../public/brand/logo.png')
+const faviconPngPublic = path.resolve(__dirname, '../public/favicon.png')
+function mirrorTabIconFromLogo() {
+  if (fs.existsSync(brandLogoPublic)) {
+    fs.copyFileSync(brandLogoPublic, faviconPngPublic)
+  }
+}
+
 if (fs.existsSync(brandLogoSrc)) {
   fs.mkdirSync(path.dirname(brandLogoPublic), { recursive: true })
   fs.copyFileSync(brandLogoSrc, brandLogoPublic)
+  mirrorTabIconFromLogo()
   console.log('Updated public/brand/logo.png from src/assets/brand/logo.png (favicon source)')
 } else if (fs.existsSync(path.join(outRoot, 'brand/logo.png'))) {
   fs.mkdirSync(path.dirname(brandLogoPublic), { recursive: true })
   fs.copyFileSync(path.join(outRoot, 'brand/logo.png'), brandLogoPublic)
+  mirrorTabIconFromLogo()
   console.log('Updated public/brand/logo.png from cdn-upload/brand/logo.png (favicon source)')
 }
 

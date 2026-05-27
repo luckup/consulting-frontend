@@ -1,5 +1,6 @@
 /**
- * Ensures `public/brand/logo.png` exists for `public/favicon.svg` (white-filtered tab icon).
+ * Ensures `public/brand/logo.png` exists for the browser tab icon and `public/favicon.svg`.
+ * Also copies to `public/favicon.png` for clients that prefer that path.
  * Order: copy from `src/assets/brand/logo.png` if present, else download from `VITE_CDN_BASE_URL`.
  *
  * Pass `--soft` to warn and exit 0 when no source is available (optional dev convenience).
@@ -12,6 +13,13 @@ import { loadEnv } from 'vite'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
 const dest = path.join(root, 'public', 'brand', 'logo.png')
+const faviconPng = path.join(root, 'public', 'favicon.png')
+
+function writeFaviconCopy() {
+  if (fs.existsSync(dest)) {
+    fs.copyFileSync(dest, faviconPng)
+  }
+}
 const assetSrc = path.join(root, 'src', 'assets', 'brand', 'logo.png')
 const soft = process.argv.includes('--soft')
 const force = process.argv.includes('--force')
@@ -35,12 +43,14 @@ async function main() {
   fs.mkdirSync(path.dirname(dest), { recursive: true })
 
   if (fs.existsSync(dest) && !force) {
+    writeFaviconCopy()
     console.log('[favicon-source] using existing public/brand/logo.png (pass --force to refresh)')
     return
   }
 
   if (fs.existsSync(assetSrc)) {
     fs.copyFileSync(assetSrc, dest)
+    writeFaviconCopy()
     console.log('[favicon-source] copied src/assets/brand/logo.png -> public/brand/logo.png')
     return
   }
@@ -49,6 +59,7 @@ async function main() {
   if (base) {
     const buf = await downloadFromCdn(base)
     fs.writeFileSync(dest, buf)
+    writeFaviconCopy()
     console.log(`[favicon-source] downloaded ${base}/brand/logo.png -> public/brand/logo.png`)
     return
   }
