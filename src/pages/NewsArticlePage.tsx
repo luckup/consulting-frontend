@@ -5,53 +5,10 @@ import { SectionReveal } from '@/components/SectionReveal'
 import { getNewsBySlug, newsArticles } from '@/lib/newsData'
 import { newsPath } from '@/lib/newsPath'
 import { newsNav } from '@/lib/pageNav'
-import { SITE_URL, setPageMeta } from '@/lib/routeMeta'
-
-const MONTH_MAP: Record<string, string> = {
-  January: '01', February: '02', March: '03', April: '04',
-  May: '05', June: '06', July: '07', August: '08',
-  September: '09', October: '10', November: '11', December: '12',
-}
-
-function toISODate(dateStr: string): string {
-  const [day, month, year] = dateStr.split(' ')
-  return `${year}-${MONTH_MAP[month] ?? '01'}-${day.padStart(2, '0')}`
-}
 
 export function NewsArticlePage() {
   const { slug } = useParams<{ slug: string }>()
   const article = getNewsBySlug(slug)
-
-<<<<<<< HEAD
-=======
-  useEffect(() => {
-    if (!article) return
-    const canonical = `${SITE_URL}/news/${article.id}`
-    setPageMeta(
-      {
-        title: `${article.title} | MoonSofts`,
-        description: article.excerpt,
-        ogImage: article.image,
-        ogType: 'article',
-        jsonLd: {
-          '@context': 'https://schema.org',
-          '@type': 'Article',
-          '@id': `${canonical}#article`,
-          headline: article.title,
-          description: article.excerpt,
-          image: article.image,
-          datePublished: toISODate(article.date),
-          url: canonical,
-          isPartOf: { '@id': `${SITE_URL}/#website` },
-          publisher: { '@id': `${SITE_URL}/#organization` },
-          author: { '@id': `${SITE_URL}/#organization` },
-        },
-      },
-      `/news/${article.id}`,
-    )
-  }, [article])
-
->>>>>>> b9b0fa4204a34773c47155594e6fa9f7bd2b1131
   if (!article) {
     return <Navigate to="/news" replace />
   }

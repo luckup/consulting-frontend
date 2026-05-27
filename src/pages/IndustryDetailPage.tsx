@@ -1,5 +1,4 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { useEffect } from 'react'
 import { ContentBlock } from '@/components/ContentBlock'
 import { MediaImage } from '@/components/MediaImage'
 import { PageShell } from '@/components/PageShell'
@@ -8,42 +7,10 @@ import { getTestimonialForIndustry } from '@/lib/clientsData'
 import { getIndustryBySlug, industries, industryPath } from '@/lib/industriesData'
 import { industriesNav } from '@/lib/pageNav'
 import { siteFeatures } from '@/lib/siteFeatures'
-import { SITE_URL, setPageMeta } from '@/lib/routeMeta'
 
 export function IndustryDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const sector = getIndustryBySlug(slug)
-
-  useEffect(() => {
-    if (!sector) return
-    const canonical = `${SITE_URL}/industries/${sector.id}`
-    setPageMeta(
-      {
-        title: `${sector.title} | MoonSofts`,
-        description: sector.body,
-        ogImage: sector.heroImage,
-        jsonLd: {
-          '@context': 'https://schema.org',
-          '@type': 'WebPage',
-          '@id': `${canonical}#webpage`,
-          url: canonical,
-          name: `${sector.title} | MoonSofts`,
-          description: sector.body,
-          isPartOf: { '@id': `${SITE_URL}/#website` },
-          publisher: { '@id': `${SITE_URL}/#organization` },
-          breadcrumb: {
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Services', item: `${SITE_URL}/services` },
-              { '@type': 'ListItem', position: 2, name: 'Industries', item: `${SITE_URL}/industries` },
-              { '@type': 'ListItem', position: 3, name: sector.label, item: canonical },
-            ],
-          },
-        },
-      },
-      `/industries/${sector.id}`,
-    )
-  }, [sector])
 
   if (!sector) {
     return <Navigate to="/industries" replace />
