@@ -30,6 +30,12 @@ VITE_CDN_BASE_URL=https://kmbR6bCYbcA9kB47.public.blob.vercel-storage.com
 
 Copy from `.env.example` or `.env.production.example` if needed.
 
+## SEO
+
+- **Route titles & descriptions** live in `src/lib/routeMeta.ts` (`resolvePageSeo`). They are applied on every navigation via `DocumentTitle` (meta description, Open Graph, Twitter cards, `link rel="canonical"`, `hreflang`, and JSON-LD for Organization / WebSite / WebPage, plus `NewsArticle` on news posts).
+- Set **`VITE_SITE_URL`** (no trailing slash) in `.env.production` so canonicals and structured data use your public domain instead of only the runtime origin.
+- **`public/robots.txt`** and **`public/sitemap.xml`** use `https://moonsofts.com` as the default host; update both if your live domain differs (or automate sitemap generation later).
+
 ## Images (CDN)
 
 High-resolution PNGs live on [Vercel Blob](https://vercel.com/docs/vercel-blob/public-storage). Paths are defined in `src/lib/siteImages.cdn.ts`.

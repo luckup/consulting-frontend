@@ -4,8 +4,10 @@
 
 :root {
   color-scheme: light;
+  --brand: #00dfff;
+  --brand-rgb: 0 223 255;
   --shadow-soft: 0 4px 24px rgba(42, 42, 42, 0.06);
-  --shadow-card: 0 12px 40px rgba(255, 85, 0, 0.1);
+  --shadow-card: 0 12px 40px rgba(var(--brand-rgb), 0.14);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -81,7 +83,7 @@ body {
 
   .service-offering-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(255, 85, 0, 0.22);
+    border-color: rgba(var(--brand-rgb), 0.28);
     box-shadow: 0 20px 48px rgba(12, 28, 34, 0.12);
   }
 
@@ -134,7 +136,7 @@ body {
   }
 
   .card:hover {
-    border-color: rgba(255, 85, 0, 0.28);
+    border-color: rgba(var(--brand-rgb), 0.35);
     box-shadow: var(--shadow-card);
     transform: translateY(-4px);
   }
@@ -154,7 +156,7 @@ body {
   }
 
   .btn-primary {
-    @apply bg-brand text-[white] hover:bg-brand-600 active:bg-brand-700;
+    @apply bg-brand text-ink-900 hover:bg-brand-600 active:bg-brand-700;
   }
 
   .btn-secondary {
@@ -186,7 +188,7 @@ body {
   }
 
   .nav-dropdown {
-    @apply invisible absolute left-0 top-full z-50 min-w-[240px] translate-y-[6px] border border-ink-900/10 bg-paper-50 py-[8px] opacity-0 shadow-[0_16px_48px_rgba(255,85,0,0.12)] transition-all duration-200;
+    @apply invisible absolute left-0 top-full z-50 min-w-[240px] translate-y-[6px] border border-ink-900/10 bg-paper-50 py-[8px] opacity-0 shadow-[0_16px_48px_rgba(0,223,255,0.14)] transition-all duration-200;
   }
 
   .group:hover .nav-dropdown,

@@ -1,6 +1,5 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
-import { useEffect } from 'react'
 import { PageShell } from '@/components/PageShell'
 import { SectionReveal } from '@/components/SectionReveal'
 import { getNewsBySlug, newsArticles } from '@/lib/newsData'
@@ -10,11 +9,6 @@ import { newsNav } from '@/lib/pageNav'
 export function NewsArticlePage() {
   const { slug } = useParams<{ slug: string }>()
   const article = getNewsBySlug(slug)
-
-  useEffect(() => {
-    if (!article) return
-    document.title = `${article.title} | MoonSofts`
-  }, [article])
 
   if (!article) {
     return <Navigate to="/news" replace />

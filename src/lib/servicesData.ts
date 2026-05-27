@@ -19,7 +19,7 @@ export const engagementModels = [
 
 /** Append to every imagePrompt — bright, light, advanced professional look. */
 export const WEBSITE_IMAGE_STYLE_SUFFIX =
-  'bright high-key natural lighting, airy light-toned modern space, white and soft neutral palette, advanced professional premium corporate photography, clean sophisticated atmosphere, laptop or phone screen showing light-mode website UI with white background and subtle orange accent buttons, photorealistic DSLR editorial stock photo, no dark moody shadows no illustration no 3D render no abstract shapes, 16:9'
+  'bright high-key natural lighting, airy light-toned modern space, white and soft neutral palette, advanced professional premium corporate photography, clean sophisticated atmosphere, laptop or phone screen showing light-mode website UI with white background and subtle cyan #00DFFF accent buttons, photorealistic DSLR editorial stock photo, no dark moody shadows no illustration no 3D render no abstract shapes, 16:9'
 
 export type WebsiteOffering = {
   id: string

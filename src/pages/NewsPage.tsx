@@ -73,7 +73,7 @@ export function NewsPage() {
               </p>
               <Link
                 to={newsPath(article.id)}
-                className="mt-[20px] inline-flex w-fit items-center gap-[8px] rounded-[4px] border border-brand bg-brand px-[18px] py-[10px] text-sm font-semibold text-[white] transition hover:bg-brand-600"
+                className="mt-[20px] inline-flex w-fit items-center gap-[8px] rounded-[4px] border border-brand bg-brand px-[18px] py-[10px] text-sm font-semibold text-ink-900 transition hover:bg-brand-600"
               >
                 Read more
                 <ArrowRight className="h-4 w-4" />

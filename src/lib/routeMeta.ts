@@ -1,78 +1,125 @@
-type RouteMeta = {
+import { getIndustryBySlug } from '@/lib/industriesData'
+import { getNewsBySlug } from '@/lib/newsData'
+
+export type PageSeo = {
+  title: string
+  description: string
+  ogType: 'website' | 'article'
+  ogImage?: string
+}
+
+type RouteMetaBase = {
   title: string
   description: string
 }
 
-const defaults: RouteMeta = {
-  title: 'MoonSofts',
+const defaults: RouteMetaBase = {
+  title: 'MoonSofts | Software consulting company for startups & remote teams',
   description:
-    'MoonSofts — software consulting for AI, cloud, and accountable engineering for global product teams.',
+    'MoonSofts is a software consulting company helping startups and enterprises ship with remote senior squads, AI-assisted delivery, and cloud-native engineering. Book a free consultation to align on your next program.',
 }
 
-const exact: Record<string, RouteMeta> = {
+const exact: Record<string, RouteMetaBase> = {
   '/': {
-    title: 'MoonSofts | Software consulting & engineering',
+    title: 'MoonSofts | Software consulting company — startups, remote teams & AI delivery',
     description:
-      'AI-assisted delivery, cloud-native architecture, and accountable engineering squads for enterprises worldwide.',
+      'MoonSofts is a global software consulting company for startups and established product teams. Remote engineering squads, discovery through production, cloud & AI—plus a free consultation to map scope and delivery.',
   },
   '/about': {
-    title: 'About MoonSofts',
-    description: 'Our story, values, commitments, and history as a global software consulting partner.',
+    title: 'About MoonSofts | Global software consulting & remote delivery',
+    description:
+      'Our story, values, and commitments as MoonSofts—a software consulting company built for remote collaboration, startup speed, and enterprise-grade accountability.',
   },
   '/services': {
-    title: 'Services | MoonSofts',
-    description: 'Consulting, engagement models, and delivery practices for modern product organizations.',
+    title: 'Software consulting services | MoonSofts — discovery, squads & platforms',
+    description:
+      'MoonSofts services: software consulting, dedicated remote squads, platform integration, and delivery from align to operate—for startups scaling fast and enterprises modernizing safely.',
   },
   '/industries': {
-    title: 'Industries | MoonSofts',
-    description: 'Sector-specific software practices for e-commerce, healthcare, manufacturing, education, logistics, and more.',
+    title: 'Industries we serve | MoonSofts software consulting',
+    description:
+      'Sector-focused software consulting from MoonSofts—e-commerce, logistics, healthcare, fintech, manufacturing, education, agriculture, hospitality, and more. Remote teams with domain context.',
   },
   '/clients': {
-    title: 'Client voices | MoonSofts',
-    description: 'Testimonials, trust metrics, and outcomes from MoonSofts delivery programs.',
+    title: 'Client voices & outcomes | MoonSofts software consulting',
+    description:
+      'Testimonials, trust signals, and delivery outcomes from MoonSofts consulting programs—remote squads startups and enterprises rely on for predictable releases.',
   },
   '/stack': {
-    title: 'Technology & platform | MoonSofts',
-    description: 'Delivery platform, technology stack, and tools for distributed engineering teams.',
+    title: 'Technology & delivery platform | MoonSofts remote engineering',
+    description:
+      'How MoonSofts equips remote software teams—stack, tooling, and delivery platform practices for secure, observable, and repeatable engineering.',
   },
   '/news': {
-    title: 'Newsroom | MoonSofts',
-    description: 'Company updates and industry insights on AI, cloud, and engineering delivery.',
+    title: 'News & insights | MoonSofts — AI, cloud & software consulting',
+    description:
+      'MoonSofts newsroom: company updates and insights on AI, cloud, remote delivery, and software consulting for startup and enterprise leaders.',
   },
   '/team': {
-    title: 'Leadership team | MoonSofts',
-    description: 'Meet the MoonSofts leadership team.',
+    title: 'Leadership team | MoonSofts software consulting',
+    description:
+      'Meet the MoonSofts leadership team guiding our global software consulting practice and remote delivery standards.',
   },
   '/engineers': {
-    title: 'Careers | MoonSofts',
-    description: 'Join MoonSofts — engineering careers for students, graduates, and experienced builders.',
+    title: 'Careers & engineers | MoonSofts — remote software consulting jobs',
+    description:
+      'Join MoonSofts—remote-friendly software consulting careers for students, graduates, and experienced engineers who care about craft and client outcomes.',
   },
   '/contact': {
-    title: 'Contact | MoonSofts',
-    description: 'Get in touch with MoonSofts for partnerships, careers, or client engagements.',
+    title: 'Contact MoonSofts | Free consultation & partnership inquiries',
+    description:
+      'Contact MoonSofts for software consulting, remote squad engagements, or careers. Start with a free consultation to discuss timelines, scope, and fit.',
   },
   '/privacy': {
-    title: 'Legal & privacy | MoonSofts',
-    description: 'Privacy, security, and terms for MoonSofts digital properties.',
+    title: 'Legal, privacy & security | MoonSofts',
+    description:
+      'Privacy, security, and terms for MoonSofts websites and consulting engagements—how we handle data and communications.',
   },
 }
 
-export function getRouteMeta(pathname: string): RouteMeta {
-  if (exact[pathname]) return exact[pathname]
+function snippet(text: string, max = 158): string {
+  const t = text.replace(/\s+/g, ' ').trim()
+  if (t.length <= max) return t
+  const cut = t.slice(0, max)
+  const lastSpace = cut.lastIndexOf(' ')
+  const trimmed = (lastSpace > 60 ? cut.slice(0, lastSpace) : cut).trim()
+  return `${trimmed}…`
+}
 
-  if (pathname.startsWith('/news/') && pathname !== '/news') {
-    return {
-      title: 'Article | MoonSofts News',
-      description: defaults.description,
+export function resolvePageSeo(pathname: string): PageSeo {
+  const newsMatch = pathname.match(/^\/news\/([^/]+)$/)
+  if (newsMatch?.[1]) {
+    const article = getNewsBySlug(newsMatch[1])
+    if (article) {
+      return {
+        title: `${article.title} | MoonSofts`,
+        description: snippet(article.excerpt, 155),
+        ogType: 'article',
+        ogImage: article.image,
+      }
     }
   }
 
-  if (pathname.startsWith('/industries/')) {
-    return {
-      title: 'Industry | MoonSofts',
-      description: 'Industry-specific software consulting and delivery from MoonSofts.',
+  const industryMatch = pathname.match(/^\/industries\/([^/]+)$/)
+  if (industryMatch?.[1]) {
+    const sector = getIndustryBySlug(industryMatch[1])
+    if (sector) {
+      return {
+        title: `${sector.title} | MoonSofts software consulting`,
+        description: snippet(
+          `${sector.body} MoonSofts provides remote software consulting and delivery for teams in this sector.`,
+          158,
+        ),
+        ogType: 'website',
+        ogImage: sector.heroImage,
+      }
     }
   }
 
-  return defaults
+  const base = exact[pathname]
+  if (base) {
+    return { title: base.title, description: base.description, ogType: 'website' }
+  }
+
+  return { title: defaults.title, description: defaults.description, ogType: 'website' }
 }

@@ -104,7 +104,7 @@ export function HomeSpotlightHero() {
             <div className="mt-[32px] flex flex-wrap items-center gap-[12px]">
               <Link
                 to={slide.cta.to}
-                className="inline-flex items-center justify-center rounded-[4px] bg-brand px-[28px] py-[14px] text-sm font-semibold text-[white] transition hover:bg-brand-600 sm:text-base"
+                className="inline-flex items-center justify-center rounded-[4px] bg-brand px-[28px] py-[14px] text-sm font-semibold text-ink-900 transition hover:bg-brand-600 sm:text-base"
               >
                 {slide.cta.label}
               </Link>
