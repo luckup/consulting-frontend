@@ -2,7 +2,6 @@ import type { ComponentType } from 'react'
 import { clsx } from 'clsx'
 import { Star } from 'lucide-react'
 import { ClutchLogo } from '@/components/icons/ClutchLogo'
-import { TrustpilotLogo } from '@/components/icons/TrustpilotLogo'
 import { trustRatings } from '@/lib/homeTrustRatings'
 
 type Props = {
@@ -11,12 +10,10 @@ type Props = {
 
 const platformLogos = {
   clutch: ClutchLogo,
-  trustpilot: TrustpilotLogo,
 } as const
 
 const accentStyles = {
   clutch: 'from-[#FF3D2E]/12 via-transparent to-transparent',
-  trustpilot: 'from-[#00B67A]/12 via-transparent to-transparent',
 } as const
 
 function StarRating({ value }: { value: number }) {
@@ -70,9 +67,7 @@ function TrustBadgeCard({
             <span
               className={clsx(
                 'rounded-[4px] border px-[8px] py-[4px] text-[9px] font-semibold uppercase tracking-[0.12em]',
-                item.id === 'clutch'
-                  ? 'border-[#FF3D2E]/25 bg-[#FF3D2E]/10 text-[#FF3D2E]'
-                  : 'border-[#00B67A]/25 bg-[#00B67A]/10 text-[#00B67A]',
+                'border-[#FF3D2E]/25 bg-[#FF3D2E]/10 text-[#FF3D2E]',
               )}
             >
               {item.subtitle}
@@ -131,7 +126,7 @@ function TrustBadgeCard({
 export function TrustReviewBadges({ className }: Props) {
   return (
     <div
-      className={clsx('flex flex-col gap-[16px] sm:flex-row sm:gap-[20px]', className)}
+      className={clsx('flex flex-col gap-[16px] sm:max-w-[420px]', className)}
       role="list"
       aria-label="Third-party ratings"
     >

@@ -38,9 +38,11 @@ for (const [localRel, cdnKey] of entries) {
 const brandLogoSrc = path.join(assetsRoot, 'brand/logo.png')
 const brandLogoPublic = path.resolve(__dirname, '../public/brand/logo.png')
 const faviconPngPublic = path.resolve(__dirname, '../public/favicon.png')
+const faviconIcoPublic = path.resolve(__dirname, '../public/favicon.ico')
 function mirrorTabIconFromLogo() {
   if (fs.existsSync(brandLogoPublic)) {
     fs.copyFileSync(brandLogoPublic, faviconPngPublic)
+    fs.copyFileSync(brandLogoPublic, faviconIcoPublic)
   }
 }
 

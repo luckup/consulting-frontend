@@ -79,7 +79,7 @@ High-resolution PNGs live on [Vercel Blob](https://vercel.com/docs/vercel-blob/p
 
 `src/assets/**/*.png` and `cdn-upload/` are gitignored so pushes stay small. Only application code is in the repo.
 
-The browser tab icon is the company **`logo.png`**: `index.html` points at **`/brand/logo.png`**, with `public/favicon.svg` as an SVG wrapper on the same asset. `npm run dev` / `npm run build` sync `public/brand/logo.png` from `src/assets/brand/logo.png` or the CDN. Run `npm run cdn:prepare` when you add or change the logo under `src/assets/brand/`.
+The browser tab icon is the company **`logo.png`**, copied to **`public/favicon.png`** and **`public/favicon.ico`** on dev/build (`scripts/sync-public-brand-logo.mjs`). `index.html` references `/favicon.png`. Run `npm run cdn:prepare` when you add or change the logo under `src/assets/brand/`.
 
 ## Project layout
 

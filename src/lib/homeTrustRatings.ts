@@ -14,13 +14,6 @@ export const trustRatings: readonly TrustReviewRating[] = [
     subtitle: 'B2B reviews',
     href: 'https://clutch.co',
   },
-  {
-    id: 'trustpilot',
-    platform: 'Trustpilot',
-    rating: 4.2,
-    subtitle: 'Verified',
-    href: 'https://www.trustpilot.com',
-  },
 ] as const
 
 /** @deprecated Use trustRatings */

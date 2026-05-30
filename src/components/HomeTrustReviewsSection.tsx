@@ -10,7 +10,7 @@ export function HomeTrustReviewsSection() {
         <HomeSectionHeader
           label="Client reviews"
           title="Trusted by teams who measure delivery in outcomes"
-          description="Independent ratings on Clutch and Trustpilot reflect how we engage—transparent delivery, senior practitioners, and partnerships built to last."
+          description="Our Clutch rating reflects how we engage—transparent delivery, senior practitioners, and partnerships built to last."
         />
       </RevealItem>
 

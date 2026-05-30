@@ -1,6 +1,5 @@
 /**
- * Ensures `public/brand/logo.png` exists for the browser tab icon and `public/favicon.svg`.
- * Also copies to `public/favicon.png` for clients that prefer that path.
+ * Ensures `public/brand/logo.png` exists and mirrors it to `public/favicon.png` and `public/favicon.ico` (tab icon).
  * Order: copy from `src/assets/brand/logo.png` if present, else download from `VITE_CDN_BASE_URL`.
  *
  * Pass `--soft` to warn and exit 0 when no source is available (optional dev convenience).
@@ -14,11 +13,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(__dirname, '..')
 const dest = path.join(root, 'public', 'brand', 'logo.png')
 const faviconPng = path.join(root, 'public', 'favicon.png')
+const faviconIco = path.join(root, 'public', 'favicon.ico')
 
 function writeFaviconCopy() {
-  if (fs.existsSync(dest)) {
-    fs.copyFileSync(dest, faviconPng)
-  }
+  if (!fs.existsSync(dest)) return
+  fs.copyFileSync(dest, faviconPng)
+  fs.copyFileSync(dest, faviconIco)
 }
 const assetSrc = path.join(root, 'src', 'assets', 'brand', 'logo.png')
 const soft = process.argv.includes('--soft')
