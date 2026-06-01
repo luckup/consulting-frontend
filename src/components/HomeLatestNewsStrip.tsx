@@ -14,8 +14,8 @@ export function HomeLatestNewsStrip() {
       <RevealItem>
         <HomeSectionHeader
           label="Insights"
-          title="News, thought leadership & client stories"
-          description="Updates from MoonSofts on delivery, technology, and the industries we serve."
+          title="News on free World Cup websites, highlights & software delivery"
+          description="Including our free website program for football players ahead of the 2026 World Cup—highlight reels, fan communities, and MoonSofts consulting insights."
           action={{ to: '/news', label: 'Visit newsroom' }}
         />
       </RevealItem>
@@ -26,7 +26,7 @@ export function HomeLatestNewsStrip() {
             <div className="relative min-h-[220px] overflow-hidden bg-paper-100 lg:min-h-full">
               <img
                 src={featured.image}
-                alt=""
+                alt={featured.title}
                 loading="lazy"
                 decoding="async"
                 className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"

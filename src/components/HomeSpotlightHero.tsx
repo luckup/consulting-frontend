@@ -44,7 +44,7 @@ export function HomeSpotlightHero() {
     <section
       className="relative w-full overflow-hidden border-b border-transparent"
       aria-roledescription="carousel"
-      aria-label="Featured highlights"
+      aria-label="Featured highlights and MoonSofts services"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -59,7 +59,8 @@ export function HomeSpotlightHero() {
             <img
               key={isActive ? `${s.id}-active` : s.id}
               src={s.image}
-              alt=""
+              alt={isActive ? s.imageAlt : ''}
+              aria-hidden={!isActive}
               className={clsx(
                 'absolute inset-0 h-full w-full object-cover object-center',
                 isActive ? 'z-[1]' : 'z-0',

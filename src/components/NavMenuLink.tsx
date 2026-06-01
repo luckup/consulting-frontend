@@ -40,6 +40,7 @@ type ScheduleButtonProps = {
   className?: string
   variant?: 'primary' | 'secondary' | 'ghost-light' | 'nav-hero'
   showIcon?: boolean
+  label?: string
   onClick?: () => void
 }
 
@@ -47,6 +48,7 @@ export function ScheduleConsultationButton({
   className,
   variant = 'secondary',
   showIcon = false,
+  label = contactInfo.calendlyLabel,
   onClick,
 }: ScheduleButtonProps) {
   function handleClick() {
@@ -73,7 +75,7 @@ export function ScheduleConsultationButton({
       )}
     >
       {showIcon ? <Calendar className="h-4 w-4 shrink-0" aria-hidden /> : null}
-      {contactInfo.calendlyLabel}
+      {label}
     </a>
   )
 }

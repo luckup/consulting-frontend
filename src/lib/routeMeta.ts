@@ -1,7 +1,8 @@
 import { getIndustryBySlug } from '@/lib/industriesData'
 import { newsDisplayDateToIso } from '@/lib/newsDate'
 import { getNewsBySlug } from '@/lib/newsData'
-
+import { HOME_SEO_DESCRIPTION, HOME_SEO_TITLE } from '@/lib/seoLandingMeta'
+import { siteImages } from '@/lib/siteImages'
 export type PageSeo = {
   title: string
   description: string
@@ -10,12 +11,15 @@ export type PageSeo = {
   robots?: string
   /** ISO 8601 date (YYYY-MM-DD) for NewsArticle structured data */
   articleDatePublished?: string
+  /** Schema.org NewsArticle `keywords` (not the legacy meta keywords tag) */
+  articleKeywords?: string[]
 }
 
 type RouteMetaBase = {
   title: string
   description: string
   robots?: string
+  ogImage?: string
 }
 
 const defaults: RouteMetaBase = {
@@ -26,9 +30,9 @@ const defaults: RouteMetaBase = {
 
 const exact: Record<string, RouteMetaBase> = {
   '/': {
-    title: 'MoonSofts | Software consulting company — startups, remote teams & AI delivery',
-    description:
-      'MoonSofts is a global software consulting company for startups and enterprises: remote engineering squads, MVPs, marketing websites, cloud and AI delivery, and accountable programs. Book a free consultation; read the CEO vision on first-stage partnerships and long-form insights on Medium.',
+    title: HOME_SEO_TITLE,
+    description: HOME_SEO_DESCRIPTION,
+    ogImage: siteImages.home.section0,
   },
   '/about': {
     title: 'About MoonSofts | Global software consulting & remote delivery',
@@ -56,9 +60,9 @@ const exact: Record<string, RouteMetaBase> = {
       'How MoonSofts equips remote software teams—stack, tooling, and delivery platform practices for secure, observable, and repeatable engineering.',
   },
   '/news': {
-    title: 'News & insights | MoonSofts — AI, cloud & software consulting',
+    title: 'News & insights | Free 2026 World Cup football websites & software consulting',
     description:
-      'MoonSofts newsroom: company updates and insights on AI, cloud, remote delivery, and software consulting for startup and enterprise leaders.',
+      'MoonSofts newsroom: free website development for 2026 World Cup football stars and fan communities, plus insights on AI, cloud, and accountable software consulting.',
   },
   '/team': {
     title: 'Leadership team | MoonSofts software consulting',
@@ -71,9 +75,9 @@ const exact: Record<string, RouteMetaBase> = {
       'Join MoonSofts—remote-friendly software consulting careers for students, graduates, and experienced engineers who care about craft and client outcomes.',
   },
   '/contact': {
-    title: 'Contact MoonSofts | Free consultation & partnership inquiries',
+    title: 'Contact MoonSofts | Apply for a free 2026 World Cup football player website',
     description:
-      'Contact MoonSofts for software consulting, remote squad engagements, or careers. Start with a free consultation to discuss timelines, scope, and fit.',
+      'Contact MoonSofts to apply for a free website for football players and fan communities ahead of the 2026 World Cup, or discuss software consulting—share your highlights, story, and goals.',
   },
   '/privacy': {
     title: 'Legal, privacy & security | MoonSofts',
@@ -104,6 +108,7 @@ export function resolvePageSeo(pathname: string): PageSeo {
         ogType: 'article',
         ogImage: article.image,
         articleDatePublished,
+        articleKeywords: article.seoKeywords,
       }
     }
   }
@@ -131,6 +136,7 @@ export function resolvePageSeo(pathname: string): PageSeo {
       description: snippet(base.description, 158),
       ogType: 'website',
       robots: base.robots,
+      ogImage: base.ogImage,
     }
   }
 

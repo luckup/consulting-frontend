@@ -3,6 +3,13 @@ import { useLocation } from 'react-router-dom'
 import { siteImages } from '@/lib/siteImages'
 import { resolvePageSeo, type PageSeo } from '@/lib/routeMeta'
 import { breadcrumbListJsonLd } from '@/lib/seoBreadcrumbs'
+import {
+  HOME_PAGE_KEYWORDS,
+  homeFaqPageJsonLd,
+  homeFreeWorldCupServiceId,
+  homeFreeWorldCupServiceJsonLd,
+  homeSiteLinksJsonLd,
+} from '@/lib/seoHomeJsonLd'
 import { MOONSOFTS_SAME_AS } from '@/lib/seoSocial'
 import { absoluteUrl, getSiteOrigin } from '@/lib/siteOrigin'
 
@@ -95,8 +102,15 @@ function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUr
       url: origin,
       logo: logoObject,
       description:
-        'MoonSofts is a software consulting company delivering remote engineering squads, cloud and AI programs for startups and enterprises worldwide.',
+        'MoonSofts is a software consulting company delivering remote engineering squads, cloud and AI programs, and a free 2026 World Cup website initiative for football players—publish highlights and grow your fan community online.',
       sameAs: [...MOONSOFTS_SAME_AS],
+      knowsAbout: [
+        'Software consulting',
+        'Website development',
+        '2026 FIFA World Cup',
+        'Football player websites',
+        'Sports highlights online',
+      ],
     },
     {
       '@type': 'WebSite',
@@ -114,6 +128,20 @@ function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUr
       description: seo.description,
       isPartOf: { '@id': websiteId },
       inLanguage: 'en-US',
+      ...(pathname === '/'
+        ? {
+            keywords: HOME_PAGE_KEYWORDS,
+            about: { '@id': homeFreeWorldCupServiceId(origin) },
+            ...(seo.ogImage
+              ? {
+                  primaryImageOfPage: {
+                    '@type': 'ImageObject',
+                    url: seo.ogImage,
+                  },
+                }
+              : {}),
+          }
+        : {}),
     },
   ]
 
@@ -139,11 +167,20 @@ function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUr
     if (seo.ogImage) {
       article.image = [seo.ogImage]
     }
+    if (seo.articleKeywords?.length) {
+      article.keywords = seo.articleKeywords.join(', ')
+    }
     graph.push(article)
   }
 
   const crumbs = breadcrumbListJsonLd(origin, pathname, seo)
   if (crumbs) graph.push(crumbs)
+
+  if (pathname === '/') {
+    graph.push(homeFreeWorldCupServiceJsonLd(origin, orgId))
+    graph.push(homeFaqPageJsonLd(canonicalUrl))
+    graph.push(homeSiteLinksJsonLd(origin))
+  }
 
   return {
     '@context': 'https://schema.org',

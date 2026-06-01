@@ -14,14 +14,14 @@ export type HomeNewsHeadline = {
 /** Lightweight homepage strip data — avoids importing full article bodies on the home route. */
 export const latestHeadlines: HomeNewsHeadline[] = [
   {
-    id: 'ceo-vision-may-2025',
-    date: '12 May 2025',
-    category: 'Company news',
-    title: 'CEO Vision Speech: MoonSofts Founded in May 2025 with a Mission to Support Global Customers',
+    id: 'free-football-websites-world-cup-2026',
+    date: '30 May 2026',
+    category: 'Special initiative',
+    title: 'Free Website for Football Players | 2026 World Cup Highlights & Fan Communities',
     preview:
-      'In a founding address to partners and early clients, MoonSofts leadership outlined a simple promise: world-class engineering with the reliability global businesses expect—and the humility to earn trust one release at a time.',
-    to: newsPath('ceo-vision-may-2025'),
-    image: siteImages.news.ceoVision,
+      'Free website for football players and 2026 World Cup fan communities—publish highlights, match updates, and your story online with MoonSofts.',
+    to: newsPath('free-football-websites-world-cup-2026'),
+    image: siteImages.news.worldCup2026,
   },
   {
     id: 'global-launch-ai-cloud',

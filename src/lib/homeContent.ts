@@ -2,6 +2,17 @@ import { siteImages } from '@/lib/siteImages'
 
 export const spotlightSlides = [
   {
+    id: 'world-cup-2026',
+    eyebrow: 'Free · 2026 World Cup',
+    title: 'Free website for football players — 2026 World Cup highlights',
+    description:
+      'Selected football players and fan communities get a free professional website to publish highlight reels, match clips, and World Cup 2026 news—built by MoonSofts.',
+    cta: { label: 'Learn about the initiative', to: '/news/free-football-websites-world-cup-2026' },
+    image: siteImages.home.section0,
+    imageAlt:
+      '2026 World Cup — free website development for football players to showcase highlights and match content',
+  },
+  {
     id: 'delivery',
     eyebrow: 'Software consulting',
     title: 'Powering the last mile of product delivery',
@@ -9,6 +20,7 @@ export const spotlightSlides = [
       'Industry-specific engineering and platforms that turn strategy into shipped software—with security, accountability, and measurable outcomes.',
     cta: { label: 'Explore our services', to: '/services' },
     image: siteImages.home.spotlight[0],
+    imageAlt: 'Software consulting and product delivery teams collaborating on enterprise systems',
   },
   {
     id: 'ai',
@@ -18,6 +30,7 @@ export const spotlightSlides = [
       'From discovery through operate—copilots, APIs, cloud, and data platforms engineered with governance and observability from day one.',
     cta: { label: 'View our technology', to: '/stack' },
     image: siteImages.home.spotlight[1],
+    imageAlt: 'Engineering and AI platform development for cloud-native software',
   },
   {
     id: 'clients',
@@ -27,6 +40,7 @@ export const spotlightSlides = [
       'Enterprise and growth-stage teams partner with MoonSofts for accountable squads—not ad-hoc capacity.',
     cta: { label: 'Start a conversation', to: '/contact' },
     image: siteImages.home.spotlight[2],
+    imageAlt: 'Business leaders partnering with MoonSofts for accountable software delivery',
   },
 ] as const
 

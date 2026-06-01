@@ -1,4 +1,5 @@
 import { siteImages } from '@/lib/siteImages'
+import { FOOTBALL_WORLD_CUP_2026_KEYWORDS } from '@/lib/seoFootballKeywords'
 
 export type NewsSection = {
   heading?: string
@@ -14,9 +15,78 @@ export type NewsArticle = {
   title: string
   excerpt: string
   sections: NewsSection[]
+  /** Schema.org NewsArticle keywords (visible copy should use the same phrases naturally). */
+  seoKeywords?: string[]
 }
 
 export const newsArticles: NewsArticle[] = [
+  {
+    id: 'free-football-websites-world-cup-2026',
+    date: '30 May 2026',
+    category: 'Special initiative',
+    filter: 'company',
+    image: siteImages.news.worldCup2026,
+    title: 'Free Website for Football Players | 2026 World Cup Highlights & Fan Communities',
+    excerpt:
+      'Apply for a free website for football players and fan groups before the 2026 World Cup. Publish highlights, training clips, and match updates on a mobile-friendly site built by MoonSofts.',
+    seoKeywords: [...FOOTBALL_WORLD_CUP_2026_KEYWORDS],
+    sections: [
+      {
+        paragraphs: [
+          'The 2026 FIFA World Cup will bring global attention to football players, clubs, creators, and fan communities around the world. To support this moment, MoonSofts is offering free website development for selected football stars, football players, football creators, local clubs, and passionate fan groups who want a strong online presence before and during the tournament.',
+          'Whether you are a rising football star building a personal brand, a fan community preparing World Cup 2026 content, or a creator sharing match analysis, training clips, highlight reels, and photo galleries, MoonSofts can help you launch a modern, professional, and mobile-friendly football website.',
+        ],
+      },
+      {
+        heading: '2026 World Cup Special Initiative by MoonSofts',
+        paragraphs: [
+          'This program is part of MoonSofts’ early partnership initiative: we want to support meaningful football-related projects with the same engineering quality we bring to startup and enterprise programs.',
+        ],
+      },
+      {
+        heading: 'What We Can Build',
+        paragraphs: [
+          'MoonSofts can design and develop a custom website where you can present your football story, activities, achievements, media content, and community updates in one place.',
+          'Your website can include a football star profile and biography; match activity and training updates; video highlight reels and image galleries; a football blog or news section; upcoming match or World Cup 2026 event information; fan community pages; social media integration; contact, sponsorship, or collaboration forms; mobile-friendly responsive design; and basic SEO so fans can find your highlights and updates online.',
+        ],
+      },
+      {
+        heading: 'Who This Is For',
+        paragraphs: [
+          'This free project opportunity is open to football players who want a professional personal website; football fans building a World Cup-related community; local football clubs or small teams; football content creators and analysts; coaches, trainers, or football academies; and fan pages preparing content for the 2026 World Cup.',
+        ],
+      },
+      {
+        heading: 'Why MoonSofts Is Offering This for Free',
+        paragraphs: [
+          'At MoonSofts, we believe that strong ideas and passionate communities deserve high-quality technology support, even at the early stage. Many players, creators, and fan groups have valuable stories to share, but they may not yet have the budget or technical team to build a professional website.',
+          'That is why we are offering selected free website projects as part of our early partnership initiative. Our goal is to build trust, support meaningful football-related projects, and create long-term relationships with people who are preparing for one of the biggest global sports events.',
+        ],
+      },
+      {
+        heading: 'What You Will Receive',
+        paragraphs: [
+          'Selected applicants will receive a professionally designed website built by the MoonSofts engineering team. The website will be clean, modern, responsive, and focused on helping you present your football identity, content, and activity clearly.',
+          'This is ideal for any football star, player, or community that wants to build credibility, attract followers, share free highlight clips and match updates, and prepare a digital home for the 2026 World Cup season.',
+        ],
+      },
+      {
+        heading: 'How to Apply',
+        paragraphs: [
+          'Tell us about your football story, your website idea, and what kind of content you want to share. If your project is selected, MoonSofts will discuss the scope with you and help build your website for free.',
+          'Visit our contact page to share your idea, timeline, and links to any existing social or media profiles. We review applications on a rolling basis and will respond to selected projects with next steps.',
+        ],
+      },
+      {
+        heading: 'Start Your Football Website with MoonSofts',
+        paragraphs: [
+          'If you are a football player, creator, coach, club, or fan community preparing for the 2026 World Cup, this is a great opportunity to build your online presence with a professional software development team.',
+          'Contact MoonSofts today and share your idea with us.',
+          'MoonSofts — Building digital products for ambitious people, startups, and communities.',
+        ],
+      },
+    ],
+  },
   {
     id: 'global-launch-ai-cloud',
     date: '15 May 2026',
