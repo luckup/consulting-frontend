@@ -8,6 +8,7 @@ import { filterNavLinks } from '@/lib/siteFeatures'
 import { FooterLink } from '@/components/FooterLink'
 import { ScheduleConsultationButton } from '@/components/NavMenuLink'
 import { contactInfo } from '@/lib/contactInfo'
+import { FOOTBALL_INITIATIVE_PATH } from '@/lib/seoFootballKeywords'
 import type { AppNavLink } from '@/lib/navLinks'
 
 function MediumIcon({ className }: { className?: string }) {
@@ -19,7 +20,7 @@ function MediumIcon({ className }: { className?: string }) {
 }
 
 const socialLinks: { label: string; href: string; icon: LucideIcon | typeof MediumIcon }[] = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/evofuse', icon: Linkedin },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/moonsofts-net', icon: Linkedin },
   { label: 'GitHub', href: 'https://github.com/MoonSofts-Net', icon: Github },
   { label: 'Medium', href: 'https://moonsofts.medium.com/', icon: MediumIcon },
 ]
@@ -51,6 +52,7 @@ const columns: { title: string; links: AppNavLink[] }[] = [
   {
     title: 'Insights',
     links: [
+      { to: FOOTBALL_INITIATIVE_PATH, label: 'Free 2026 World Cup website' },
       { to: '/news', label: 'News & insights' },
       { to: '/clients', label: 'Client voices' },
     ],
@@ -74,7 +76,7 @@ export function Footer() {
           <Link to="/" className="inline-flex items-center gap-[12px]">
             <img
               src={siteImages.brand.logo}
-              alt=""
+              alt="MoonSofts"
               className="h-[48px] w-auto max-w-[160px] shrink-0 bg-transparent object-contain brightness-0 invert drop-shadow-[0_1px_2px_rgba(12,28,34,0.5)]"
             />
             <span className="text-xl font-semibold tracking-tight text-ink-900">MoonSofts</span>

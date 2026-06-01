@@ -1,6 +1,9 @@
 import { HomeCeoVisionSection } from '@/components/HomeCeoVisionSection'
 import { HomeClientVoicesSection } from '@/components/HomeClientVoicesSection'
 import { HomeConsultingSection } from '@/components/HomeConsultingSection'
+import { HomeDiscoverLinks } from '@/components/HomeDiscoverLinks'
+import { HomeFootballWorldCupSection } from '@/components/HomeFootballWorldCupSection'
+import { HomeWorldCupHighlightWebsitesSection } from '@/components/HomeWorldCupHighlightWebsitesSection'
 import { HomeFaqSection } from '@/components/HomeFaqSection'
 import { HomeIndustriesSection } from '@/components/HomeIndustriesSection'
 import { HomeLatestNewsStrip } from '@/components/HomeLatestNewsStrip'
@@ -16,6 +19,8 @@ export function HomePage() {
   return (
     <>
       <HomeSpotlightHero />
+      <HomeWorldCupHighlightWebsitesSection />
+      <HomeFootballWorldCupSection />
       <HomeWhatWeDoSection />
       <HomeCeoVisionSection />
       <HomeTrustReviewsSection />
@@ -23,6 +28,7 @@ export function HomePage() {
       <HomeSeoNarrativeSection />
       <HomeConsultingSection />
       <HomeLatestNewsStrip />
+      <HomeDiscoverLinks />
       <HomeMediumSection />
       {siteFeatures.clientVoices ? <HomeClientVoicesSection /> : null}
       <HomeStudioSection />

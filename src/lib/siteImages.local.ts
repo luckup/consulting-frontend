@@ -4,9 +4,11 @@
  */
 import logo from '@/assets/brand/logo.png'
 
+import homeSection0 from '@/assets/pages/home/section0.png'
 import homeSpotlight01 from '@/assets/pages/home/section1.png'
 import homeSpotlight02 from '@/assets/pages/home/section2.png'
 import homeSpotlight03 from '@/assets/pages/home/section3.png'
+import homeWorldCup2026 from '@/assets/pages/home/2026 World Cup.png'
 import homeCareersBackground from '@/assets/pages/home/background.png'
 import homeCertificate01 from '@/assets/pages/home/certificates/1.png'
 import homeCertificate02 from '@/assets/pages/home/certificates/2.png'
@@ -61,6 +63,7 @@ import newsCeoVision from '@/assets/news/CEO Vision Speech.png'
 import newsAiDevelopment from '@/assets/news/AI-Powered Software Development.png'
 import newsIndustrySolutions from '@/assets/news/Building Industry-Specific Solutions.png'
 import newsReliablePartner from '@/assets/news/Why Global Businesses Need.png'
+import newsWorldCup2026 from '@/assets/news/World Cup 2026.png'
 
 import servicePersonalPortfolio from '@/assets/pages/services/Personal portfolio website.png'
 import serviceBusinessLanding from '@/assets/pages/services/Business landing page.png'
@@ -121,6 +124,9 @@ export const siteImages = {
   },
   industries: industryPhotos,
   home: {
+    section0: homeSection0,
+    section1: homeSpotlight01,
+    worldCup2026: homeWorldCup2026,
     spotlight: [homeSpotlight01, homeSpotlight02, homeSpotlight03] as const,
     whoWeAre: serviceRemoteTeams,
     whatWeDo: serviceFullstack,
@@ -147,8 +153,16 @@ export const siteImages = {
     careers: heroCareers,
     platform: serviceCloudInfrastructure,
   },
+  worldCup: {
+    section0: homeSection0,
+    section1: homeSpotlight01,
+    section2: homeSpotlight02,
+    section3: homeSpotlight03,
+    highlightsCustomer: homeWorldCup2026,
+  },
   news: {
     launch: newsLaunch,
+    worldCup2026: newsWorldCup2026,
     ceoVision: newsCeoVision,
     aiDevelopment: newsAiDevelopment,
     industrySolutions: newsIndustrySolutions,

@@ -58,6 +58,9 @@ export const siteImages = {
   },
   industries: industryPhotos,
   home: {
+    section0: cdnUrl('pages/home/section0.png'),
+    section1: cdnUrl('pages/home/section1.png'),
+    worldCup2026: cdnUrl('pages/home/world-cup-2026.png'),
     spotlight: [
       cdnUrl('pages/home/section1.png'),
       cdnUrl('pages/home/section2.png'),
@@ -88,8 +91,16 @@ export const siteImages = {
     careers: cdnUrl('heroes/careers.png'),
     platform: cdnUrl('home/services/cloud-infrastructure.png'),
   },
+  worldCup: {
+    section0: cdnUrl('pages/home/section0.png'),
+    section1: cdnUrl('pages/home/section1.png'),
+    section2: cdnUrl('pages/home/section2.png'),
+    section3: cdnUrl('pages/home/section3.png'),
+    highlightsCustomer: cdnUrl('pages/home/world-cup-2026.png'),
+  },
   news: {
     launch: cdnUrl('news/launch.png'),
+    worldCup2026: cdnUrl('news/world-cup-2026.png'),
     ceoVision: cdnUrl('news/ceo-vision.png'),
     aiDevelopment: cdnUrl('news/ai-development.png'),
     industrySolutions: cdnUrl('news/industry-solutions.png'),

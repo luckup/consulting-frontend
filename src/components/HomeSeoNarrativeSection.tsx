@@ -21,9 +21,12 @@ export function HomeSeoNarrativeSection() {
           </p>
           <p>
             Whether you need a <strong className="font-semibold text-ink-800">first MVP</strong>, a{' '}
-            <strong className="font-semibold text-ink-800">credible website</strong> for early customers, or a{' '}
-            <strong className="font-semibold text-ink-800">long-term product program</strong>, we anchor every engagement
-            on outcomes: production releases, adoption metrics, and operational readiness — not vanity milestones.
+            <strong className="font-semibold text-ink-800">credible website</strong> for early customers, a{' '}
+            <strong className="font-semibold text-ink-800">free football website</strong> ahead of the{' '}
+            <strong className="font-semibold text-ink-800">2026 World Cup</strong> (for selected players and fan
+            communities), or a <strong className="font-semibold text-ink-800">long-term product program</strong>, we
+            anchor every engagement on outcomes: production releases, adoption metrics, and operational readiness — not
+            vanity milestones.
           </p>
           <p>
             Our <strong className="font-semibold text-ink-800">remote-first model</strong> blends global talent density

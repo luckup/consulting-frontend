@@ -16,9 +16,11 @@ export const siteImagePaths = {
   },
   pages: {
     home: {
+      section0: 'pages/home/section0.png',
       section1: 'pages/home/section1.png',
       section2: 'pages/home/section2.png',
       section3: 'pages/home/section3.png',
+      worldCup2026: 'pages/home/world-cup-2026.png',
     },
     about: {
       history: 'pages/about/history.png',
@@ -59,6 +61,7 @@ export const siteImagePaths = {
   },
   news: {
     launch: 'news/Launches as a Global Software Consulting.png',
+    worldCup2026: 'news/World Cup 2026.png',
     ceoVision: 'news/CEO Vision Speech.png',
     aiDevelopment: 'news/AI-Powered Software Development.png',
     industrySolutions: 'news/Building Industry-Specific Solutions.png',
