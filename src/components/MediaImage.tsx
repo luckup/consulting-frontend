@@ -7,6 +7,8 @@ type Props = {
   className?: string
   imageClassName?: string
   overlay?: 'subtle' | 'none'
+  /** Use when the asset has transparency (e.g. PNG); avoids the default paper fill behind the image. */
+  transparentBg?: boolean
   /** Below-the-fold images should lazy-load; heroes use priority. */
   priority?: boolean
 }
@@ -18,17 +20,28 @@ export function MediaImage({
   className,
   imageClassName,
   overlay = 'subtle',
+  transparentBg = false,
   priority = false,
 }: Props) {
   return (
-    <div className={clsx('relative overflow-hidden bg-paper-100', className)}>
+    <div
+      className={clsx(
+        'relative overflow-hidden',
+        transparentBg ? 'bg-transparent' : 'bg-paper-100',
+        className,
+      )}
+    >
       <img
         src={src}
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
         fetchPriority={priority ? 'high' : 'auto'}
-        className={clsx('h-full w-full object-cover photo-bright', imageClassName)}
+        className={clsx(
+          'h-full w-full',
+          transparentBg ? 'object-contain' : 'object-cover photo-bright',
+          imageClassName,
+        )}
       />
       {overlay === 'subtle' ? (
         <div className="absolute inset-0 bg-gradient-to-t from-paper-50/20 via-transparent to-paper-50/10" aria-hidden />

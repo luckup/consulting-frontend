@@ -71,6 +71,7 @@ export function HomeWorldCupHighlightWebsitesSection() {
             alt="2026 World Cup — custom football website for highlights, built for each customer by MoonSofts"
             className="h-full min-h-[280px] sm:min-h-[360px]"
             overlay="none"
+            transparentBg
           />
         </RevealItem>
 
