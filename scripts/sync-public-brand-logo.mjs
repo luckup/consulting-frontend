@@ -1,6 +1,6 @@
 /**
  * Ensures `public/brand/logo.png` exists and mirrors it to `public/favicon.png` and `public/favicon.ico` (tab icon).
- * Order: copy from `src/assets/brand/logo.png` if present, else download from `VITE_CDN_BASE_URL`.
+ * Order: copy from `src/assets/brand/moonsofts-logo.png` if present, else download from `VITE_CDN_BASE_URL`.
  *
  * Pass `--soft` to warn and exit 0 when no source is available (optional dev convenience).
  */
@@ -20,7 +20,7 @@ function writeFaviconCopy() {
   fs.copyFileSync(dest, faviconPng)
   fs.copyFileSync(dest, faviconIco)
 }
-const assetSrc = path.join(root, 'src', 'assets', 'brand', 'logo.png')
+const assetSrc = path.join(root, 'src', 'assets', 'brand', 'moonsofts-logo.png')
 const soft = process.argv.includes('--soft')
 const force = process.argv.includes('--force')
 
@@ -31,12 +31,14 @@ function cdnBase() {
 }
 
 async function downloadFromCdn(base) {
-  const url = `${base}/brand/logo.png`
-  const res = await fetch(url)
-  if (!res.ok) {
-    throw new Error(`GET ${url} failed: ${res.status} ${res.statusText}`)
+  const candidates = [`${base}/brand/moonsofts-logo.png`, `${base}/brand/logo.png`]
+  for (const url of candidates) {
+    const res = await fetch(url)
+    if (res.ok) {
+      return Buffer.from(await res.arrayBuffer())
+    }
   }
-  return Buffer.from(await res.arrayBuffer())
+  throw new Error(`GET ${candidates[0]} (and legacy logo.png) failed`)
 }
 
 async function main() {
@@ -51,7 +53,7 @@ async function main() {
   if (fs.existsSync(assetSrc)) {
     fs.copyFileSync(assetSrc, dest)
     writeFaviconCopy()
-    console.log('[favicon-source] copied src/assets/brand/logo.png -> public/brand/logo.png')
+    console.log('[favicon-source] copied src/assets/brand/moonsofts-logo.png -> public/brand/logo.png')
     return
   }
 
@@ -60,14 +62,14 @@ async function main() {
     const buf = await downloadFromCdn(base)
     fs.writeFileSync(dest, buf)
     writeFaviconCopy()
-    console.log(`[favicon-source] downloaded ${base}/brand/logo.png -> public/brand/logo.png`)
+    console.log(`[favicon-source] downloaded logo from CDN -> public/brand/logo.png`)
     return
   }
 
   console.error(
     '[favicon-source] Missing public/brand/logo.png.\n' +
-      '  Add src/assets/brand/logo.png, or set VITE_CDN_BASE_URL so the logo can be downloaded at build time.\n' +
-      '  (You can also run `npm run cdn:prepare` if logo.png exists under src/assets.)\n',
+      '  Add src/assets/brand/moonsofts-logo.png, or set VITE_CDN_BASE_URL so the logo can be downloaded at build time.\n' +
+      '  (You can also run `npm run cdn:prepare` if moonsofts-logo.png exists under src/assets.)\n',
   )
   if (soft) {
     console.warn('[favicon-source] --soft: continuing without tab logo source (favicon may be blank until fixed).')

@@ -1,5 +1,5 @@
-import clutchLogoDark from '@/assets/brand/clutch-logo-dark.svg'
-import clutchLogoLight from '@/assets/brand/clutch-logo-light.svg'
+import clutchLogoDark from '@/assets/brand/moonsofts-clutch-logo-dark.svg'
+import clutchLogoLight from '@/assets/brand/moonsofts-clutch-logo-light.svg'
 
 type Props = {
   className?: string

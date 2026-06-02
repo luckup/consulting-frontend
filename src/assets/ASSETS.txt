@@ -1,6 +1,6 @@
 Do not commit PNG/JPEG files here — they are gitignored (too large for GitHub).
 
-1. Place originals here only on your machine (same paths as scripts/cdn-asset-manifest.json).
+1. Place originals here only on your machine (filenames use a moonsofts- prefix; see scripts/cdn-asset-manifest.json).
 2. npm run cdn:prepare   → creates cdn-upload/
 3. Upload cdn-upload/:
      Vercel Blob: add BLOB_READ_WRITE_TOKEN to .env.local → npm run vercel:blob:upload
@@ -12,3 +12,4 @@ Vercel Blob base URL:
   https://kmbR6bCYbcA9kB47.public.blob.vercel-storage.com
 
 The app loads images from siteImages.cdn.ts using your CDN base URL.
+CDN filenames use a moonsofts- prefix (e.g. pages/home/moonsofts-section0.png) for SEO.

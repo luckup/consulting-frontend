@@ -35,7 +35,7 @@ for (const [localRel, cdnKey] of entries) {
 }
 
 // Tab icon uses `public/brand/logo.png` (+ `public/favicon.svg` / `public/favicon.png`). Copy logo for local/static serving.
-const brandLogoSrc = path.join(assetsRoot, 'brand/logo.png')
+const brandLogoSrc = path.join(assetsRoot, 'brand/moonsofts-logo.png')
 const brandLogoPublic = path.resolve(__dirname, '../public/brand/logo.png')
 const faviconPngPublic = path.resolve(__dirname, '../public/favicon.png')
 const faviconIcoPublic = path.resolve(__dirname, '../public/favicon.ico')
@@ -50,12 +50,18 @@ if (fs.existsSync(brandLogoSrc)) {
   fs.mkdirSync(path.dirname(brandLogoPublic), { recursive: true })
   fs.copyFileSync(brandLogoSrc, brandLogoPublic)
   mirrorTabIconFromLogo()
-  console.log('Updated public/brand/logo.png from src/assets/brand/logo.png (favicon source)')
-} else if (fs.existsSync(path.join(outRoot, 'brand/logo.png'))) {
-  fs.mkdirSync(path.dirname(brandLogoPublic), { recursive: true })
-  fs.copyFileSync(path.join(outRoot, 'brand/logo.png'), brandLogoPublic)
-  mirrorTabIconFromLogo()
-  console.log('Updated public/brand/logo.png from cdn-upload/brand/logo.png (favicon source)')
+  console.log('Updated public/brand/logo.png from src/assets/brand/moonsofts-logo.png (favicon source)')
+} else {
+  const cdnLogo =
+    path.join(outRoot, 'brand/moonsofts-logo.png')
+  const legacyLogo = path.join(outRoot, 'brand/logo.png')
+  const logoFromBundle = fs.existsSync(cdnLogo) ? cdnLogo : legacyLogo
+  if (fs.existsSync(logoFromBundle)) {
+    fs.mkdirSync(path.dirname(brandLogoPublic), { recursive: true })
+    fs.copyFileSync(logoFromBundle, brandLogoPublic)
+    mirrorTabIconFromLogo()
+    console.log(`Updated public/brand/logo.png from cdn-upload/${path.basename(logoFromBundle)} (favicon source)`)
+  }
 }
 
 console.log(`\nPrepared ${copied} file(s) in cdn-upload/`)
