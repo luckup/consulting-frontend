@@ -52,7 +52,7 @@ High-resolution PNGs live on [Vercel Blob](https://vercel.com/docs/vercel-blob/p
 3. Add `BLOB_READ_WRITE_TOKEN` to `.env.local` (from Vercel → Storage → Blob store).
 4. `npm run vercel:blob:upload`
 5. Confirm a URL works, e.g.  
-   `https://kmbR6bCYbcA9kB47.public.blob.vercel-storage.com/brand/logo.png`
+   `https://kmbR6bCYbcA9kB47.public.blob.vercel-storage.com/brand/moonsofts-logo.png`
 
 **Re-upload after changing images:** repeat steps 2–4.
 

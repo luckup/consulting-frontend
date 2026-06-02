@@ -1,5 +1,5 @@
-import trustpilotLogoDark from '@/assets/brand/trustpilot-logo-dark.svg'
-import trustpilotLogoLight from '@/assets/brand/trustpilot-logo-light.svg'
+import trustpilotLogoDark from '@/assets/brand/moonsofts-trustpilot-logo-dark.svg'
+import trustpilotLogoLight from '@/assets/brand/moonsofts-trustpilot-logo-light.svg'
 
 type Props = {
   className?: string

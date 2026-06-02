@@ -87,7 +87,9 @@ function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUr
   const orgId = `${origin}/#organization`
   const websiteId = `${origin}/#website`
   const pageId = `${canonicalUrl}#webpage`
-  const logoUrl = `${origin}/brand/logo.png`
+  const logoUrl = siteImages.brand.logo?.startsWith('http')
+    ? siteImages.brand.logo
+    : `${origin}/brand/moonsofts-logo.png`
   const logoObject = {
     '@type': 'ImageObject',
     url: logoUrl,
