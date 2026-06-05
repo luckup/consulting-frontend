@@ -6,10 +6,11 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-// npm run build always targets production env files
+// npm run build always targets production env files; merge process.env for Vercel-injected vars
 const env = loadEnv('production', root, '')
-const cdn = env.VITE_CDN_BASE_URL?.trim()
-const local = env.VITE_USE_LOCAL_ASSETS === 'true'
+const get = (key) => (process.env[key] ?? env[key])?.trim()
+const cdn = get('VITE_CDN_BASE_URL')
+const local = get('VITE_USE_LOCAL_ASSETS') === 'true'
 
 if (!cdn && !local) {
   console.error(
@@ -22,4 +23,14 @@ if (!cdn && !local) {
 
 if (cdn) {
   console.log(`[build] CDN images: ${cdn}`)
+}
+
+const formspree = get('VITE_FORMSPREE_FORM_ID')
+if (formspree) {
+  console.log('[build] Contact form: Formspree configured')
+} else {
+  console.warn(
+    '[build] VITE_FORMSPREE_FORM_ID not set — contact form uses the built-in Formspree form id.\n' +
+      '  Optional: add VITE_FORMSPREE_FORM_ID in Vercel → Settings → Environment Variables.\n',
+  )
 }

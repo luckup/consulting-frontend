@@ -1,11 +1,9 @@
 import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
-import { type FormEvent, useEffect, useState } from 'react'
+import { type FormEvent, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useSearchParams } from 'react-router-dom'
 import { ContentBlock } from '@/components/ContentBlock'
 import { PageShell } from '@/components/PageShell'
-import { api } from '@/lib/api'
 import { MediaImage } from '@/components/MediaImage'
 import { getOpenPosition } from '@/lib/careersData'
 import {
@@ -14,8 +12,10 @@ import {
   openPositionContactRoles,
   type ContactRole,
 } from '@/lib/contactRoles'
+import { ContactFormError } from '@/lib/contactFormValidation'
 import { CONTACT_INBOX } from '@/lib/contactEmail'
 import { contactNav } from '@/lib/pageNav'
+import { submitContactToFormspree } from '@/lib/submitContactToFormspree'
 import { siteImages } from '@/lib/siteImages'
 
 type FormState = {
@@ -45,6 +45,7 @@ function buildApplicationMessage(positionTitle: string) {
 export function ContactPage() {
   const [searchParams] = useSearchParams()
   const [form, setForm] = useState<FormState>(initial)
+  const honeypotRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     const roleParam = searchParams.get('role')
@@ -63,24 +64,22 @@ export function ContactPage() {
   }, [searchParams])
 
   const mutation = useMutation({
-    mutationFn: async (payload: FormState) => {
-      const { data } = await api.post<{ ok: boolean }>('/api/contact', payload)
-      return data
-    },
+    mutationFn: async (payload: FormState) =>
+      submitContactToFormspree(payload, {
+        honeypot: honeypotRef.current?.value,
+        pageUrl: typeof window !== 'undefined' ? window.location.href : undefined,
+      }),
     onSuccess: () => {
-      toast.success(`Message sent to ${CONTACT_INBOX}. We will get back to you shortly.`)
+      toast.success(`Message sent. We will reply to you at the email you provided.`)
       setForm(initial)
+      if (honeypotRef.current) honeypotRef.current.value = ''
     },
     onError: (error) => {
-      const apiMessage =
-        axios.isAxiosError(error) &&
-        error.response?.data &&
-        typeof error.response.data === 'object' &&
-        'error' in error.response.data &&
-        typeof error.response.data.error === 'string'
-          ? error.response.data.error
-          : null
-      toast.error(apiMessage ?? `Could not send your message. Please email ${CONTACT_INBOX} directly.`)
+      const message =
+        error instanceof ContactFormError
+          ? error.message
+          : `Could not send your message. Please email ${CONTACT_INBOX} directly.`
+      toast.error(message)
     },
   })
 
@@ -107,8 +106,8 @@ export function ContactPage() {
       <div className="space-y-[48px]">
         <ContentBlock label="Contact us" title="We respond to every serious inquiry">
           <p>
-            Use the form below for partnerships, careers, or client engagements. When you click Send message, your note
-            is emailed directly to{' '}
+            Use the form below for partnerships, careers, or client engagements. Submissions are delivered securely to
+            our team at{' '}
             <a href={`mailto:${CONTACT_INBOX}`} className="font-semibold text-brand hover:text-brand-600">
               {CONTACT_INBOX}
             </a>
@@ -118,6 +117,15 @@ export function ContactPage() {
 
         <div className="grid gap-[32px] lg:grid-cols-[1fr,320px]">
           <form id="contact-form" onSubmit={handleSubmit} className="card-static scroll-mt-[120px] space-y-[24px] p-[32px]">
+            <input
+              ref={honeypotRef}
+              type="text"
+              name="_gotcha"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden
+              className="pointer-events-none absolute h-0 w-0 opacity-0"
+            />
             {selectedOpening ? (
               <p className="rounded-[4px] border border-brand/20 bg-brand-light/60 px-[16px] py-[12px] text-sm text-ink-700">
                 Applying for: <span className="font-semibold text-ink-900">{selectedOpening}</span>
@@ -129,6 +137,7 @@ export function ContactPage() {
               </label>
               <input
                 id="name"
+                name="name"
                 required
                 className="field-input"
                 value={form.name}
@@ -141,6 +150,7 @@ export function ContactPage() {
               </label>
               <input
                 id="email"
+                name="email"
                 type="email"
                 required
                 className="field-input"
@@ -154,6 +164,7 @@ export function ContactPage() {
               </label>
               <select
                 id="role"
+                name="role"
                 className="field-input"
                 value={form.role}
                 onChange={(e) => setForm((f) => ({ ...f, role: e.target.value as ContactRole }))}
@@ -179,6 +190,7 @@ export function ContactPage() {
               </label>
               <textarea
                 id="message"
+                name="message"
                 required
                 rows={5}
                 className="field-input"
