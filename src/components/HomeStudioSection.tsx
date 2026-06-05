@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { RevealItem, RevealStagger, RevealStaggerItem, SectionReveal } from '@/components/SectionReveal'
-import { studioFeatures } from '@/lib/homeContent'
+import { useI18n } from '@/i18n/useI18n'
+import { getMessages } from '@/i18n/translate'
 import { siteImages } from '@/lib/siteImages'
 
 const studioBackground = (
@@ -18,6 +19,9 @@ const studioBackground = (
 )
 
 export function HomeStudioSection() {
+  const { locale } = useI18n()
+  const { studio, studioFeatures } = getMessages(locale).homeSections
+
   return (
     <SectionReveal
       className="home-section relative overflow-hidden"
@@ -26,30 +30,27 @@ export function HomeStudioSection() {
       accent
       prepend={studioBackground}
     >
-        <RevealItem>
-          <div className="max-w-xl rounded-[4px] border border-transparent bg-paper-50/40 p-[28px] shadow-sm backdrop-blur-[2px] sm:p-[32px]">
-            <p className="section-label">MoonSofts delivery studio</p>
-            <h2 className="home-section-title">Engineering accelerator ecosystem for enterprises</h2>
-            <p className="mt-[20px] text-base leading-relaxed text-ink-600">
-              Envision new possibilities with a delivery operating system—security rituals, integration patterns, and
-              accountable squads that move from discovery to production with discipline.
-            </p>
-            <Link to="/stack" className="btn btn-primary mt-[28px]">
-              Explore our platform
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </RevealItem>
-        <RevealStagger className="grid gap-[12px] rounded-[4px] border border-transparent bg-paper-50/40 p-[24px] shadow-sm backdrop-blur-[2px] sm:grid-cols-2 sm:p-[28px]">
-          {studioFeatures.map((feature) => (
-            <RevealStaggerItem key={feature}>
-              <div className="flex gap-[12px] text-sm leading-relaxed text-ink-600">
-                <CheckCircle2 className="mt-[2px] h-[18px] w-[18px] shrink-0 text-brand" aria-hidden />
-                {feature}
-              </div>
-            </RevealStaggerItem>
-          ))}
-        </RevealStagger>
+      <RevealItem>
+        <div className="max-w-xl rounded-[4px] border border-transparent bg-paper-50/40 p-[28px] shadow-sm backdrop-blur-[2px] sm:p-[32px]">
+          <p className="section-label">{studio.label}</p>
+          <h2 className="home-section-title">{studio.title}</h2>
+          <p className="mt-[20px] text-base leading-relaxed text-ink-600">{studio.body}</p>
+          <Link to="/stack" className="btn btn-primary mt-[28px]">
+            {studio.cta}
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </RevealItem>
+      <RevealStagger className="grid gap-[12px] rounded-[4px] border border-transparent bg-paper-50/40 p-[24px] shadow-sm backdrop-blur-[2px] sm:grid-cols-2 sm:p-[28px]">
+        {studioFeatures.map((feature) => (
+          <RevealStaggerItem key={feature}>
+            <div className="flex gap-[12px] text-sm leading-relaxed text-ink-600">
+              <CheckCircle2 className="mt-[2px] h-[18px] w-[18px] shrink-0 text-brand" aria-hidden />
+              {feature}
+            </div>
+          </RevealStaggerItem>
+        ))}
+      </RevealStagger>
     </SectionReveal>
   )
 }

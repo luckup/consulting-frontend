@@ -7,12 +7,17 @@ import { HomeSectionHeader } from '@/components/HomeSectionHeader'
 import { ScheduleConsultationButton } from '@/components/NavMenuLink'
 import { RevealItem } from '@/components/SectionReveal'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
-import { homeFaqItems } from '@/lib/homeFaq'
+import { useI18n } from '@/i18n/useI18n'
+import { getHomeFaqItems } from '@/i18n/localized/data'
+import { getMessages } from '@/i18n/translate'
 import { EASE_OUT, faqItemReveal, faqPanelTransition } from '@/lib/motionPresets'
 
 const FAQ_VIEWPORT = { once: true, amount: 0.2, margin: '0px 0px -8% 0px' } as const
 
 export function HomeFaqSection() {
+  const { locale, t } = useI18n()
+  const homeFaqItems = getHomeFaqItems(locale)
+  const faqHeader = getMessages(locale).homeSections.faq
   const [openId, setOpenId] = useState<string | null>(homeFaqItems[0]?.id ?? null)
   const reduced = usePrefersReducedMotion()
 
@@ -20,10 +25,10 @@ export function HomeFaqSection() {
     <AnimatedHomeSection id="faq" className="scroll-mt-[100px]">
       <RevealItem>
         <HomeSectionHeader
-          label="FAQs"
-          title="Common questions about working with MoonSofts"
-          description="Quick answers on how we engage, what we build, and how to start a conversation with our team."
-          action={{ to: '/contact', label: 'Contact us' }}
+          label={faqHeader.label}
+          title={faqHeader.title}
+          description={faqHeader.description}
+          action={{ to: '/contact', label: faqHeader.action }}
         />
       </RevealItem>
 
@@ -121,7 +126,7 @@ export function HomeFaqSection() {
         <div className="mx-auto mt-[32px] flex max-w-3xl flex-col items-center gap-[12px] sm:flex-row sm:justify-center">
           <ScheduleConsultationButton variant="primary" showIcon />
           <Link to="/services" className="btn btn-secondary px-[24px] py-[12px]">
-            View consulting services
+            {t('ui.viewConsultingServices')}
           </Link>
         </div>
       </RevealItem>

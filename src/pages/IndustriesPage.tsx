@@ -2,31 +2,35 @@ import { Link } from 'react-router-dom'
 import { ContentBlock } from '@/components/ContentBlock'
 import { MediaImage } from '@/components/MediaImage'
 import { PageShell } from '@/components/PageShell'
-import { industries, industryPath } from '@/lib/industriesData'
-import { industriesNav } from '@/lib/pageNav'
+import { useI18n } from '@/i18n/useI18n'
+import { getPageContent } from '@/i18n/localized/data'
+import { getIndustries } from '@/i18n/localized/industries'
+import { getIndustriesNav } from '@/i18n/localized/pageNav'
+import { industryPath } from '@/lib/industriesData'
 import { siteFeatures } from '@/lib/siteFeatures'
 import { siteImages } from '@/lib/siteImages'
 
 export function IndustriesPage() {
+  const { locale, t } = useI18n()
+  const page = getPageContent(locale, 'industriesList')
+  const industries = getIndustries(locale)
+
   return (
     <PageShell
-      section="What we do"
-      title="Industries we serve"
-      description="Software consulting and delivery tailored to commerce, logistics, finance, healthcare, construction, manufacturing, education, agriculture, and hospitality."
-      breadcrumbs={[{ label: 'What we do', to: '/services' }, { label: 'Industries' }]}
-      heroCta={{ label: 'Talk to our consultants', to: '/contact' }}
+      section={page.section}
+      title={page.title}
+      description={page.description}
+      breadcrumbs={[{ label: page.breadcrumbs[0].label, to: '/services' }, { label: page.breadcrumbs[1].label }]}
+      heroCta={{ label: page.heroCta, to: '/contact' }}
       heroImage={siteImages.hero.industries}
-      sidebarTitle="In this section"
-      sidebarItems={industriesNav}
+      sidebarTitle={t('ui.inThisSection')}
+      sidebarItems={getIndustriesNav(locale)}
     >
       <div className="space-y-[48px]">
-        <ContentBlock label="Overview" title="Solutions across sectors">
-          <p>
-            MoonSofts combines industry context with strong engineering practice. We have delivered platforms for
-            high-growth startups and enterprise programs alike—always with security, integration complexity, and
-            stakeholder alignment treated as first-class requirements.
-          </p>
-          <p>Select an industry below to explore how we partner in that sector.</p>
+        <ContentBlock label={page.blocks.overview.label} title={page.blocks.overview.title}>
+          {page.blocks.overview.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </ContentBlock>
 
         <div className="grid gap-[24px] sm:grid-cols-2">
@@ -46,29 +50,29 @@ export function IndustriesPage() {
                 <h3 className="mt-[8px] text-lg font-semibold text-ink-900 group-hover:text-brand">{sector.title}</h3>
                 <p className="mt-[12px] text-sm leading-relaxed text-ink-600">{sector.body}</p>
                 <span className="mt-[16px] inline-flex text-sm font-semibold text-brand group-hover:text-brand-600">
-                  Explore {sector.label} →
+                  {page.explorePrefix.replace('{label}', sector.label)}
                 </span>
               </div>
             </Link>
           ))}
         </div>
 
-        <ContentBlock label="Cross-industry" title="One delivery standard, many contexts">
+        <ContentBlock label={page.blocks.crossIndustry.label} title={page.blocks.crossIndustry.title}>
           <p>
-            Regardless of sector, MoonSofts applies the same delivery platform, access hygiene, and quality bar.
+            {page.blocks.crossIndustry.bodyPrefix}
             {siteFeatures.clientVoices ? (
               <>
                 {' '}
                 <Link to="/clients" className="font-semibold text-brand hover:text-brand-600">
-                  See client feedback
+                  {page.blocks.crossIndustry.clientVoicesLink}
                 </Link>{' '}
-                or{' '}
+                {page.blocks.crossIndustry.or}{' '}
               </>
             ) : (
               ' '
             )}
             <Link to="/services" className="font-semibold text-brand hover:text-brand-600">
-              review how we engage
+              {page.blocks.crossIndustry.servicesLink}
             </Link>
             .
           </p>

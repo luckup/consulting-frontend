@@ -1,6 +1,10 @@
+import { useI18n } from '@/i18n/useI18n'
+
 export function PageLoader() {
+  const { t } = useI18n()
+
   return (
-    <div className="page-loader" role="status" aria-live="polite" aria-label="Loading page">
+    <div className="page-loader" role="status" aria-live="polite" aria-label={t('common.loadingPage')}>
       <div className="page-loader-hero page-loader-shimmer" aria-hidden />
       <div className="container-pad py-[56px] sm:py-[72px]">
         <div className="max-w-3xl space-y-[16px]">
@@ -20,7 +24,7 @@ export function PageLoader() {
           ))}
         </div>
       </div>
-      <span className="sr-only">Loading page…</span>
+      <span className="sr-only">{t('common.loadingPage')}</span>
     </div>
   )
 }

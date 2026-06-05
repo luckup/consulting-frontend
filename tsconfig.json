@@ -21,6 +21,6 @@
       "@site-images": ["src/lib/siteImages.cdn.ts"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "middleware.ts", "api"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

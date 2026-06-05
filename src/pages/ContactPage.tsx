@@ -1,10 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
-import { type FormEvent, useEffect, useRef, useState } from 'react'
+import { type FormEvent, useEffect, useMemo, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useSearchParams } from 'react-router-dom'
+import { useContactRoleLabel } from '@/i18n/useContactRoleLabel'
 import { ContentBlock } from '@/components/ContentBlock'
 import { PageShell } from '@/components/PageShell'
 import { MediaImage } from '@/components/MediaImage'
+import { useI18n } from '@/i18n/useI18n'
+import { getMessages } from '@/i18n/translate'
 import { getOpenPosition } from '@/lib/careersData'
 import {
   contactRoleLabels,
@@ -14,7 +17,7 @@ import {
 } from '@/lib/contactRoles'
 import { ContactFormError } from '@/lib/contactFormValidation'
 import { CONTACT_INBOX } from '@/lib/contactEmail'
-import { contactNav } from '@/lib/pageNav'
+import { getContactNav } from '@/i18n/localized/pageNav'
 import { submitContactToFormspree } from '@/lib/submitContactToFormspree'
 import { siteImages } from '@/lib/siteImages'
 
@@ -32,17 +35,21 @@ const initial: FormState = {
   message: '',
 }
 
-const offices = [
-  { region: 'Americas', detail: 'Remote-first operations across U.S. time zones.' },
-  { region: 'EMEA', detail: 'Structured collaboration hubs in Türkiye and partner regions.' },
-  { region: 'APAC', detail: 'Async delivery with documented handoffs and ceremonies.' },
-]
-
 function buildApplicationMessage(positionTitle: string) {
   return `Applying for: ${positionTitle}\n\nTell us about relevant experience, portfolio or shipped work, and your availability:\n\n`
 }
 
 export function ContactPage() {
+  const { t, locale } = useI18n()
+  const roleLabel = useContactRoleLabel()
+  const offices = useMemo(
+    () => [
+      getMessages(locale).contact.offices.americas,
+      getMessages(locale).contact.offices.emea,
+      getMessages(locale).contact.offices.apac,
+    ],
+    [locale],
+  )
   const [searchParams] = useSearchParams()
   const [form, setForm] = useState<FormState>(initial)
   const honeypotRef = useRef<HTMLInputElement>(null)
@@ -70,7 +77,7 @@ export function ContactPage() {
         pageUrl: typeof window !== 'undefined' ? window.location.href : undefined,
       }),
     onSuccess: () => {
-      toast.success(`Message sent. We will reply to you at the email you provided.`)
+      toast.success(t('contact.toastSuccess'))
       setForm(initial)
       if (honeypotRef.current) honeypotRef.current.value = ''
     },
@@ -78,7 +85,7 @@ export function ContactPage() {
       const message =
         error instanceof ContactFormError
           ? error.message
-          : `Could not send your message. Please email ${CONTACT_INBOX} directly.`
+          : `${t('contact.toastError')} ${CONTACT_INBOX}`
       toast.error(message)
     },
   })
@@ -95,20 +102,20 @@ export function ContactPage() {
   return (
     <PageShell
       section="Contact"
-      title="Get in touch with MoonSofts"
-      description="Tell us what you are building, where you want to contribute, or how we can support your next program."
-      breadcrumbs={[{ label: 'Contact' }]}
-      heroCta={{ label: 'Send a message', to: '/contact#contact-form' }}
+      title={t('contact.heroTitle')}
+      description={t('contact.heroDescription')}
+      breadcrumbs={[{ label: t('footer.contact') }]}
+      heroCta={{ label: t('contact.heroCta'), to: '/contact#contact-form' }}
       heroImage={siteImages.hero.contact}
-      sidebarTitle="In this section"
-      sidebarItems={contactNav}
+      sidebarTitle={t('ui.inThisSection')}
+      sidebarItems={getContactNav(locale)}
     >
       <div className="space-y-[48px]">
-        <ContentBlock label="Contact us" title="Apply for a free football player website or discuss consulting">
+        <ContentBlock label={t('contact.blockLabel')} title={t('contact.blockTitle')}>
           <p>
-            Use the form below to apply for a <strong className="font-semibold text-ink-800">free 2026 World Cup website</strong>{' '}
-            for football players and fan communities, or to discuss software consulting. Submissions are delivered securely to
-            our team at{' '}
+            {t('contact.blockBodyBefore')}{' '}
+            <strong className="font-semibold text-ink-800">{t('contact.blockBodyHighlight')}</strong>{' '}
+            {t('contact.blockBodyAfter')}{' '}
             <a href={`mailto:${CONTACT_INBOX}`} className="font-semibold text-brand hover:text-brand-600">
               {CONTACT_INBOX}
             </a>
@@ -129,12 +136,13 @@ export function ContactPage() {
             />
             {selectedOpening ? (
               <p className="rounded-[4px] border border-brand/20 bg-brand-light/60 px-[16px] py-[12px] text-sm text-ink-700">
-                Applying for: <span className="font-semibold text-ink-900">{selectedOpening}</span>
+                {t('contact.applyingFor')}{' '}
+                <span className="font-semibold text-ink-900">{selectedOpening}</span>
               </p>
             ) : null}
             <div>
               <label htmlFor="name" className="field-label">
-                Name
+                {t('contact.name')}
               </label>
               <input
                 id="name"
@@ -147,7 +155,7 @@ export function ContactPage() {
             </div>
             <div>
               <label htmlFor="email" className="field-label">
-                Email
+                {t('contact.email')}
               </label>
               <input
                 id="email"
@@ -161,7 +169,7 @@ export function ContactPage() {
             </div>
             <div>
               <label htmlFor="role" className="field-label">
-                I am reaching out as…
+                {t('contact.roleLabel')}
               </label>
               <select
                 id="role"
@@ -170,24 +178,26 @@ export function ContactPage() {
                 value={form.role}
                 onChange={(e) => setForm((f) => ({ ...f, role: e.target.value as ContactRole }))}
               >
-                <optgroup label="Current openings">
+                <optgroup label={t('common.currentOpenings')}>
                   {openPositionContactRoles.map((role) => (
                     <option key={role} value={role}>
                       {contactRoleLabels[role]}
                     </option>
                   ))}
                 </optgroup>
-                <optgroup label="General">
-                  <option value="us-engineer">{contactRoleLabels['us-engineer']}</option>
-                  <option value="global-engineer">{contactRoleLabels['global-engineer']}</option>
-                  <option value="client">{contactRoleLabels.client}</option>
-                  <option value="other">{contactRoleLabels.other}</option>
+                <optgroup label={t('common.general')}>
+                  <option value="us-engineer">{roleLabel('us-engineer', contactRoleLabels['us-engineer'])}</option>
+                  <option value="global-engineer">
+                    {roleLabel('global-engineer', contactRoleLabels['global-engineer'])}
+                  </option>
+                  <option value="client">{roleLabel('client', contactRoleLabels.client)}</option>
+                  <option value="other">{roleLabel('other', contactRoleLabels.other)}</option>
                 </optgroup>
               </select>
             </div>
             <div>
               <label htmlFor="message" className="field-label">
-                Message
+                {t('contact.message')}
               </label>
               <textarea
                 id="message"
@@ -195,24 +205,20 @@ export function ContactPage() {
                 required
                 rows={5}
                 className="field-input"
-                placeholder={
-                  selectedOpening
-                    ? 'Share links to work, relevant wins, and when you could start.'
-                    : undefined
-                }
+                placeholder={selectedOpening ? t('contact.placeholderApplication') : undefined}
                 value={form.message}
                 onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
               />
             </div>
             <button type="submit" disabled={mutation.isPending} className="btn btn-primary w-full disabled:opacity-60">
-              {mutation.isPending ? 'Sending…' : 'Send message'}
+              {mutation.isPending ? t('common.sending') : t('common.sendMessage')}
             </button>
           </form>
 
           <aside className="space-y-[20px]">
             <MediaImage src={siteImages.contact.global} className="h-[180px] rounded-[4px]" overlay="subtle" />
             <div className="card-soft p-[24px]">
-              <h3 className="text-sm font-semibold text-ink-900">Global presence</h3>
+              <h3 className="text-sm font-semibold text-ink-900">{t('contact.globalPresence')}</h3>
               <ul className="mt-[16px] space-y-[16px]">
                 {offices.map((o) => (
                   <li key={o.region}>
@@ -225,11 +231,8 @@ export function ContactPage() {
           </aside>
         </div>
 
-        <ContentBlock id="press" label="Press & media" title="Media and speaking inquiries">
-          <p>
-            For press releases, interviews, or event requests, use the contact form and select &quot;Other&quot; with
-            &quot;Press&quot; in your message. Our team typically responds within two business days.
-          </p>
+        <ContentBlock id="press" label={t('contact.pressLabel')} title={t('contact.pressTitle')}>
+          <p>{t('contact.pressBody')}</p>
         </ContentBlock>
       </div>
     </PageShell>

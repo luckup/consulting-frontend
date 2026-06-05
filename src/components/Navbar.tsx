@@ -1,68 +1,20 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useMemo, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import { clsx } from 'clsx'
+import { useI18n } from '@/i18n/useI18n'
 import { siteImages } from '@/lib/siteImages'
 import { TopUtilityBar } from '@/components/TopUtilityBar'
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll'
 import { useScrollThreshold } from '@/hooks/useScrollThreshold'
+import { buildPrimaryNav } from '@/lib/i18nNav'
 import { routePrefetchHandlers } from '@/lib/routePrefetch'
-import { contactInfo } from '@/lib/contactInfo'
-import type { AppNavLink } from '@/lib/navLinks'
-import { filterNavLinks } from '@/lib/siteFeatures'
 import { NavMenuLink, ScheduleConsultationButton } from '@/components/NavMenuLink'
 import { trackEvent } from '@/lib/analytics'
 
-const navItems: { label: string; to: string; children: AppNavLink[] }[] = [
-  {
-    label: 'Industries',
-    to: '/industries',
-    children: [
-      { to: '/industries/ecommerce', label: 'E-commerce' },
-      { to: '/industries/logistics', label: 'Logistics' },
-      { to: '/industries/healthcare', label: 'Healthcare' },
-      { to: '/industries/construction', label: 'Construction' },
-      { to: '/industries/financial', label: 'Financial services' },
-      { to: '/industries/manufacturing', label: 'Manufacturing' },
-      { to: '/industries/education', label: 'Education' },
-      { to: '/industries/agriculture', label: 'Agriculture & farming' },
-      { to: '/industries/restaurant', label: 'Restaurant & hospitality' },
-    ],
-  },
-  {
-    label: 'Services',
-    to: '/services',
-    children: [
-      { to: '/services', label: 'Consulting services' },
-      { to: contactInfo.calendlyUrl, label: contactInfo.calendlyLabel, external: true },
-      { to: '/stack', label: 'Technology & platform' },
-      { to: '/privacy', label: 'Legal & privacy' },
-    ],
-  },
-  {
-    label: 'Insights',
-    to: '/news',
-    children: [
-      { to: '/news', label: 'News & insights' },
-      { to: '/clients', label: 'Client voices' },
-    ],
-  },
-  {
-    label: 'Company',
-    to: '/about',
-    children: [
-      { to: '/about', label: 'Our story' },
-      { to: '/team', label: 'Leadership team' },
-      { to: '/engineers', label: 'Careers' },
-      { to: '/privacy', label: 'Legal & privacy' },
-    ],
-  },
-].map((item) => ({
-  ...item,
-  children: filterNavLinks(item.children),
-}))
-
 export function Navbar() {
+  const { t } = useI18n()
+  const navItems = useMemo(() => buildPrimaryNav(t), [t])
   const [open, setOpen] = useState(false)
   const [expanded, setExpanded] = useState<string | null>(null)
   const menuId = useId()
@@ -132,7 +84,7 @@ export function Navbar() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-[2px] xl:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-[2px] xl:flex" aria-label={t('common.primaryNav')}>
             {navItems.map((item) => (
               <div key={item.label} className="group relative">
                 <NavLink
@@ -182,7 +134,7 @@ export function Navbar() {
                     : 'btn-primary',
                 )}
               >
-                Contact us
+                {t('common.contactUs')}
               </NavLink>
             </div>
           </nav>
@@ -195,7 +147,7 @@ export function Navbar() {
             )}
             aria-expanded={open}
             aria-controls={menuId}
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label={open ? t('common.closeMenu') : t('common.openMenu')}
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -210,15 +162,15 @@ export function Navbar() {
           data-lenis-prevent
           role="dialog"
           aria-modal="true"
-          aria-label="Mobile navigation"
+          aria-label={t('common.mobileNav')}
         >
-          <nav className="flex flex-col gap-[4px]" aria-label="Mobile primary">
+          <nav className="flex flex-col gap-[4px]" aria-label={t('common.mobileNav')}>
             <Link
               to="/"
               className="rounded-[4px] px-[12px] py-[8px] text-sm font-medium text-ink-700 hover:bg-paper-100 hover:text-brand"
               onClick={closeMenu}
             >
-              Home
+              {t('common.home')}
             </Link>
             {navItems.map((item) => (
               <div key={item.label}>
@@ -260,7 +212,7 @@ export function Navbar() {
               className="btn btn-primary mt-[8px] justify-center"
               onClick={closeMenu}
             >
-              Contact us
+              {t('common.contactUs')}
             </Link>
           </nav>
         </div>

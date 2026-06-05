@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, MapPin } from 'lucide-react'
-import { contactPathForPosition, openPositions } from '@/lib/careersData'
+import { useI18n } from '@/i18n/useI18n'
+import { getOpenPositions } from '@/i18n/localized/data'
+import { contactPathForPosition } from '@/lib/careersData'
+import type { OpenPosition } from '@/lib/careersData'
 
 export function OpenPositionsList() {
+  const { locale, t } = useI18n()
+  const openPositions = getOpenPositions(locale) as OpenPosition[]
+
   return (
     <div className="grid gap-[20px] md:grid-cols-2">
       {openPositions.map((position) => (
@@ -21,13 +27,13 @@ export function OpenPositionsList() {
           </ul>
           <p className="mt-[16px] flex items-center gap-[6px] text-xs text-ink-500">
             <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden />
-            Remote-first · Global collaboration
+            {t('ui.remoteFirstGlobal')}
           </p>
           <Link
             to={contactPathForPosition(position)}
             className="btn btn-primary mt-[20px] w-full justify-center sm:w-auto"
           >
-            Apply for this role
+            {t('ui.applyForRole')}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </article>

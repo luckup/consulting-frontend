@@ -5,43 +5,51 @@ import { SplitFeature } from '@/components/SplitFeature'
 import { TechStackSection } from '@/components/TechStackSection'
 import { ToolsWeUseSection } from '@/components/ToolsWeUseSection'
 import { useHashSectionScroll } from '@/hooks/useHashSectionScroll'
-import { stackNav } from '@/lib/pageNav'
+import { useI18n } from '@/i18n/useI18n'
+import { getPageContent } from '@/i18n/localized/data'
+import { getStackNav } from '@/i18n/localized/pageNav'
 import { siteImages } from '@/lib/siteImages'
+
+const businessImages = {
+  'product-engineering': siteImages.stack.product,
+  'platform-cloud': siteImages.stack.cloud,
+  'data-ai': siteImages.stack.data,
+} as const
 
 export function StackPage() {
   useHashSectionScroll()
+  const { locale, t } = useI18n()
+  const page = getPageContent(locale, 'stack')
+  const blocks = page.blocks
 
   return (
     <PageShell
-      section="What we do"
-      title="Software solutions that put productivity at the center of delivery"
-      description="We are a leading developer and provider of software solutions for product teams, platforms, and data-intensive systems."
-      breadcrumbs={[{ label: 'What we do', to: '/stack' }, { label: 'Technology' }]}
-      heroCta={{ label: 'See what we build', to: '/stack#platform' }}
+      section={page.section}
+      title={page.title}
+      description={page.description}
+      breadcrumbs={[{ label: page.breadcrumbs[0].label, to: '/stack' }, { label: page.breadcrumbs[1].label }]}
+      heroCta={{ label: page.heroCta, to: '/stack#platform' }}
       heroImage={siteImages.hero.stack}
-      sidebarTitle="In this section"
-      sidebarItems={stackNav}
+      sidebarTitle={t('ui.inThisSection')}
+      sidebarItems={getStackNav(locale)}
     >
       <div className="space-y-[48px]">
         <SplitFeature
-          label="What we do"
-          title="Deeply integrated delivery for modern product teams"
-          body="From web experiences and APIs to cloud foundations and AI-assisted workflows—we build systems that stay reliable under real-world load."
-          cta={{ label: 'Explore the platform', to: '/stack#platform' }}
+          label={page.splitFeature.label}
+          title={page.splitFeature.title}
+          body={page.splitFeature.body}
+          cta={{ label: page.splitFeature.cta, to: '/stack#platform' }}
           image={siteImages.split.stackPlatform}
         />
 
         <ContentBlock
           id="platform"
-          label="MoonSofts platform"
-          title="Productivity at the center of global engineering"
+          label={blocks.platform.label}
+          title={blocks.platform.title}
           variant="highlight"
-          cta={{ label: 'Talk to us about adoption', to: '/contact' }}
+          cta={{ label: blocks.platform.cta, to: '/contact' }}
         >
-          <p>
-            Our delivery platform unifies rituals, access control, documentation, and client-ready handoffs—so distributed
-            teams operate with enterprise discipline without enterprise bureaucracy.
-          </p>
+          <p>{blocks.platform.body}</p>
         </ContentBlock>
 
         <TechStackSection />
@@ -50,25 +58,22 @@ export function StackPage() {
 
         <ContentBlock
           id="businesses"
-          label="Our businesses"
-          title="Combining engineering expertise and intelligent software"
-          cta={{ label: "Learn how we're growing", to: '/news' }}
+          label={blocks.businesses.label}
+          title={blocks.businesses.title}
+          cta={{ label: blocks.businesses.cta, to: '/news' }}
         >
-          <p>
-            MoonSofts combines product engineering, platform operations, and data practice into one coherent offering—so
-            clients engage a single partner from MVP through scale.
-          </p>
+          <p>{blocks.businesses.intro}</p>
           <div className="mt-[20px] grid gap-[16px] sm:grid-cols-3">
-            {[
-              { title: 'Product engineering', body: 'Web apps, platforms, internal tools.', image: siteImages.stack.product },
-              { title: 'Platform & cloud', body: 'CI/CD, IaC, observability, secure deployments.', image: siteImages.stack.cloud },
-              { title: 'Data & AI', body: 'Pipelines, warehouses, RAG, and guardrails.', image: siteImages.stack.data },
-            ].map((b) => (
-              <div key={b.title} className="card-soft overflow-hidden">
-                <MediaImage src={b.image} className="h-[180px]" overlay="subtle" />
+            {Object.entries(blocks.businesses.lines).map(([id, line]) => (
+              <div key={id} className="card-soft overflow-hidden">
+                <MediaImage
+                  src={businessImages[id as keyof typeof businessImages]}
+                  className="h-[180px]"
+                  overlay="subtle"
+                />
                 <div className="p-[20px]">
-                  <h4 className="font-semibold text-ink-900">{b.title}</h4>
-                  <p className="mt-[8px] text-sm text-ink-600">{b.body}</p>
+                  <h4 className="font-semibold text-ink-900">{line.title}</h4>
+                  <p className="mt-[8px] text-sm text-ink-600">{line.body}</p>
                 </div>
               </div>
             ))}

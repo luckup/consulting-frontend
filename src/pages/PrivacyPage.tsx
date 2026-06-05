@@ -1,74 +1,58 @@
 import { ContentBlock } from '@/components/ContentBlock'
 import { PageShell } from '@/components/PageShell'
-import { legalNav } from '@/lib/pageNav'
+import { useI18n } from '@/i18n/useI18n'
+import { getPageContent } from '@/i18n/localized/data'
+import { getLegalNav } from '@/i18n/localized/pageNav'
 import { siteImages } from '@/lib/siteImages'
 
 export function PrivacyPage() {
+  const { locale, t } = useI18n()
+  const page = getPageContent(locale, 'privacy')
+  const blocks = page.blocks
+
   return (
     <PageShell
-      section="Legal"
-      title="Privacy and data protection"
-      description="MoonSofts engineers trust the same way we engineer systems. This page summarizes our principles—replace with counsel-approved policies when formalizing the business."
-      breadcrumbs={[{ label: 'Legal', to: '/privacy' }, { label: 'Privacy notice' }]}
-      heroCta={{ label: 'Contact us', to: '/contact' }}
+      section={page.section}
+      title={page.title}
+      description={page.description}
+      breadcrumbs={[{ label: page.breadcrumbs[0].label, to: '/privacy' }, { label: page.breadcrumbs[1].label }]}
+      heroCta={{ label: page.heroCta, to: '/contact' }}
       heroImage={siteImages.hero.privacy}
-      sidebarTitle="In this section"
-      sidebarItems={legalNav}
+      sidebarTitle={t('ui.inThisSection')}
+      sidebarItems={getLegalNav(locale)}
     >
       <div className="space-y-[40px]">
-        <ContentBlock label="Privacy & security" title="We engineer trust as a first-class discipline">
-          <p>
-            We minimize data, enforce least privilege, and prefer approved communication channels per engagement. The
-            principles below apply to candidates, engineers, and client programs unless a specific contract states otherwise.
-          </p>
+        <ContentBlock label={blocks.overview.label} title={blocks.overview.title}>
+          <p>{blocks.overview.body}</p>
         </ContentBlock>
 
-        <ContentBlock label="Data minimization" title="Collect only what we need">
-          <p>
-            We collect only what we need to evaluate fit, coordinate engagements, and meet client obligations. When data is
-            no longer required, we delete or anonymize it on a defined schedule.
-          </p>
+        <ContentBlock label={blocks.minimization.label} title={blocks.minimization.title}>
+          <p>{blocks.minimization.body}</p>
         </ContentBlock>
 
-        <ContentBlock label="Access control" title="Least privilege by default">
-          <p>
-            Role-based access, short-lived credentials, and audited administrative actions are baseline expectations.
-            Engineers receive least-privilege access to client systems, with clear offboarding steps.
-          </p>
+        <ContentBlock label={blocks.access.label} title={blocks.access.title}>
+          <p>{blocks.access.body}</p>
         </ContentBlock>
 
-        <ContentBlock label="Communications" title="Approved channels only">
-          <p>
-            Sensitive conversations belong in approved channels with retention policies that match client requirements. We
-            discourage shadow IT and document acceptable tooling per engagement.
-          </p>
+        <ContentBlock label={blocks.communications.label} title={blocks.communications.title}>
+          <p>{blocks.communications.body}</p>
         </ContentBlock>
 
-        <ContentBlock label="AI-assisted workflows" title="Humans in the loop for high-risk outputs" variant="highlight">
-          <p>
-            Where we use AI tooling, we do so with explicit data-handling rules: no client secrets in unmanaged prompts,
-            human review for high-risk outputs, and logging that supports incident response.
-          </p>
+        <ContentBlock label={blocks.ai.label} title={blocks.ai.title} variant="highlight">
+          <p>{blocks.ai.body}</p>
         </ContentBlock>
 
-        <ContentBlock id="terms" label="Terms of use" title="Use of this website and materials">
-          <p>
-            Content on this site is provided for general information about MoonSofts. It does not constitute an offer,
-            contract, or legal advice. By using this site you agree not to misuse materials or attempt unauthorized access to
-            our systems.
-          </p>
+        <ContentBlock id="terms" label={blocks.terms.label} title={blocks.terms.title}>
+          <p>{blocks.terms.body}</p>
         </ContentBlock>
 
         <ContentBlock
           id="help"
-          label="Privacy help center"
-          title="Questions about your data"
-          cta={{ label: 'Contact privacy team', to: '/contact' }}
+          label={blocks.help.label}
+          title={blocks.help.title}
+          cta={{ label: blocks.help.cta, to: '/contact' }}
         >
-          <p>
-            For access requests, corrections, or questions about how we handle personal information, contact us through the
-            form on our contact page and mark your inquiry as a privacy request.
-          </p>
+          <p>{blocks.help.body}</p>
         </ContentBlock>
       </div>
     </PageShell>
