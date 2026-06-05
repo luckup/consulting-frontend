@@ -1,22 +1,19 @@
 import { Link } from 'react-router-dom'
 import { clsx } from 'clsx'
-import { contactInfo } from '@/lib/contactInfo'
+import { useI18n } from '@/i18n/useI18n'
+import { buildUtilityLinks } from '@/lib/i18nNav'
 import { externalLinkProps } from '@/lib/navLinks'
 import { routePrefetchHandlers } from '@/lib/routePrefetch'
-
-const links = [
-  { label: 'Moonsofts at a glance', to: '/about' },
-  { label: 'Latest news', to: '/news' },
-  { label: "We're hiring", to: '/engineers' },
-  { label: contactInfo.calendlyLabel, to: contactInfo.calendlyUrl, external: true as const },
-  { label: 'Contact us', to: '/contact' },
-]
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 
 type Props = {
   overHero?: boolean
 }
 
 export function TopUtilityBar({ overHero = false }: Props) {
+  const { t } = useI18n()
+  const links = buildUtilityLinks(t)
+
   return (
     <div
       className={clsx(
@@ -52,6 +49,7 @@ export function TopUtilityBar({ overHero = false }: Props) {
             </Link>
           ),
         )}
+        <LanguageSwitcher overHero={overHero} className="ml-[4px]" />
       </div>
     </div>
   )

@@ -2,43 +2,47 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { AnimatedHomeSection } from '@/components/AnimatedHomeSection'
 import { RevealItem, RevealStagger, RevealStaggerItem } from '@/components/SectionReveal'
-import { deliveryPhases } from '@/lib/servicesData'
+import { useI18n } from '@/i18n/useI18n'
+import { getDeliveryPhases } from '@/i18n/localized/data'
+import { getMessages } from '@/i18n/translate'
 
 export function HomeSeoNarrativeSection() {
+  const { locale, t } = useI18n()
+  const copy = getMessages(locale).homeSections.seoNarrative
+  const deliveryPhases = getDeliveryPhases(locale)
+
   return (
     <AnimatedHomeSection id="why-moonsofts" className="scroll-mt-[100px]">
       <RevealItem>
-        <p className="section-label">Software consulting company</p>
-        <h2 className="home-section-title !mt-[8px]">
-          MoonSofts for startups, remote teams, and operators who need accountable engineering
-        </h2>
+        <p className="section-label">{copy.label}</p>
+        <h2 className="home-section-title !mt-[8px]">{copy.title}</h2>
         <div className="mt-[24px] space-y-[20px] text-base leading-relaxed text-ink-600 sm:text-lg">
           <p>
-            MoonSofts is a <strong className="font-semibold text-ink-800">software consulting company</strong> built
-            for founders and enterprises that cannot afford surprise rework. We combine remote delivery squads, modern
-            cloud and AI practice, and executive-ready reporting so you always know what shipped, what is at risk, and
-            what decisions need your attention.
+            {copy.p1Before} <strong className="font-semibold text-ink-800">{copy.p1Highlight}</strong>{' '}
+            {copy.p1After}
           </p>
           <p>
-            Whether you need a <strong className="font-semibold text-ink-800">first MVP</strong>, a{' '}
-            <strong className="font-semibold text-ink-800">credible website</strong> for early customers, a{' '}
-            <strong className="font-semibold text-ink-800">free football website</strong> ahead of the{' '}
-            <strong className="font-semibold text-ink-800">2026 World Cup</strong> (for selected players and fan
-            communities), or a <strong className="font-semibold text-ink-800">long-term product program</strong>, we
-            anchor every engagement on outcomes: production releases, adoption metrics, and operational readiness — not
-            vanity milestones.
+            {copy.p2Intro}{' '}
+            <strong className="font-semibold text-ink-800">{copy.p2Items[0]}</strong>
+            {copy.p2Join}
+            <strong className="font-semibold text-ink-800">{copy.p2Items[1]}</strong>
+            {copy.p2Join}
+            <strong className="font-semibold text-ink-800">{copy.p2Items[2]}</strong>
+            {copy.p2BeforeEvent}
+            <strong className="font-semibold text-ink-800">{copy.p2Items[3]}</strong>
+            {copy.p2BeforeLast}
+            <strong className="font-semibold text-ink-800">{copy.p2Items[4]}</strong>,{' '}
+            {copy.p2After}
           </p>
           <p>
-            Our <strong className="font-semibold text-ink-800">remote-first model</strong> blends global talent density
-            with U.S.-side accountability. You work directly with senior practitioners — architects, tech leads, and
-            delivery managers — who stay with the program from discovery through hypercare.
+            {copy.p3Before} <strong className="font-semibold text-ink-800">{copy.p3Highlight}</strong> {copy.p3After}
           </p>
         </div>
         <Link
           to="/services"
           className="mt-[24px] inline-flex items-center gap-[8px] text-sm font-semibold text-brand hover:text-brand-600"
         >
-          Explore services & engagement models
+          {copy.cta}
           <ArrowRight className="h-4 w-4" />
         </Link>
       </RevealItem>
@@ -57,28 +61,20 @@ export function HomeSeoNarrativeSection() {
 
       <RevealItem>
         <div className="mt-[48px] rounded-[4px] border border-ink-900/10 bg-paper-100 p-[28px] sm:p-[36px]">
-          <h3 className="text-lg font-semibold text-ink-900 sm:text-xl">What &quot;first stage&quot; means in practice</h3>
+          <h3 className="text-lg font-semibold text-ink-900 sm:text-xl">{copy.firstStageTitle}</h3>
           <div className="mt-[16px] space-y-[16px] text-sm leading-relaxed text-ink-600 sm:text-base">
-            <p>
-              Early MoonSofts engagements prioritize clarity: a tight problem statement, a realistic slice of value for
-              v1, and instrumentation so you can learn from real users. We document assumptions, define rollback paths,
-              and keep security and access control on the critical path — not as a late audit checkbox.
-            </p>
-            <p>
-              When you are ready to scale, the same team patterns extend to multi-squad programs, platform modernization,
-              and AI-assisted workflows inside a governed SDLC. The goal is continuity: the codebase, runbooks, and
-              metrics from your first launch should compound into faster, safer releases later.
-            </p>
+            <p>{copy.firstStageP1}</p>
+            <p>{copy.firstStageP2}</p>
           </div>
           <div className="mt-[24px] flex flex-wrap gap-[12px]">
             <Link to="/contact" className="btn btn-primary">
-              Start a conversation
+              {t('ui.startConversation')}
             </Link>
             <Link
               to="/industries"
               className="btn border border-ink-900/15 bg-paper-50 text-ink-900 hover:border-brand hover:text-brand"
             >
-              Browse industries
+              {t('ui.browseIndustries')}
             </Link>
           </div>
         </div>

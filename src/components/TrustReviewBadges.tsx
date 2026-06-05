@@ -2,6 +2,7 @@ import type { ComponentType } from 'react'
 import { clsx } from 'clsx'
 import { Star } from 'lucide-react'
 import { ClutchLogo } from '@/components/icons/ClutchLogo'
+import { useI18n } from '@/i18n/useI18n'
 import { trustRatings } from '@/lib/homeTrustRatings'
 
 type Props = {
@@ -45,9 +46,17 @@ function StarRating({ value }: { value: number }) {
 function TrustBadgeCard({
   item,
   Logo,
+  ratingLabel,
+  verifiedLabel,
+  subtitleLabel,
+  srTemplate,
 }: {
   item: (typeof trustRatings)[number]
   Logo: ComponentType<{ className?: string; variant?: 'light' | 'dark' }>
+  ratingLabel: string
+  verifiedLabel: string
+  subtitleLabel: string
+  srTemplate: (platform: string, rating: string, subtitle?: string) => string
 }) {
   const accent = accentStyles[item.id as keyof typeof accentStyles]
   const content = (
@@ -70,13 +79,13 @@ function TrustBadgeCard({
                 'border-[#FF3D2E]/25 bg-[#FF3D2E]/10 text-[#FF3D2E]',
               )}
             >
-              {item.subtitle}
+              {subtitleLabel}
             </span>
           ) : null}
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col justify-center border-l border-ink-900/10 pl-[16px] sm:pl-[20px]">
-          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">Rating</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">{ratingLabel}</p>
           <div className="mt-[8px] flex items-end justify-between gap-[12px]">
             <div className="flex items-baseline gap-[8px]">
               <p className="text-[32px] font-bold leading-none tabular-nums tracking-tight text-ink-900 sm:text-[36px]">
@@ -86,15 +95,14 @@ function TrustBadgeCard({
             </div>
             <div className="flex flex-col items-end gap-[6px]">
               <StarRating value={item.rating} />
-              <p className="text-[10px] font-medium text-ink-500">Verified reviews</p>
+              <p className="text-[10px] font-medium text-ink-500">{verifiedLabel}</p>
             </div>
           </div>
         </div>
       </div>
 
       <p className="sr-only">
-        {item.platform} rating {item.rating.toFixed(1)} out of 5
-        {item.subtitle ? `, ${item.subtitle}` : ''}
+        {srTemplate(item.platform, item.rating.toFixed(1), item.subtitle ? subtitleLabel : undefined)}
       </p>
     </>
   )
@@ -124,15 +132,29 @@ function TrustBadgeCard({
 }
 
 export function TrustReviewBadges({ className }: Props) {
+  const { t } = useI18n()
+
   return (
     <div
       className={clsx('flex flex-col gap-[16px] sm:max-w-[420px]', className)}
       role="list"
-      aria-label="Third-party ratings"
+      aria-label={t('ui.thirdPartyRatings')}
     >
       {trustRatings.map((item) => {
         const Logo = platformLogos[item.id as keyof typeof platformLogos]
-        return <TrustBadgeCard key={item.id} item={item} Logo={Logo} />
+        return (
+          <TrustBadgeCard
+            key={item.id}
+            item={item}
+            Logo={Logo}
+            ratingLabel={t('ui.rating')}
+            verifiedLabel={t('ui.verifiedReviews')}
+            subtitleLabel={t('ui.b2bReviews')}
+            srTemplate={(platform, rating, subtitle) =>
+              `${platform} ${t('ui.rating')} ${rating} ${t('ui.outOfFive')}${subtitle ? `, ${subtitle}` : ''}`
+            }
+          />
+        )
       })}
     </div>
   )

@@ -1,5 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
+import { LOCALE_HTML_LANG, LOCALE_OG, type Locale } from '@/i18n/types'
+import { useI18n } from '@/i18n/useI18n'
 import { siteImages } from '@/lib/siteImages'
 import { resolvePageSeo, type PageSeo } from '@/lib/routeMeta'
 import { CONTACT_INBOX } from '@/lib/contactEmail'
@@ -86,7 +88,7 @@ function setJsonLd(data: unknown) {
   script.textContent = JSON.stringify(data)
 }
 
-function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUrl: string) {
+function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUrl: string, locale: Locale) {
   const orgId = `${origin}/#organization`
   const websiteId = `${origin}/#website`
   const pageId = `${canonicalUrl}#webpage`
@@ -129,7 +131,7 @@ function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUr
       '@id': websiteId,
       url: origin,
       name: 'MoonSofts',
-      inLanguage: 'en-US',
+      inLanguage: LOCALE_HTML_LANG[locale],
       publisher: { '@id': orgId },
     },
     {
@@ -139,7 +141,7 @@ function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUr
       name: seo.title,
       description: seo.description,
       isPartOf: { '@id': websiteId },
-      inLanguage: 'en-US',
+      inLanguage: LOCALE_HTML_LANG[locale],
       ...(pathname === '/'
         ? {
             keywords: HOME_PAGE_KEYWORDS,
@@ -208,7 +210,8 @@ function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUr
 
 export function DocumentTitle() {
   const { pathname } = useLocation()
-  const seo = useMemo(() => resolvePageSeo(pathname), [pathname])
+  const { locale } = useI18n()
+  const seo = useMemo(() => resolvePageSeo(pathname, locale), [pathname, locale])
 
   useEffect(() => {
     const origin = getSiteOrigin()
@@ -229,7 +232,7 @@ export function DocumentTitle() {
     upsertMetaProperty('og:title', seo.title)
     upsertMetaProperty('og:description', seo.description)
     upsertMetaProperty('og:type', seo.ogType)
-    upsertMetaProperty('og:locale', 'en_US')
+    upsertMetaProperty('og:locale', LOCALE_OG[locale])
 
     if (canonicalUrl) {
       upsertMetaProperty('og:url', canonicalUrl)
@@ -265,9 +268,9 @@ export function DocumentTitle() {
     }
 
     if (origin) {
-      setJsonLd(buildJsonLd(origin, pathname, seo, canonicalUrl || absoluteUrl(origin, pathname)))
+      setJsonLd(buildJsonLd(origin, pathname, seo, canonicalUrl || absoluteUrl(origin, pathname), locale))
     }
-  }, [pathname, seo])
+  }, [pathname, seo, locale])
 
   return null
 }

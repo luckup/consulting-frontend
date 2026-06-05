@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Check } from 'lucide-react'
-import { websiteOfferings } from '@/lib/servicesData'
+import { useI18n } from '@/i18n/useI18n'
+import { getPageContent, getWebsiteOfferings } from '@/i18n/localized/data'
 import type { WebsiteOffering } from '@/lib/servicesData'
 import { siteImages } from '@/lib/siteImages'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
@@ -23,9 +24,11 @@ type ServiceOfferingCardProps = {
   offering: WebsiteOffering
   index: number
   animated: boolean
+  badge: string
+  solutionLabel: string
 }
 
-function ServiceOfferingCard({ offering, index, animated }: ServiceOfferingCardProps) {
+function ServiceOfferingCard({ offering, index, animated, badge, solutionLabel }: ServiceOfferingCardProps) {
   const imageRight = index % 2 === 1
   const phase = String(index + 1).padStart(2, '0')
   const priorityImage = index === 0
@@ -54,7 +57,7 @@ function ServiceOfferingCard({ offering, index, animated }: ServiceOfferingCardP
         aria-hidden
       />
       <span className="absolute left-[16px] top-[16px] z-[1] rounded-[4px] border border-[white]/20 bg-[white]/10 px-[10px] py-[5px] text-[10px] font-semibold uppercase tracking-[0.14em] text-[white] backdrop-blur-md">
-        Website
+        {badge}
       </span>
     </motion.div>
   )
@@ -72,7 +75,7 @@ function ServiceOfferingCard({ offering, index, animated }: ServiceOfferingCardP
       />
 
       <div className="flex items-start justify-between gap-[16px]">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">Solution {phase}</p>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">{solutionLabel} {phase}</p>
         <span
           className="shrink-0 font-mono text-[11px] font-medium tabular-nums text-ink-900/25"
           aria-hidden
@@ -143,7 +146,7 @@ function ServiceOfferingCard({ offering, index, animated }: ServiceOfferingCardP
               aria-hidden
             />
             <span className="absolute left-[16px] top-[16px] rounded-[4px] border border-[white]/20 bg-[white]/10 px-[10px] py-[5px] text-[10px] font-semibold uppercase tracking-[0.14em] text-[white] backdrop-blur-md">
-              Website
+              {badge}
             </span>
           </div>
           <div
@@ -152,7 +155,7 @@ function ServiceOfferingCard({ offering, index, animated }: ServiceOfferingCardP
             }`}
           >
             <div className="flex items-start justify-between gap-[16px]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">Solution {phase}</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand">{solutionLabel} {phase}</p>
               <span className="shrink-0 font-mono text-[11px] font-medium tabular-nums text-ink-900/25" aria-hidden>
                 {phase}
               </span>
@@ -197,7 +200,13 @@ function ServiceOfferingCard({ offering, index, animated }: ServiceOfferingCardP
   )
 }
 
-function ServiceOfferingCta({ animated }: { animated: boolean }) {
+function ServiceOfferingCta({
+  animated,
+  copy,
+}: {
+  animated: boolean
+  copy: { eyebrow: string; title: string; body: string; button: string }
+}) {
   const inner = (
     <>
       <div
@@ -205,19 +214,14 @@ function ServiceOfferingCta({ animated }: { animated: boolean }) {
         aria-hidden
       />
       <div className="relative">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand">Custom scope</p>
-        <h3 className="mt-[10px] text-xl font-semibold tracking-tight text-ink-900 sm:text-2xl">
-          Not sure which fit?
-        </h3>
-        <p className="mt-[14px] max-w-2xl text-sm leading-relaxed text-ink-600 sm:text-base">
-          Share your audience, timeline, and must-have features—we will recommend the right website type and delivery
-          plan.
-        </p>
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand">{copy.eyebrow}</p>
+        <h3 className="mt-[10px] text-xl font-semibold tracking-tight text-ink-900 sm:text-2xl">{copy.title}</h3>
+        <p className="mt-[14px] max-w-2xl text-sm leading-relaxed text-ink-600 sm:text-base">{copy.body}</p>
         <Link
           to="/contact#contact-form"
           className="btn btn-primary mt-[28px] w-full justify-center sm:w-auto"
         >
-          Discuss your website
+          {copy.button}
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-[4px]" />
         </Link>
       </div>
@@ -245,14 +249,24 @@ function ServiceOfferingCta({ animated }: { animated: boolean }) {
 }
 
 export function ServiceWebsiteOfferings() {
+  const { locale } = useI18n()
+  const websiteOfferings = getWebsiteOfferings(locale)
+  const serviceCopy = getPageContent(locale, 'serviceOfferings')
   const reduced = usePrefersReducedMotion()
 
   return (
     <div className="flex flex-col gap-[28px]">
       {websiteOfferings.map((offering, index) => (
-        <ServiceOfferingCard key={offering.id} offering={offering} index={index} animated={!reduced} />
+        <ServiceOfferingCard
+          key={offering.id}
+          offering={offering}
+          index={index}
+          animated={!reduced}
+          badge={serviceCopy.badge}
+          solutionLabel={serviceCopy.solutionLabel}
+        />
       ))}
-      <ServiceOfferingCta animated={!reduced} />
+      <ServiceOfferingCta animated={!reduced} copy={serviceCopy.cta} />
     </div>
   )
 }

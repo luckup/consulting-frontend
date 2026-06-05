@@ -2,13 +2,19 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { PageShell } from '@/components/PageShell'
 import { SectionReveal } from '@/components/SectionReveal'
-import { getNewsBySlug, newsArticles } from '@/lib/newsData'
+import { useI18n } from '@/i18n/useI18n'
+import { getPageContent } from '@/i18n/localized/data'
+import { getNewsArticleById, getNewsArticles } from '@/i18n/localized/news'
+import { getNewsNav } from '@/i18n/localized/pageNav'
 import { newsPath } from '@/lib/newsPath'
-import { newsNav } from '@/lib/pageNav'
 
 export function NewsArticlePage() {
+  const { locale } = useI18n()
   const { slug } = useParams<{ slug: string }>()
-  const article = getNewsBySlug(slug)
+  const page = getPageContent(locale, 'newsArticle')
+  const article = getNewsArticleById(locale, slug ?? '')
+  const newsArticles = getNewsArticles(locale)
+
   if (!article) {
     return <Navigate to="/news" replace />
   }
@@ -17,14 +23,14 @@ export function NewsArticlePage() {
 
   return (
     <PageShell
-      section="News"
+      section={page.section}
       title={article.title}
       description={article.excerpt}
-      breadcrumbs={[{ label: 'News', to: '/news' }, { label: article.category }]}
-      heroCta={{ label: 'Back to newsroom', to: '/news' }}
+      breadcrumbs={[{ label: page.section, to: '/news' }, { label: article.category }]}
+      heroCta={{ label: page.heroCta, to: '/news' }}
       heroImage={article.image}
-      sidebarTitle="Browse"
-      sidebarItems={newsNav}
+      sidebarTitle={page.sidebarTitle}
+      sidebarItems={getNewsNav(locale)}
     >
       <article className="max-w-3xl">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-brand">{article.category}</p>
@@ -56,13 +62,13 @@ export function NewsArticlePage() {
           className="mt-[48px] inline-flex items-center gap-[8px] text-sm font-semibold text-brand hover:text-brand-600"
         >
           <ArrowLeft className="h-4 w-4" />
-          Back to all news
+          {page.backToAll}
         </Link>
       </article>
 
       {related.length > 0 ? (
         <div className="mt-[56px] border-t border-ink-900/10 pt-[40px]">
-          <h2 className="text-lg font-semibold text-ink-900">More from the newsroom</h2>
+          <h2 className="text-lg font-semibold text-ink-900">{page.relatedTitle}</h2>
           <ul className="mt-[20px] space-y-[16px]">
             {related.map((item) => (
               <li key={item.id}>

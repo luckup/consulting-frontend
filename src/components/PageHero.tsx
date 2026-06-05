@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { ChevronRight } from 'lucide-react'
 import { clsx } from 'clsx'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
+import { useI18n } from '@/i18n/useI18n'
 import { heroContentReveal, heroItemReveal } from '@/lib/motionPresets'
 
 type Crumb = { label: string; to?: string }
@@ -19,6 +20,7 @@ type Props = {
 const HERO_HEIGHT = 'h-[75vh] min-h-[75vh]'
 
 export function PageHero({ section, title, description, breadcrumbs, cta, backgroundImage }: Props) {
+  const { t } = useI18n()
   const hasImage = Boolean(backgroundImage)
   const reduced = usePrefersReducedMotion()
 
@@ -54,7 +56,7 @@ export function PageHero({ section, title, description, breadcrumbs, cta, backgr
         {breadcrumbs && breadcrumbs.length > 0 ? (
           <motion.nav
             variants={reduced ? undefined : heroItemReveal}
-            aria-label="Breadcrumb"
+            aria-label={t('ui.breadcrumb')}
             className={clsx(
               'mb-[16px] flex shrink-0 flex-wrap items-center gap-[6px] text-xs',
               hasImage ? 'text-ink-700' : 'text-ink-500',
@@ -63,7 +65,7 @@ export function PageHero({ section, title, description, breadcrumbs, cta, backgr
             <ol className="flex flex-wrap items-center gap-[6px]">
               <li className="inline-flex items-center gap-[6px]">
                 <Link to="/" className={hasImage ? 'hover:text-[white]' : 'hover:text-brand'}>
-                  Home
+                  {t('common.home')}
                 </Link>
               </li>
               {breadcrumbs.map((crumb, index) => {

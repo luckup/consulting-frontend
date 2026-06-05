@@ -2,26 +2,31 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { MediaImage } from '@/components/MediaImage'
 import { PageShell } from '@/components/PageShell'
-import { firstSentences, newsArticles } from '@/lib/newsData'
+import { useI18n } from '@/i18n/useI18n'
+import { getPageContent } from '@/i18n/localized/data'
+import { firstSentences, getNewsArticles } from '@/i18n/localized/news'
+import { getNewsNav } from '@/i18n/localized/pageNav'
 import { newsPath } from '@/lib/newsPath'
-import { newsNav } from '@/lib/pageNav'
 import { siteImages } from '@/lib/siteImages'
 
 export function NewsPage() {
+  const { locale } = useI18n()
+  const page = getPageContent(locale, 'news')
+  const newsArticles = getNewsArticles(locale)
   const [searchParams] = useSearchParams()
   const filter = searchParams.get('filter')
   const filtered = filter ? newsArticles.filter((article) => article.filter === filter) : newsArticles
 
   return (
     <PageShell
-      section="News"
-      title="Newsroom"
-      description="Company updates, industry insights, and perspectives from MoonSofts on AI, cloud, and accountable engineering for global businesses."
-      breadcrumbs={[{ label: 'News' }]}
-      heroCta={{ label: 'View all articles', to: '/news#articles' }}
+      section={page.section}
+      title={page.title}
+      description={page.description}
+      breadcrumbs={[{ label: page.breadcrumbs[0].label }]}
+      heroCta={{ label: page.heroCta, to: '/news#articles' }}
       heroImage={siteImages.hero.news}
-      sidebarTitle="Browse"
-      sidebarItems={newsNav}
+      sidebarTitle={page.sidebarTitle}
+      sidebarItems={getNewsNav(locale)}
     >
       <div className="mb-[32px] flex flex-wrap gap-[8px]">
         <Link
@@ -31,7 +36,7 @@ export function NewsPage() {
             !filter ? 'border-brand bg-brand-light text-brand' : 'border-ink-900/10 text-ink-600 hover:border-brand'
           }`}
         >
-          All
+          {page.filters.all}
         </Link>
         <Link
           to="/news?filter=company"
@@ -42,7 +47,7 @@ export function NewsPage() {
               : 'border-ink-900/10 text-ink-600 hover:border-brand'
           }`}
         >
-          Company news
+          {page.filters.company}
         </Link>
         <Link
           to="/news?filter=insights"
@@ -53,7 +58,7 @@ export function NewsPage() {
               : 'border-ink-900/10 text-ink-600 hover:border-brand'
           }`}
         >
-          Industry insights
+          {page.filters.insights}
         </Link>
       </div>
 
@@ -75,7 +80,7 @@ export function NewsPage() {
                 to={newsPath(article.id)}
                 className="mt-[20px] inline-flex w-fit items-center gap-[8px] rounded-[4px] border border-brand bg-brand px-[18px] py-[10px] text-sm font-semibold text-ink-900 transition hover:bg-brand-600"
               >
-                Read more
+                {page.readMore}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -84,9 +89,9 @@ export function NewsPage() {
       </div>
 
       <p className="mt-[32px] border-t border-ink-900/10 pt-[24px] text-sm text-ink-500">
-        For press, speaking requests, or interview opportunities,{' '}
+        {page.pressFooterPrefix}{' '}
         <Link to="/contact#press" className="font-medium text-brand hover:text-brand-600">
-          contact our media team
+          {page.pressFooterLink}
         </Link>
         .
       </p>

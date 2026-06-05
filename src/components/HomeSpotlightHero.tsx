@@ -1,10 +1,13 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { clsx } from 'clsx'
-import { spotlightSlides } from '@/lib/homeContent'
+import { useI18n } from '@/i18n/useI18n'
+import { getSpotlightSlides } from '@/lib/localizedHomeContent'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion'
 
 export function HomeSpotlightHero() {
+  const { locale, t } = useI18n()
+  const spotlightSlides = useMemo(() => getSpotlightSlides(locale), [locale])
   const [active, setActive] = useState(0)
   const [paused, setPaused] = useState(false)
   const [introPlayed, setIntroPlayed] = useState(false)
@@ -13,11 +16,11 @@ export function HomeSpotlightHero() {
 
   const goPrev = useCallback(() => {
     setActive((i) => (i - 1 + spotlightSlides.length) % spotlightSlides.length)
-  }, [])
+  }, [spotlightSlides.length])
 
   const goNext = useCallback(() => {
     setActive((i) => (i + 1) % spotlightSlides.length)
-  }, [])
+  }, [spotlightSlides.length])
 
   useEffect(() => {
     if (prefersReducedMotion || introPlayed) return
@@ -44,7 +47,7 @@ export function HomeSpotlightHero() {
     <section
       className="relative w-full overflow-hidden border-b border-transparent"
       aria-roledescription="carousel"
-      aria-label="Featured highlights and MoonSofts services"
+      aria-label={t('ui.featuredHighlights')}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -112,12 +115,12 @@ export function HomeSpotlightHero() {
                 to="/contact"
                 className="btn btn-ghost-light px-[28px] py-[14px] sm:text-base"
               >
-                Contact us
+                {t('common.contactUs')}
               </Link>
             </div>
           </div>
 
-          <div className="mt-[40px] flex items-center gap-[8px]" role="tablist" aria-label="Slide navigation">
+          <div className="mt-[40px] flex items-center gap-[8px]" role="tablist" aria-label={t('ui.slideNavigation')}>
             {spotlightSlides.map((s, index) => (
               <button
                 key={s.id}
@@ -128,7 +131,7 @@ export function HomeSpotlightHero() {
                   'h-[8px] rounded-full transition-all duration-300',
                   index === active ? 'w-[32px] bg-brand' : 'w-[8px] bg-[white]/40 hover:bg-[white]/70',
                 )}
-                aria-label={`Go to slide ${index + 1}: ${s.title}`}
+                aria-label={`${t('ui.goToSlide')} ${index + 1}: ${s.title}`}
                 aria-selected={index === active}
                 aria-current={index === active ? 'true' : undefined}
               />

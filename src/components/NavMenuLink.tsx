@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { clsx } from 'clsx'
 import { Calendar } from 'lucide-react'
+import { useI18n } from '@/i18n/useI18n'
 import { contactInfo } from '@/lib/contactInfo'
 import type { AppNavLink } from '@/lib/navLinks'
 import { externalLinkProps, isExternalNavLink } from '@/lib/navLinks'
@@ -48,9 +49,11 @@ export function ScheduleConsultationButton({
   className,
   variant = 'secondary',
   showIcon = false,
-  label = contactInfo.calendlyLabel,
+  label,
   onClick,
 }: ScheduleButtonProps) {
+  const { t } = useI18n()
+  const buttonLabel = label ?? t('common.scheduleConsultation')
   function handleClick() {
     trackEvent('schedule_consultation_click', {
       location: variant,
@@ -75,7 +78,7 @@ export function ScheduleConsultationButton({
       )}
     >
       {showIcon ? <Calendar className="h-4 w-4 shrink-0" aria-hidden /> : null}
-      {label}
+      {buttonLabel}
     </a>
   )
 }
