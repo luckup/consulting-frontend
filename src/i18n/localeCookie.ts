@@ -7,7 +7,7 @@ import {
   SPANISH_REGIONS,
   isLocale,
   type Locale,
-} from '@/i18n/types'
+} from './types'
 
 export function localeFromCountry(countryCode: string | null | undefined): Locale {
   const code = countryCode?.trim().toUpperCase()

@@ -1,5 +1,5 @@
-import { localeCookieValue, localeFromCountry, readLocaleCookie } from '../src/i18n/localeCookie.js'
-import type { Locale } from '../src/i18n/types.js'
+import { localeCookieValue, localeFromCountry, readLocaleCookie } from '../src/i18n/localeCookie'
+import type { Locale } from '../src/i18n/types'
 
 export const config = {
   runtime: 'edge',
