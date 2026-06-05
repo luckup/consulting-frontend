@@ -23,9 +23,9 @@ export function homeFreeWorldCupServiceJsonLd(origin: string, orgId: string) {
   return {
     '@type': 'Service',
     '@id': serviceId,
-    name: 'Free 2026 World Cup Website for Football Players',
+    name: 'Free 2026 World Cup Website for Football Players & Football Stars',
     description:
-      'Selected football players, creators, clubs, and fan communities receive a free custom website to publish highlights and 2026 World Cup updates.',
+      'Selected football players, football stars, creators, clubs, and fan communities receive a free custom website to publish highlight reels, match clips, and 2026 World Cup updates.',
     provider: { '@id': orgId },
     url: `${origin}${FOOTBALL_INITIATIVE_PATH}`,
     serviceType: 'Website development',

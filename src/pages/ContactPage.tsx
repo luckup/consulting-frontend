@@ -104,9 +104,10 @@ export function ContactPage() {
       sidebarItems={contactNav}
     >
       <div className="space-y-[48px]">
-        <ContentBlock label="Contact us" title="We respond to every serious inquiry">
+        <ContentBlock label="Contact us" title="Apply for a free football player website or discuss consulting">
           <p>
-            Use the form below for partnerships, careers, or client engagements. Submissions are delivered securely to
+            Use the form below to apply for a <strong className="font-semibold text-ink-800">free 2026 World Cup website</strong>{' '}
+            for football players and fan communities, or to discuss software consulting. Submissions are delivered securely to
             our team at{' '}
             <a href={`mailto:${CONTACT_INBOX}`} className="font-semibold text-brand hover:text-brand-600">
               {CONTACT_INBOX}

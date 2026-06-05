@@ -7,9 +7,9 @@ export type HomeFaqItem = {
 export const homeFaqItems: readonly HomeFaqItem[] = [
   {
     id: 'free-football-world-cup-2026',
-    question: 'Do you offer a free website for football players ahead of the 2026 World Cup?',
+    question: 'Do you offer a free website for football players and football stars ahead of the 2026 World Cup?',
     answer:
-      'Yes. MoonSofts is running a limited free website program for selected football players, creators, clubs, and fan communities preparing for the 2026 World Cup. Each site can showcase highlight reels, match updates, photo galleries, and community news. Read the announcement in our newsroom or contact us to apply.',
+      'Yes. MoonSofts is running a limited free website program for selected football players, football stars, creators, clubs, and fan communities preparing for the 2026 World Cup. Each custom site can showcase highlight reels, match clips, photo galleries, and community news—with basic SEO so fans find your highlights online. Read the announcement in our newsroom or contact us to apply.',
   },
   {
     id: 'what-is-moonsofts',

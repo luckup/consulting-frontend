@@ -1,8 +1,10 @@
 import { getIndustryBySlug } from '@/lib/industriesData'
 import { newsDisplayDateToIso } from '@/lib/newsDate'
 import { getNewsBySlug } from '@/lib/newsData'
+import { CONTACT_PAGE_KEYWORDS, SERVICES_PAGE_KEYWORDS } from '@/lib/seoFootballKeywords'
 import { HOME_SEO_DESCRIPTION, HOME_SEO_TITLE } from '@/lib/seoLandingMeta'
 import { siteImages } from '@/lib/siteImages'
+
 export type PageSeo = {
   title: string
   description: string
@@ -11,6 +13,8 @@ export type PageSeo = {
   robots?: string
   /** ISO 8601 date (YYYY-MM-DD) for NewsArticle structured data */
   articleDatePublished?: string
+  /** Schema.org keywords for WebPage JSON-LD */
+  pageKeywords?: string[]
   /** Schema.org NewsArticle `keywords` (not the legacy meta keywords tag) */
   articleKeywords?: string[]
 }
@@ -23,9 +27,9 @@ type RouteMetaBase = {
 }
 
 const defaults: RouteMetaBase = {
-  title: 'MoonSofts | Software consulting company for startups & remote teams',
+  title: 'MoonSofts | Software consulting company — custom websites & remote teams',
   description:
-    'MoonSofts is a software consulting company helping startups and enterprises ship with remote senior squads, AI-assisted delivery, and cloud-native engineering. Book a free consultation to align on your next program.',
+    'MoonSofts is a software consulting company helping startups and enterprises ship with remote senior squads, custom websites, AI-assisted delivery, and a free 2026 World Cup website program for football players.',
 }
 
 const exact: Record<string, RouteMetaBase> = {
@@ -40,9 +44,9 @@ const exact: Record<string, RouteMetaBase> = {
       'Our story, values, and commitments as MoonSofts—a software consulting company built for remote collaboration, startup speed, and enterprise-grade accountability.',
   },
   '/services': {
-    title: 'Software consulting services | MoonSofts — discovery, squads & platforms',
+    title: 'Custom websites & software consulting | MoonSofts — free World Cup football sites',
     description:
-      'MoonSofts services: software consulting, dedicated remote squads, platform integration, and delivery from align to operate—for startups scaling fast and enterprises modernizing safely.',
+      'MoonSofts builds custom websites for football players and enterprises—portfolios, e-commerce, SaaS, MVPs, and free 2026 World Cup highlight sites for selected football stars and fan communities.',
   },
   '/industries': {
     title: 'Industries we serve | MoonSofts software consulting',
@@ -62,7 +66,7 @@ const exact: Record<string, RouteMetaBase> = {
   '/news': {
     title: 'News & insights | Free 2026 World Cup football websites & software consulting',
     description:
-      'MoonSofts newsroom: free website development for 2026 World Cup football stars and fan communities, plus insights on AI, cloud, and accountable software consulting.',
+      'MoonSofts newsroom: free website development for 2026 World Cup football stars, football players, and fan communities—plus insights on AI, cloud, and software consulting.',
   },
   '/team': {
     title: 'Leadership team | MoonSofts software consulting',
@@ -77,7 +81,7 @@ const exact: Record<string, RouteMetaBase> = {
   '/contact': {
     title: 'Contact MoonSofts | Apply for a free 2026 World Cup football player website',
     description:
-      'Contact MoonSofts to apply for a free website for football players and fan communities ahead of the 2026 World Cup, or discuss software consulting—share your highlights, story, and goals.',
+      'Contact MoonSofts to apply for a free custom website for football players, football stars, and fan communities ahead of the 2026 World Cup—share highlights, match clips, and your story—or discuss software consulting.',
   },
   '/privacy': {
     title: 'Legal, privacy & security | MoonSofts',
@@ -131,12 +135,19 @@ export function resolvePageSeo(pathname: string): PageSeo {
 
   const base = exact[pathname]
   if (base) {
+    const pageKeywords =
+      pathname === '/contact'
+        ? [...CONTACT_PAGE_KEYWORDS]
+        : pathname === '/services'
+          ? [...SERVICES_PAGE_KEYWORDS]
+          : undefined
     return {
       title: base.title,
       description: snippet(base.description, 158),
       ogType: 'website',
       robots: base.robots,
       ogImage: base.ogImage,
+      pageKeywords,
     }
   }
 
