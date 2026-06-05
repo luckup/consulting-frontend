@@ -1,4 +1,5 @@
 import { contactRoleLabels } from '@/lib/contactRoles'
+import { getFormspreeFormId } from '@/lib/formspreeConfig'
 import {
   ContactFormError,
   contactFormSubject,
@@ -9,14 +10,7 @@ import {
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f'
 
 function formspreeFormId(): string {
-  const id = import.meta.env.VITE_FORMSPREE_FORM_ID?.trim()
-  if (!id) {
-    throw new ContactFormError(
-      'Contact form is not configured (set VITE_FORMSPREE_FORM_ID in your environment)',
-      503,
-    )
-  }
-  return id
+  return getFormspreeFormId()
 }
 
 type FormspreeBody = Record<string, string>
