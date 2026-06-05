@@ -32,12 +32,14 @@ export function HomeDiscoverLinks() {
       <RevealItem>
         <p className="section-label">Explore</p>
         <h2 className="home-section-title !mt-[8px]">
-          Free football player websites, highlights, and software consulting
+          Free football player websites, footballstar highlights, and software consulting
         </h2>
         <p className="mt-[12px] max-w-3xl text-sm leading-relaxed text-ink-600 sm:text-base">
-          MoonSofts helps <strong className="font-semibold text-ink-800">football players</strong> and communities
-          publish <strong className="font-semibold text-ink-800">highlights</strong> on a professional{' '}
-          <strong className="font-semibold text-ink-800">website</strong> ahead of the{' '}
+          MoonSofts helps <strong className="font-semibold text-ink-800">football players</strong> and{' '}
+          <strong className="font-semibold text-ink-800">football stars</strong> publish{' '}
+          <strong className="font-semibold text-ink-800">highlights</strong> and{' '}
+          <strong className="font-semibold text-ink-800">match clips</strong> on a professional{' '}
+          <strong className="font-semibold text-ink-800">custom website</strong> ahead of the{' '}
           <strong className="font-semibold text-ink-800">2026 World Cup</strong>—including a{' '}
           <strong className="font-semibold text-ink-800">free</strong> program for selected applicants.
         </p>

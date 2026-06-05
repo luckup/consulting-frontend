@@ -2,7 +2,9 @@ import { useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import { siteImages } from '@/lib/siteImages'
 import { resolvePageSeo, type PageSeo } from '@/lib/routeMeta'
+import { CONTACT_INBOX } from '@/lib/contactEmail'
 import { breadcrumbListJsonLd } from '@/lib/seoBreadcrumbs'
+import { contactPageJsonLd } from '@/lib/seoContactJsonLd'
 import {
   HOME_PAGE_KEYWORDS,
   homeFaqPageJsonLd,
@@ -11,6 +13,7 @@ import {
   homeSiteLinksJsonLd,
 } from '@/lib/seoHomeJsonLd'
 import { MOONSOFTS_SAME_AS } from '@/lib/seoSocial'
+import { ORGANIZATION_SEO_DESCRIPTION } from '@/lib/seoLandingMeta'
 import { absoluteUrl, getSiteOrigin } from '@/lib/siteOrigin'
 
 const JSON_LD_ID = 'moonsofts-seo-jsonld'
@@ -103,16 +106,23 @@ function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUr
       name: 'MoonSofts',
       url: origin,
       logo: logoObject,
-      description:
-        'MoonSofts is a software consulting company delivering remote engineering squads, cloud and AI programs, and a free 2026 World Cup website initiative for football players—publish highlights and grow your fan community online.',
+      description: ORGANIZATION_SEO_DESCRIPTION,
       sameAs: [...MOONSOFTS_SAME_AS],
       knowsAbout: [
         'Software consulting',
-        'Website development',
+        'Custom website development',
         '2026 FIFA World Cup',
         'Football player websites',
-        'Sports highlights online',
+        'Football highlights online',
+        'Free football website program',
+        'Remote engineering teams',
       ],
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer service',
+        email: CONTACT_INBOX,
+        url: `${origin}/contact`,
+      },
     },
     {
       '@type': 'WebSite',
@@ -143,7 +153,9 @@ function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUr
                 }
               : {}),
           }
-        : {}),
+        : seo.pageKeywords?.length
+          ? { keywords: seo.pageKeywords.join(', ') }
+          : {}),
     },
   ]
 
@@ -182,6 +194,10 @@ function buildJsonLd(origin: string, pathname: string, seo: PageSeo, canonicalUr
     graph.push(homeFreeWorldCupServiceJsonLd(origin, orgId))
     graph.push(homeFaqPageJsonLd(canonicalUrl))
     graph.push(homeSiteLinksJsonLd(origin))
+  }
+
+  if (pathname === '/contact') {
+    graph.push(contactPageJsonLd(origin, canonicalUrl, orgId))
   }
 
   return {
