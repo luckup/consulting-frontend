@@ -23,3 +23,14 @@ if (!cdn && !local) {
 if (cdn) {
   console.log(`[build] CDN images: ${cdn}`)
 }
+
+const formspree = env.VITE_FORMSPREE_FORM_ID?.trim()
+if (!formspree) {
+  console.error(
+    '\n[build] Missing VITE_FORMSPREE_FORM_ID in .env.production\n' +
+      'Create a form at https://formspree.io and set the notification email to yuji@moonsofts.net.\n' +
+      'Copy the form ID into .env.production (see .env.production.example).\n',
+  )
+  process.exit(1)
+}
+console.log('[build] Contact form: Formspree configured')
