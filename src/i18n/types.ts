@@ -14,6 +14,19 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   ja: '日本語',
 }
 
+/** Regional flags aligned with LOCALE_OG primary markets */
+export const LOCALE_FLAGS: Record<Locale, string> = {
+  en: '🇺🇸',
+  zh: '🇨🇳',
+  es: '🇪🇸',
+  pt: '🇧🇷',
+  ja: '🇯🇵',
+}
+
+export function formatLocaleOption(code: Locale): string {
+  return `${LOCALE_FLAGS[code]} ${LOCALE_LABELS[code]}`
+}
+
 /** BCP 47 tags for document.documentElement.lang */
 export const LOCALE_HTML_LANG: Record<Locale, string> = {
   en: 'en',
