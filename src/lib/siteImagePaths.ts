@@ -11,6 +11,7 @@ function cdnKey(relativePath: string): string {
 export const siteImagePaths = {
   brand: {
     logo: cdnKey('brand/moonsofts-logo.png'),
+    yujiLogo: cdnKey('brand/yuji-logo.jpg'),
   },
   heroes: {
     about: cdnKey('heroes/moonsofts-about.png'),
