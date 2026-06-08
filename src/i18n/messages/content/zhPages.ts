@@ -437,6 +437,7 @@ export const zhPages = {
         expectationsTitle: '您可以期待什么',
         readyPrefix: '准备好讨论您的项目了吗？',
         contactConsultants: '联系我们的顾问',
+        reviewServicesConnector: '，或了解',
         howWeEngage: '合作方式',
       },
       capabilities: {
@@ -456,7 +457,9 @@ export const zhPages = {
           '我们从您的运营现实出发——系统、团队与约束——然后制定契合的交付计划。从首次工作坊到上线后的超关怀支持，MoonSofts 对您领导层关心的成果负责：可预测的发布、清晰的沟通，以及贵方团队可自主运营的软件。',
         explorePrefix: '探索我们的',
         consultingServices: '咨询服务',
+        readMoreConnector: '，查看更多',
         clientOutcomes: '客户成果',
+        orConnector: '，或',
         startConversation: '开始对话',
         closing: '，讨论您的 {label} 项目。',
       },

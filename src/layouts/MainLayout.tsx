@@ -1,5 +1,6 @@
 import { Suspense, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
+import { CanonicalPathRedirect } from '@/components/CanonicalPathRedirect'
 import { DocumentTitle } from '@/components/DocumentTitle'
 import { Footer } from '@/components/Footer'
 import { Navbar } from '@/components/Navbar'
@@ -21,6 +22,7 @@ export function MainLayout() {
   return (
     <div id="top" className="relative flex min-h-screen flex-col bg-paper-50">
       <SkipToContent />
+      <CanonicalPathRedirect />
       <DocumentTitle />
       <SmoothScroll />
       <ScrollToTop />

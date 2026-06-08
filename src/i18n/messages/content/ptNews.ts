@@ -1,6 +1,6 @@
 export const ptNewsHeadlines = [
   {
-    id: 'sites-de-futebol-gratuitos-copa-do-mundo-2026',
+    id: 'free-football-websites-world-cup-2026',
     date: '30 de maio de 2026',
     category: 'Iniciativa especial',
     title: 'Site gratuito para jogadores de futebol | Destaques da Copa do Mundo de 2026 e comunidades de fãs',
@@ -8,7 +8,7 @@ export const ptNewsHeadlines = [
       'Site gratuito para jogadores de futebol e comunidades de fãs da Copa do Mundo de 2026 – publique destaques, atualizações de partidas e sua história online com MoonSofts.',
   },
   {
-    id: 'lançamento global-ai-cloud',
+    id: 'global-launch-ai-cloud',
     date: '15 de maio de 2026',
     category: 'Notícias da empresa',
     title: 'MoonSofts é lançado como parceiro global de consultoria de software para AI, nuvem e engenharia escalável',
@@ -16,7 +16,7 @@ export const ptNewsHeadlines = [
       'MoonSofts entra no mercado como um parceiro de consultoria de espectro completo – unindo entrega assistida por AI, arquitetura nativa da nuvem e equipes de engenharia responsáveis ​​para empresas que precisam entregar mais rapidamente sem sacrificar o controle.',
   },
   {
-    id: 'desenvolvimento alimentado por IA',
+    id: 'ai-powered-development',
     date: '28 de abril de 2026',
     category: 'Informações do setor',
     title: "Desenvolvimento de software baseado em AI: Abordagem MoonSofts' para soluções de negócios mais inteligentes",
@@ -24,7 +24,7 @@ export const ptNewsHeadlines = [
       'MoonSofts aplica AI onde acelera a qualidade e a clareza – síntese de requisitos, geração de testes, observabilidade e análise de migração – enquanto mantém os humanos responsáveis ​​pela arquitetura, segurança e resultados do cliente.',
   },
   {
-    id: 'soluções específicas do setor',
+    id: 'industry-specific-solutions',
     date: '10 de abril de 2026',
     category: 'Informações do setor',
     title: 'Construindo soluções específicas do setor para comércio eletrônico, saúde, Fintech e logística',

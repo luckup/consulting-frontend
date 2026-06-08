@@ -1,6 +1,6 @@
 export const esIndustries = {
   industryDetail: {
-    explorePrefix: 'Explora {etiqueta} →',
+    explorePrefix: 'Explora {label} →',
   },
   ecommerce: {
     label: 'Comercio electrónico',

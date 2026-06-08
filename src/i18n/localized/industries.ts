@@ -1,6 +1,7 @@
 import { getMessages } from '@/i18n/translate'
 import type { Locale } from '@/i18n/types'
-import { industries as baseIndustries } from '@/lib/industriesData'
+import { industries as baseIndustries, industryPath } from '@/lib/industriesData'
+import { canonicalizePath } from '@/lib/canonicalRoutes'
 import { siteImages } from '@/lib/siteImages'
 
 const industryImages = baseIndustries.map((ind) => ({
@@ -38,26 +39,40 @@ export function getIndustries(locale: Locale) {
 
 export function getIndustryBySlug(locale: Locale, slug: string | undefined) {
   if (!slug) return undefined
-  return getIndustries(locale).find((sector) => sector.id === slug)
+
+  const canonicalPath = canonicalizePath(`/industries/${decodeURIComponent(slug)}`)
+  const canonicalSlug = canonicalPath.startsWith('/industries/')
+    ? canonicalPath.slice('/industries/'.length).split(/[?#]/)[0]
+    : slug
+
+  return getIndustries(locale).find((sector) => sector.id === canonicalSlug)
+}
+
+const HOME_INDUSTRY_IMAGE_BY_ID: Record<string, string> = {
+  ecommerce: siteImages.home.ecommerce,
+  logistics: siteImages.home.logistics,
+  healthcare: siteImages.home.healthcare,
+  construction: siteImages.home.construction,
+  financial: siteImages.home.fintech,
+  manufacturing: siteImages.home.manufacturing,
+  education: siteImages.home.education,
+  agriculture: siteImages.home.agriculture,
+  restaurant: siteImages.home.restaurant,
 }
 
 export function getHomeIndustries(locale: Locale) {
   const { homeSections } = getMessages(locale)
-  const imageMap: Record<string, string> = {
-    '/industries/ecommerce': siteImages.home.ecommerce,
-    '/industries/logistics': siteImages.home.logistics,
-    '/industries/healthcare': siteImages.home.healthcare,
-    '/industries/construction': siteImages.home.construction,
-    '/industries/financial': siteImages.home.fintech,
-    '/industries/manufacturing': siteImages.home.manufacturing,
-    '/industries/education': siteImages.home.education,
-    '/industries/agriculture': siteImages.home.agriculture,
-    '/industries/restaurant': siteImages.home.restaurant,
-  }
-  return homeSections.homeIndustries.map((item) => ({
-    ...item,
-    image: imageMap[item.to] ?? siteImages.home.ecommerce,
-  }))
+
+  return homeSections.homeIndustries.map((item, index) => {
+    const industry = baseIndustries[index]
+    const id = industry?.id ?? 'ecommerce'
+
+    return {
+      ...item,
+      to: industry ? industryPath(industry.id) : item.to,
+      image: HOME_INDUSTRY_IMAGE_BY_ID[id] ?? siteImages.home.ecommerce,
+    }
+  })
 }
 
 export { industryImages }

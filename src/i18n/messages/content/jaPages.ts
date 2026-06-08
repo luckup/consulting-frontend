@@ -435,7 +435,7 @@ export const jaPages = {
         servicesLink: '関わり方を見直す',
       },
     },
-    explorePrefix: '{ラベル}を探索する →',
+    explorePrefix: '{label}を探索する →',
   },
 
   industryDetail: {
@@ -453,6 +453,7 @@ export const jaPages = {
         expectationsTitle: '私たちに期待できること',
         readyPrefix: 'プログラムについて話す準備はできましたか?',
         contactConsultants: '弊社のコンサルタントにお問い合わせください',
+        reviewServicesConnector: 'または',
         howWeEngage: '私たちがどのように関与するか',
       },
       capabilities: {
@@ -473,7 +474,9 @@ export const jaPages = {
           '私たちは、システム、チーム、制約などの運用上の現実から始めて、それに合った配信計画を立てます。最初のワークショップから立ち上げ後のハイパーケアまで、MoonSofts は、予測可能なリリース、明確なコミュニケーション、チームが所有できるソフトウェアなど、リーダーが重視する成果に対して責任を負い続けます。',
         explorePrefix: '私たちの',
         consultingServices: 'コンサルティングサービス',
+        readMoreConnector: '、詳しくは',
         clientOutcomes: 'クライアントの成果',
+        orConnector: '、または',
         startConversation: '会話を始める',
         closing: '{label} プログラムについて。',
       },

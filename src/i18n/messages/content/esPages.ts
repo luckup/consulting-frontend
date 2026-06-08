@@ -435,7 +435,7 @@ export const esPages = {
         servicesLink: 'revisar cómo nos involucramos',
       },
     },
-    explorePrefix: 'Explora {etiqueta} →',
+    explorePrefix: 'Explora {label} →',
   },
 
   industryDetail: {
@@ -453,6 +453,7 @@ export const esPages = {
         expectationsTitle: 'Qué puedes esperar de nosotros',
         readyPrefix: '¿Listo para hablar sobre su programa?',
         contactConsultants: 'Contacta con nuestros asesores',
+        reviewServicesConnector: 'o consulte',
         howWeEngage: 'cómo nos involucramos',
       },
       capabilities: {
@@ -473,7 +474,9 @@ export const esPages = {
           'Comenzamos con su realidad operativa (sistemas, equipos y limitaciones) y luego elaboramos un plan de entrega que se ajuste. Desde el primer taller hasta el hipercuidado después del lanzamiento, MoonSofts se mantiene responsable de los resultados que le interesan a su liderazgo: lanzamientos predecibles, comunicación clara y software que sus equipos pueden poseer.',
         explorePrefix: 'Explora nuestro',
         consultingServices: 'servicios de consultoría',
+        readMoreConnector: ', lea más en',
         clientOutcomes: 'resultados del cliente',
+        orConnector: ', o',
         startConversation: 'iniciar una conversación',
         closing: 'sobre su programa {label}.',
       },

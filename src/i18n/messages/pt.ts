@@ -192,7 +192,7 @@ export const ptMessages = {
   },
   meta: {
     home: {
-      title: 'Site gratuito para jogadores de futebol | Destaques da Copa do Mundo de 2026 | __MANTER1__',
+      title: 'Site gratuito para jogadores de futebol | Destaques da Copa do Mundo de 2026 | MoonSofts',
       description:
         'Inscreva-se para obter um site personalizado gratuito para jogadores de futebol, estrelas do futebol e comunidades de torcedores antes da Copa do Mundo de 2026. Publique destaques, clipes de partidas e notícias, além de consultoria de software da MoonSofts.',
     },
@@ -242,12 +242,12 @@ export const ptMessages = {
         'Junte-se a MoonSofts — carreiras de consultoria de software de fácil acesso para estudantes, graduados e engenheiros experientes que se preocupam com o trabalho e os resultados do cliente.',
     },
     privacy: {
-      title: 'Jurídico, privacidade e segurança | __MANTER1__',
+      title: 'Jurídico, privacidade e segurança | MoonSofts',
       description:
         'Privacidade, segurança e termos para sites MoonSofts e compromissos de consultoria – como lidamos com dados e comunicações.',
     },
     default: {
-      title: '__MANTER1__ | Empresa de consultoria de software – sites personalizados e equipes remotas',
+      title: 'MoonSofts | Empresa de consultoria de software – sites personalizados e equipes remotas',
       description:
         'MoonSofts é uma empresa de consultoria de software que ajuda startups e empresas a enviar equipes seniores remotas, sites personalizados, entrega assistida por AI e um programa gratuito de site da Copa do Mundo de 2026 para jogadores de futebol.',
     },
