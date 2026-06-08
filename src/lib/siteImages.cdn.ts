@@ -40,7 +40,10 @@ const industryPhotos = {
 } as const
 
 export const siteImages = {
-  brand: { logo: cdnUrl('brand/moonsofts-logo.png') },
+  brand: {
+    logo: cdnUrl('brand/moonsofts-logo.png'),
+    yujiLogo: cdnUrl('brand/yuji-logo.jpg'),
+  },
   hero: {
     home: cdnUrl('pages/home/moonsofts-section1.png'),
     homeBanner: cdnUrl('pages/home/moonsofts-section1.png'),

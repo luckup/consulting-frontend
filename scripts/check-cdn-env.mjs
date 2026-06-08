@@ -25,12 +25,7 @@ if (cdn) {
   console.log(`[build] CDN images: ${cdn}`)
 }
 
-const formspree = get('VITE_FORMSPREE_FORM_ID')
-if (formspree) {
-  console.log('[build] Contact form: Formspree configured')
-} else {
-  console.warn(
-    '[build] VITE_FORMSPREE_FORM_ID not set — contact form uses the built-in Formspree form id.\n' +
-      '  Optional: add VITE_FORMSPREE_FORM_ID in Vercel → Settings → Environment Variables.\n',
-  )
+const emailToken = get('VITE_EMAIL_SERVICE_TOKEN')
+if (emailToken) {
+  console.log('[build] Contact form: email service token configured')
 }
