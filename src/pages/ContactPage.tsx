@@ -18,7 +18,7 @@ import {
 import { ContactFormError } from '@/lib/contactFormValidation'
 import { CONTACT_INBOX } from '@/lib/contactEmail'
 import { getContactNav } from '@/i18n/localized/pageNav'
-import { submitContactToFormspree } from '@/lib/submitContactToFormspree'
+import { submitContactEmail } from '@/lib/submitContactEmail'
 import { siteImages } from '@/lib/siteImages'
 
 type FormState = {
@@ -72,7 +72,7 @@ export function ContactPage() {
 
   const mutation = useMutation({
     mutationFn: async (payload: FormState) =>
-      submitContactToFormspree(payload, {
+      submitContactEmail(payload, {
         honeypot: honeypotRef.current?.value,
         pageUrl: typeof window !== 'undefined' ? window.location.href : undefined,
       }),
