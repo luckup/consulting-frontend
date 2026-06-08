@@ -192,7 +192,7 @@ export const esMessages = {
   },
   meta: {
     home: {
-      title: 'Sitio web gratuito para jugadores de fútbol | Lo más destacado de la Copa del Mundo 2026 | __MANTENER1__',
+      title: 'Sitio web gratuito para jugadores de fútbol | Lo más destacado de la Copa del Mundo 2026 | MoonSofts',
       description:
         'Solicite un sitio web personalizado gratuito para jugadores de fútbol, ​​estrellas del fútbol y comunidades de aficionados antes de la Copa del Mundo de 2026. Publique momentos destacados, clips de partidos y noticias, además de consultoría de software de MoonSofts.',
     },
@@ -242,7 +242,7 @@ export const esMessages = {
         'Únase a MoonSofts: carreras de consultoría de software remotas para estudiantes, graduados e ingenieros experimentados que se preocupan por el oficio y los resultados del cliente.',
     },
     privacy: {
-      title: 'Legal, privacidad y seguridad | __MANTENER1__',
+      title: 'Legal, privacidad y seguridad | MoonSofts',
       description:
         'Privacidad, seguridad y términos para los sitios web de MoonSofts y los compromisos de consultoría: cómo manejamos los datos y las comunicaciones.',
     },

@@ -40,7 +40,7 @@ export const ptUi = {
   companyNews: 'Notícias da empresa',
   industryInsights: 'Informações do setor',
   viewAllArticles: 'Ver todos os artigos',
-  exploreIndustry: 'Explorar {rótulo} →',
+  exploreIndustry: 'Explorar {label} →',
   customerSupport: 'Suporte ao cliente',
   whatYouCanExpect: 'O que você pode esperar de nós',
   howMoonsoftsSupports: 'Como MoonSofts apoia sua equipe',
@@ -68,7 +68,7 @@ export const ptUi = {
   medium: 'Medium',
   b2bReviews: 'Avaliações B2B',
   pairsDomainContext:
-    'MoonSofts combina o contexto do domínio {indústria} com a engenharia responsável – segurança, integrações e alinhamento das partes interessadas tratados como requisitos de primeira classe, desde a descoberta até a produção.',
+    'MoonSofts combina o contexto do domínio {industry} com a engenharia responsável – segurança, integrações e alinhamento das partes interessadas tratados como requisitos de primeira classe, desde a descoberta até a produção.',
   engagementIncludes:
     'Cada envolvimento inclui um líder de entrega nomeado, relatórios transparentes e engenheiros que permanecem acessíveis às partes interessadas, e não escondidos atrás de camadas de gerenciamento de contas. Medimos o sucesso pelos seus resultados: tempo de atividade, previsibilidade de lançamento e equipes que podem operar o que construímos juntos.',
 } as const

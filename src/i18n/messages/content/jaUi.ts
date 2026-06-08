@@ -40,7 +40,7 @@ export const jaUi = {
   companyNews: '会社ニュース',
   industryInsights: '業界の洞察',
   viewAllArticles: 'すべての記事を見る',
-  exploreIndustry: '{ラベル}を探索する →',
+  exploreIndustry: '{label}を探索する →',
   customerSupport: 'カスタマーサポート',
   whatYouCanExpect: '私たちに期待できること',
   howMoonsoftsSupports: 'MoonSofts がチームをどのようにサポートするか',
@@ -68,7 +68,7 @@ export const jaUi = {
   medium: 'Medium',
   b2bReviews: 'B2B レビュー',
   pairsDomainContext:
-    'MoonSofts は、{業界} のドメイン コンテキストと責任あるエンジニアリング、つまりセキュリティ、統合、利害関係者の調整を発見から本番まで第一級の要件として扱います。',
+    'MoonSofts は、{industry} のドメイン コンテキストと責任あるエンジニアリング、つまりセキュリティ、統合、利害関係者の調整を発見から本番まで第一級の要件として扱います。',
   engagementIncludes:
     'すべてのエンゲージメントには、指定されたデリバリー リーダー、透明性の高いレポート、およびアカウント管理の層に隠れることなく、関係者が常にアクセスできるエンジニアが含まれます。私たちは、稼働時間、リリースの予測可能性、一緒に構築したものを運用できるチームなど、お客様の成果によって成功を評価します。',
 } as const

@@ -1,6 +1,6 @@
 export const jaNewsHeadlines = [
   {
-    id: '無料-フットボール-ウェブサイト-ワールドカップ-2026',
+    id: 'free-football-websites-world-cup-2026',
     date: '2026 年 5 月 30 日',
     category: '特別な取り組み',
     title: 'サッカー選手のための無料ウェブサイト | 2026 年ワールドカップのハイライトとファンコミュニティ',
@@ -8,7 +8,7 @@ export const jaNewsHeadlines = [
       'サッカー選手と 2026 年ワールドカップ ファン コミュニティのための無料 Web サイト - MoonSofts を使用して、ハイライト、試合の最新情報、ストーリーをオンラインで公開します。',
   },
   {
-    id: 'グローバル起動-AIクラウド',
+    id: 'global-launch-ai-cloud',
     date: '2026 年 5 月 15 日',
     category: '会社ニュース',
     title: 'MoonSofts は、AI、クラウド、およびスケーラブル エンジニアリングのグローバル ソフトウェア コンサルティング パートナーとして発足',
@@ -16,7 +16,7 @@ export const jaNewsHeadlines = [
       'MoonSofts は、制御を犠牲にすることなくより迅速に出荷する必要がある企業向けに、AI 支援のデリバリー、クラウドネイティブ アーキテクチャ、および責任あるエンジニアリング部隊を統合する、フルスペクトルのコンサルティング パートナーとして市場に参入します。',
   },
   {
-    id: 'AI を活用した開発',
+    id: 'ai-powered-development',
     date: '2026 年 4 月 28 日',
     category: '業界の洞察',
     title: "AI を活用したソフトウェア開発: よりスマートなビジネス ソリューションへの MoonSofts アプローチ",
@@ -24,7 +24,7 @@ export const jaNewsHeadlines = [
       'MoonSofts は AI を適用し、要件の合成、テスト生成、可観測性、移行分析などの品質と明確性を加速する一方で、アーキテクチャ、セキュリティ、クライアントの結果について人間に責任を持たせます。',
   },
   {
-    id: '業界固有のソリューション',
+    id: 'industry-specific-solutions',
     date: '2026 年 4 月 10 日',
     category: '業界の洞察',
     title: '電子商取引、ヘルスケア、フィンテック、物流向けの業界固有のソリューションの構築',

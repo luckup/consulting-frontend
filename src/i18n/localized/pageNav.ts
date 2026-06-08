@@ -1,5 +1,6 @@
 import { getMessages } from '@/i18n/translate'
 import type { Locale } from '@/i18n/types'
+import { canonicalizePath } from '@/lib/canonicalRoutes'
 
 type SidebarKey = keyof typeof import('@/i18n/messages/content/enSidebar').enSidebar
 type SidebarSection = Exclude<SidebarKey, 'labels'>
@@ -14,7 +15,7 @@ function buildNavItems(
   const items = sidebar[section] as readonly { key: string; to: string; external?: boolean }[]
   return items.map((item) => ({
     label: sidebar.labels[item.key as keyof typeof sidebar.labels],
-    to: item.to,
+    to: item.external ? item.to : canonicalizePath(item.to),
     ...(item.external ? { external: true } : {}),
   }))
 }

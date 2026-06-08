@@ -79,7 +79,7 @@ export function IndustryDetailPage() {
             <Link to="/contact" className="font-semibold text-brand hover:text-brand-600">
               {blocks.customerSupport.contactConsultants}
             </Link>{' '}
-            or review{' '}
+            {blocks.customerSupport.reviewServicesConnector}{' '}
             <Link to="/services" className="font-semibold text-brand hover:text-brand-600">
               {blocks.customerSupport.howWeEngage}
             </Link>
@@ -123,13 +123,13 @@ export function IndustryDetailPage() {
             </Link>
             {siteFeatures.clientVoices ? (
               <>
-                , read more{' '}
+                {blocks.engagement.readMoreConnector}
                 <Link to="/clients" className="font-semibold text-brand hover:text-brand-600">
                   {blocks.engagement.clientOutcomes}
                 </Link>
               </>
             ) : null}
-            , or{' '}
+            {blocks.engagement.orConnector}
             <Link to={sector.cta.to} className="font-semibold text-brand hover:text-brand-600">
               {blocks.engagement.startConversation}
             </Link>{' '}

@@ -1,6 +1,6 @@
 export const jaIndustries = {
   industryDetail: {
-    explorePrefix: '{ラベル}を探索する →',
+    explorePrefix: '{label}を探索する →',
   },
   ecommerce: {
     label: '電子商取引',

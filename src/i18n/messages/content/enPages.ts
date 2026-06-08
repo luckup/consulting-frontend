@@ -453,6 +453,7 @@ export const enPages = {
         expectationsTitle: 'What you can expect from us',
         readyPrefix: 'Ready to talk through your program?',
         contactConsultants: 'Contact our consultants',
+        reviewServicesConnector: 'or review',
         howWeEngage: 'how we engage',
       },
       capabilities: {
@@ -473,7 +474,9 @@ export const enPages = {
           'We start with your operational reality—systems, teams, and constraints—then shape a delivery plan that fits. From the first workshop through hypercare after launch, MoonSofts stays accountable to the outcomes your leadership cares about: predictable releases, clear communication, and software your teams can own.',
         explorePrefix: 'Explore our',
         consultingServices: 'consulting services',
+        readMoreConnector: ', read more ',
         clientOutcomes: 'client outcomes',
+        orConnector: ', or ',
         startConversation: 'start a conversation',
         closing: 'about your {label} program.',
       },

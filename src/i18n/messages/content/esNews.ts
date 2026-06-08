@@ -1,6 +1,6 @@
 export const esNewsHeadlines = [
   {
-    id: 'sitios-web-de-futbol-gratis-copa-mundial-2026',
+    id: 'free-football-websites-world-cup-2026',
     date: '30 de mayo de 2026',
     category: 'Iniciativa especial',
     title: 'Sitio web gratuito para jugadores de fútbol | Lo más destacado de la Copa Mundial 2026 y comunidades de fanáticos',
@@ -8,7 +8,7 @@ export const esNewsHeadlines = [
       'Sitio web gratuito para jugadores de fútbol y comunidades de fanáticos de la Copa Mundial 2026: publique momentos destacados, actualizaciones de partidos y su historia en línea con MoonSofts.',
   },
   {
-    id: 'lanzamiento-global-ai-cloud',
+    id: 'global-launch-ai-cloud',
     date: '15 de mayo de 2026',
     category: 'Noticias de la empresa',
     title: 'MoonSofts se lanza como socio consultor de software global para AI, la nube y la ingeniería escalable',
@@ -16,7 +16,7 @@ export const esNewsHeadlines = [
       'MoonSofts ingresa al mercado como un socio consultor de espectro completo, uniendo entrega asistida por AI, arquitectura nativa de la nube y equipos de ingeniería responsables para empresas que necesitan realizar envíos más rápido sin sacrificar el control.',
   },
   {
-    id: 'desarrollo impulsado por IA',
+    id: 'ai-powered-development',
     date: '28 de abril de 2026',
     category: 'Perspectivas de la industria',
     title: "AI-Desarrollo de software impulsado: enfoque MoonSofts para soluciones empresariales más inteligentes",
@@ -24,7 +24,7 @@ export const esNewsHeadlines = [
       'MoonSofts aplica AI donde acelera la calidad y la claridad (síntesis de requisitos, generación de pruebas, observabilidad y análisis de migración) mientras mantiene a los humanos responsables de la arquitectura, la seguridad y los resultados del cliente.',
   },
   {
-    id: 'soluciones específicas de la industria',
+    id: 'industry-specific-solutions',
     date: '10 de abril de 2026',
     category: 'Perspectivas de la industria',
     title: 'Creación de soluciones específicas de la industria para comercio electrónico, atención médica, tecnología financiera y logística',

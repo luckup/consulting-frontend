@@ -38,6 +38,8 @@ SKIP_PATTERNS = [
     re.compile(r"^@/"),
     re.compile(r"\.ts$"),
     re.compile(r"^[\w-]+@[\w.-]+$"),
+    re.compile(r"^/[^'\"]*$"),
+    re.compile(r"^\{[a-zA-Z]+\}$"),
 ]
 
 CACHE: dict[tuple[str, str], str] = {}
