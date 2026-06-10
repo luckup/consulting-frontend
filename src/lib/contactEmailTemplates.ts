@@ -1,3 +1,4 @@
+import { type ClientIpIntel } from '@/lib/clientIpIntel'
 import { contactRoleLabels } from '@/lib/contactRoles'
 import { type ContactFormPayload } from '@/lib/contactFormValidation'
 import {
@@ -107,30 +108,79 @@ function detailRow(label: string, value: string): string {
   </tr>`
 }
 
-export function buildStaffNotificationEmail(payload: ContactFormPayload, pageUrl?: string) {
+function vpnProxyAlertBlock(clientIpIntel: ClientIpIntel): string {
+  const location = clientIpIntel.location ?? 'Unknown location'
+  const detail = clientIpIntel.detectionDetail ? ` (${clientIpIntel.detectionDetail})` : ''
+
+  return `<div style="margin:0 0 20px;padding:14px 18px;background-color:#fff3e0;border-left:4px solid #f59e0b;border-radius:4px;">
+      <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b45309;">User is using VPN or proxy</p>
+      <p style="margin:0;font-size:14px;line-height:1.6;color:#78350f;">
+        This submission appears to come through a VPN or proxy${escapeHtml(detail)}. Approximate location: <strong>${escapeHtml(location)}</strong>.
+      </p>
+    </div>`
+}
+
+function formatClientLocation(clientIpIntel?: ClientIpIntel): string {
+  if (!clientIpIntel) return 'Unknown'
+  if (clientIpIntel.location) return clientIpIntel.location
+  if (clientIpIntel.countryCode) return clientIpIntel.countryCode
+  return 'Unknown'
+}
+
+function formatVpnProxyStatus(clientIpIntel?: ClientIpIntel): string {
+  if (!clientIpIntel?.usingVpnOrProxy) return 'Not detected'
+  return clientIpIntel.detectionDetail
+    ? `Detected (${clientIpIntel.detectionDetail})`
+    : 'Detected (VPN or proxy)'
+}
+
+export function buildStaffNotificationEmail(
+  payload: ContactFormPayload,
+  options?: { pageUrl?: string; clientIpIntel?: ClientIpIntel },
+) {
   const role = roleLabel(payload)
-  const subject = `[MoonSofts Contact] ${role} — ${payload.name}`
+  const clientIpIntel = options?.clientIpIntel
+  const location = formatClientLocation(clientIpIntel)
+  const vpnPrefix = clientIpIntel?.usingVpnOrProxy ? '[VPN/Proxy] ' : ''
+  const subject = `${vpnPrefix}[MoonSofts Contact] ${role} — ${payload.name}`
 
   const bodyHtml = `
     <p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#2a3548;">
       A new inquiry was submitted through the MoonSofts contact form.
     </p>
+    ${clientIpIntel?.usingVpnOrProxy ? vpnProxyAlertBlock(clientIpIntel) : ''}
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin:0;">
       ${detailRow('Name', escapeHtml(payload.name))}
       ${detailRow('Email', `<a href="mailto:${escapeHtml(payload.email)}" style="color:#009fbd;text-decoration:none;">${escapeHtml(payload.email)}</a>`)}
       ${detailRow('Topic', escapeHtml(role))}
-      ${pageUrl ? detailRow('Page', `<a href="${escapeHtml(pageUrl)}" style="color:#009fbd;text-decoration:none;word-break:break-all;">${escapeHtml(pageUrl)}</a>`) : ''}
+      ${detailRow('IP address', escapeHtml(clientIpIntel?.ip ?? 'Unavailable'))}
+      ${detailRow('Location', escapeHtml(location))}
+      ${detailRow('VPN / Proxy', escapeHtml(formatVpnProxyStatus(clientIpIntel)))}
+      ${options?.pageUrl ? detailRow('Page', `<a href="${escapeHtml(options.pageUrl)}" style="color:#009fbd;text-decoration:none;word-break:break-all;">${escapeHtml(options.pageUrl)}</a>`) : ''}
       ${detailRow('Message', `<div style="white-space:pre-wrap;">${formatMultiline(payload.message)}</div>`)}
     </table>`
 
   const textLines = [
     'New MoonSofts contact form inquiry',
     '',
+  ]
+  if (clientIpIntel?.usingVpnOrProxy) {
+    textLines.push(
+      '*** USER IS USING VPN OR PROXY ***',
+      `Approximate location: ${location ?? 'Unknown location'}`,
+      clientIpIntel.detectionDetail ? `Detection: ${clientIpIntel.detectionDetail}` : '',
+      '',
+    )
+  }
+  textLines.push(
     `Name: ${payload.name}`,
     `Email: ${payload.email}`,
     `Topic: ${role}`,
-  ]
-  if (pageUrl) textLines.push(`Page: ${pageUrl}`)
+    `IP address: ${clientIpIntel?.ip ?? 'Unavailable'}`,
+    `Location: ${location}`,
+    `VPN / Proxy: ${formatVpnProxyStatus(clientIpIntel)}`,
+  )
+  if (options?.pageUrl) textLines.push(`Page: ${options.pageUrl}`)
   textLines.push('', 'Message:', payload.message)
 
   return {
