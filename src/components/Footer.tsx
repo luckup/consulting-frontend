@@ -1,6 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { Github, Linkedin, MapPin, Phone } from 'lucide-react'
+import { Facebook, Github, Instagram, Linkedin, MapPin, Phone } from 'lucide-react'
 import { useMemo } from 'react'
 import { useI18n } from '@/i18n/useI18n'
 import { siteImages } from '@/lib/siteImages'
@@ -22,6 +22,8 @@ function MediumIcon({ className }: { className?: string }) {
 const socialLinks: { label: string; href: string; icon: LucideIcon | typeof MediumIcon }[] = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/moonsofts-net', icon: Linkedin },
   { label: 'GitHub', href: 'https://github.com/MoonSofts-Net', icon: Github },
+  { label: 'Instagram', href: 'https://www.instagram.com/moonsofts_net/', icon: Instagram },
+  { label: 'Facebook', href: 'https://www.facebook.com/moonsofts/', icon: Facebook },
   { label: 'Medium', href: 'https://moonsofts.medium.com/', icon: MediumIcon },
 ]
 
