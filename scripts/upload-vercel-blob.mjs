@@ -2,7 +2,7 @@
  * Upload cdn-upload/ to Vercel Blob (public store).
  *
  * Setup:
- *   1. Create public Blob store: https://vercel.com/moonsoftsnet/~/stores/blob/store_kmbR6bCYbcA9kB47
+ *   1. Create public Blob store: https://vercel.com/moonsoftsnet/~/stores/blob/store_pPIvg8AEUNbGNW4T
  *   2. Connect store to your Vercel project → copies BLOB_READ_WRITE_TOKEN
  *   3. Add token to frontend/.env.local:
  *        BLOB_READ_WRITE_TOKEN=vercel_blob_rw_...

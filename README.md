@@ -27,7 +27,7 @@ Open [http://localhost:3000](http://localhost:3000).
 Required for builds:
 
 ```env
-VITE_CDN_BASE_URL=https://kmbR6bCYbcA9kB47.public.blob.vercel-storage.com
+VITE_CDN_BASE_URL=https://pPIvg8AEUNbGNW4T.public.blob.vercel-storage.com
 ```
 
 Copy from `.env.example` or `.env.production.example` if needed.
@@ -52,7 +52,7 @@ High-resolution PNGs live on [Vercel Blob](https://vercel.com/docs/vercel-blob/p
 3. Add `BLOB_READ_WRITE_TOKEN` to `.env.local` (from Vercel → Storage → Blob store).
 4. `npm run vercel:blob:upload`
 5. Confirm a URL works, e.g.  
-   `https://kmbR6bCYbcA9kB47.public.blob.vercel-storage.com/brand/moonsofts-logo.png`
+   `https://pPIvg8AEUNbGNW4T.public.blob.vercel-storage.com/brand/moonsofts-logo.png`
 
 **Re-upload after changing images:** repeat steps 2–4.
 
