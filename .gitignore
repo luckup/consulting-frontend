@@ -15,11 +15,13 @@ src/assets/**/*.jpg
 src/assets/**/*.jpeg
 src/assets/**/*.webp
 src/assets/**/*.gif
+!src/assets/brand/moonsofts-logo.png
 !src/assets/**/.gitkeep
 !src/assets/**/ASSETS.txt
 
 # Optional: Vercel static copy of CDN bundle (run npm run vercel:sync — do not commit)
 public/brand/
+!public/brand/logo.png
 public/heroes/
 public/home/
 public/news/

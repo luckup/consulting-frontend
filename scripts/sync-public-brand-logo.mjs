@@ -59,11 +59,22 @@ async function main() {
 
   const base = cdnBase()
   if (base) {
-    const buf = await downloadFromCdn(base)
-    fs.writeFileSync(dest, buf)
-    writeFaviconCopy()
-    console.log(`[favicon-source] downloaded logo from CDN -> public/brand/logo.png`)
-    return
+    try {
+      const buf = await downloadFromCdn(base)
+      fs.writeFileSync(dest, buf)
+      writeFaviconCopy()
+      console.log('[favicon-source] downloaded logo from CDN -> public/brand/logo.png')
+      return
+    } catch (err) {
+      if (fs.existsSync(dest)) {
+        writeFaviconCopy()
+        console.warn(
+          `[favicon-source] CDN unavailable (${err.message}); using existing public/brand/logo.png`,
+        )
+        return
+      }
+      throw err
+    }
   }
 
   console.error(
