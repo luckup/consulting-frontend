@@ -9,7 +9,7 @@ Do not commit PNG/JPEG files here — they are gitignored (too large for GitHub)
 5. npm run build
 
 Vercel Blob base URL:
-  https://kmbR6bCYbcA9kB47.public.blob.vercel-storage.com
+  https://pPIvg8AEUNbGNW4T.public.blob.vercel-storage.com
 
 The app loads images from siteImages.cdn.ts using your CDN base URL.
 CDN filenames use a moonsofts- prefix (e.g. pages/home/moonsofts-section0.png) for SEO.
