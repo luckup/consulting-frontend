@@ -1,32 +1,20 @@
-import sycuHome from '@/assets/pages/portfolio/sycu/moonsofts-sycu-home.jpg'
-import sycuMarketplace from '@/assets/pages/portfolio/sycu/moonsofts-sycu-marketplace.jpg'
-import sycuStrategy from '@/assets/pages/portfolio/sycu/moonsofts-sycu-strategy.jpg'
-import sycuVideos from '@/assets/pages/portfolio/sycu/moonsofts-sycu-videos.jpg'
-import thesnuslifeHome from '@/assets/pages/portfolio/thesnuslife/0.jpg'
-import thesnuslifeCatalog from '@/assets/pages/portfolio/thesnuslife/1.jpg'
-import thesnuslifeProduct from '@/assets/pages/portfolio/thesnuslife/2.jpg'
-import gvrappHome from '@/assets/pages/portfolio/gvrapp/0.jpg'
-import gvrappCampaigns from '@/assets/pages/portfolio/gvrapp/1.jpg'
-import gvrappCaseStudy from '@/assets/pages/portfolio/gvrapp/2.jpg'
-import azeltdHome from '@/assets/pages/portfolio/azeltd/0.jpg'
-import azeltdSolutions from '@/assets/pages/portfolio/azeltd/1.jpg'
-import azeltdProjects from '@/assets/pages/portfolio/azeltd/2.jpg'
+import { siteImages } from '@/lib/siteImages'
 
-/** Bundled portfolio shots — work in dev without CDN upload. */
-const bundledPortfolioImages: Record<string, string> = {
-  sycu: sycuHome,
-  'sycu-strategy': sycuStrategy,
-  'sycu-marketplace': sycuMarketplace,
-  'sycu-videos': sycuVideos,
-  thesnuslife: thesnuslifeHome,
-  'thesnuslife-1': thesnuslifeCatalog,
-  'thesnuslife-2': thesnuslifeProduct,
-  gvrapp: gvrappHome,
-  'gvrapp-1': gvrappCampaigns,
-  'gvrapp-2': gvrappCaseStudy,
-  azeltd: azeltdHome,
-  'azeltd-1': azeltdSolutions,
-  'azeltd-2': azeltdProjects,
+/** Portfolio shots from siteImages (CDN in production, bundled when VITE_USE_LOCAL_ASSETS=true). */
+const portfolioImagesByKey: Record<string, string> = {
+  sycu: siteImages.portfolio.sycu.home,
+  'sycu-strategy': siteImages.portfolio.sycu.strategy,
+  'sycu-marketplace': siteImages.portfolio.sycu.marketplace,
+  'sycu-videos': siteImages.portfolio.sycu.videos,
+  thesnuslife: siteImages.portfolio.thesnuslife.home,
+  'thesnuslife-1': siteImages.portfolio.thesnuslife.catalog,
+  'thesnuslife-2': siteImages.portfolio.thesnuslife.product,
+  gvrapp: siteImages.portfolio.gvrapp.home,
+  'gvrapp-1': siteImages.portfolio.gvrapp.campaigns,
+  'gvrapp-2': siteImages.portfolio.gvrapp.caseStudy,
+  azeltd: siteImages.portfolio.azeltd.home,
+  'azeltd-1': siteImages.portfolio.azeltd.solutions,
+  'azeltd-2': siteImages.portfolio.azeltd.projects,
 }
 
 export const portfolioImagePlaceholder =
@@ -36,5 +24,5 @@ export const portfolioImagePlaceholder =
   )
 
 export function getBundledPortfolioImage(key: string): string | undefined {
-  return bundledPortfolioImages[key]
+  return portfolioImagesByKey[key]
 }
