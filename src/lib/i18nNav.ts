@@ -32,6 +32,15 @@ export function buildPrimaryNav(t: (key: string) => string): NavItem[] {
       ],
     },
     {
+      label: t('nav.portfolio'),
+      to: '/portfolio',
+      children: [
+        { to: '/portfolio', label: t('nav.portfolioOverview') },
+        { to: '/portfolio#selected-work', label: t('nav.selectedWork') },
+        { to: '/portfolio#start-project', label: t('nav.startProject') },
+      ],
+    },
+    {
       label: t('nav.insights'),
       to: '/news',
       children: [
@@ -78,6 +87,14 @@ export function buildFooterColumns(t: (key: string) => string) {
         { to: contactInfo.calendlyUrl, label: t('common.scheduleConsultation'), external: true },
         { to: '/stack', label: t('nav.technologyPlatform') },
         { to: '/privacy', label: t('footer.infoSecurity') },
+      ]),
+    },
+    {
+      title: t('nav.portfolio'),
+      links: filterNavLinks([
+        { to: '/portfolio', label: t('nav.portfolioOverview') },
+        { to: '/portfolio#selected-work', label: t('nav.selectedWork') },
+        { to: '/portfolio#start-project', label: t('nav.startProject') },
       ]),
     },
     {

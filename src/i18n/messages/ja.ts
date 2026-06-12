@@ -44,6 +44,10 @@ export const jaMessages = {
     agriculture: '農業と農業',
     restaurant: 'レストラン＆ホスピタリティ',
     consultingServices: 'コンサルティングサービス',
+    portfolio: 'ポートフォリオ',
+    portfolioOverview: 'ポートフォリオ概要',
+    selectedWork: '選定作品',
+    startProject: 'プロジェクトを始める',
     technologyPlatform: 'テクノロジーとプラットフォーム',
     legalPrivacy: '法的とプライバシー',
     newsInsights: 'ニュースと洞察',
@@ -210,6 +214,11 @@ export const jaMessages = {
       title: 'カスタム Web サイトとソフトウェアのコンサルティング | MoonSofts — 無料のワールドカップ サッカー サイト',
       description:
         'MoonSofts は、サッカー選手や企業向けのカスタム Web サイト (ポートフォリオ、電子商取引、SaaS、MVPs、および選ばれたサッカー スターやファン コミュニティのための無料の 2026 年ワールドカップ ハイライト サイト) を構築します。',
+    },
+    portfolio: {
+      title: 'ポートフォリオ | MoonSofts の Web サイトと MVP',
+      description:
+        'MoonSofts が納品した Web サイト、MVP、顧客向けプロダクトの事例 — サッカーハイライトサイト、ポートフォリオ、e コマース、SaaS マーケティングページ、エージェンシーサイトまで。',
     },
     industries: {
       title: '私たちがサービスを提供する業界 | MoonSofts ソフトウェアコンサルティング',

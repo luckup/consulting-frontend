@@ -78,6 +78,20 @@ import serviceMvpWebApp from '@/assets/pages/services/moonsofts-MVP web app.png'
 import serviceBlogWebsite from '@/assets/pages/services/moonsofts-Blog  content website.png'
 import serviceCommunityWebsite from '@/assets/pages/services/moonsofts-Community  membership website.png'
 
+import portfolioSycuHome from '@/assets/pages/portfolio/sycu/moonsofts-sycu-home.jpg'
+import portfolioSycuStrategy from '@/assets/pages/portfolio/sycu/moonsofts-sycu-strategy.jpg'
+import portfolioSycuMarketplace from '@/assets/pages/portfolio/sycu/moonsofts-sycu-marketplace.jpg'
+import portfolioSycuVideos from '@/assets/pages/portfolio/sycu/moonsofts-sycu-videos.jpg'
+import portfolioThesnuslifeHome from '@/assets/pages/portfolio/thesnuslife/0.jpg'
+import portfolioThesnuslifeCatalog from '@/assets/pages/portfolio/thesnuslife/1.jpg'
+import portfolioThesnuslifeProduct from '@/assets/pages/portfolio/thesnuslife/2.jpg'
+import portfolioGvrappHome from '@/assets/pages/portfolio/gvrapp/0.jpg'
+import portfolioGvrappCampaigns from '@/assets/pages/portfolio/gvrapp/1.jpg'
+import portfolioGvrappCaseStudy from '@/assets/pages/portfolio/gvrapp/2.jpg'
+import portfolioAzeltdHome from '@/assets/pages/portfolio/azeltd/0.jpg'
+import portfolioAzeltdSolutions from '@/assets/pages/portfolio/azeltd/1.jpg'
+import portfolioAzeltdProjects from '@/assets/pages/portfolio/azeltd/2.jpg'
+
 const websiteOfferingImages = {
   'personal-portfolio': servicePersonalPortfolio,
   'business-landing': serviceBusinessLanding,
@@ -193,5 +207,28 @@ export const siteImages = {
   },
   services: {
     websiteOfferings: websiteOfferingImages,
+  },
+  portfolio: {
+    sycu: {
+      home: portfolioSycuHome,
+      strategy: portfolioSycuStrategy,
+      marketplace: portfolioSycuMarketplace,
+      videos: portfolioSycuVideos,
+    },
+    thesnuslife: {
+      home: portfolioThesnuslifeHome,
+      catalog: portfolioThesnuslifeCatalog,
+      product: portfolioThesnuslifeProduct,
+    },
+    gvrapp: {
+      home: portfolioGvrappHome,
+      campaigns: portfolioGvrappCampaigns,
+      caseStudy: portfolioGvrappCaseStudy,
+    },
+    azeltd: {
+      home: portfolioAzeltdHome,
+      solutions: portfolioAzeltdSolutions,
+      projects: portfolioAzeltdProjects,
+    },
   },
 } as const

@@ -44,6 +44,10 @@ export const zhMessages = {
     agriculture: '农业',
     restaurant: '餐饮与酒店',
     consultingServices: '咨询服务',
+    portfolio: '作品集',
+    portfolioOverview: '作品集概览',
+    selectedWork: '精选作品',
+    startProject: '启动项目',
     technologyPlatform: '技术与平台',
     legalPrivacy: '法律与隐私',
     newsInsights: '新闻与洞察',
@@ -203,6 +207,11 @@ export const zhMessages = {
       title: '定制网站与软件咨询 | MoonSofts — 世界杯免费足球网站',
       description:
         'MoonSofts 为足球球员与企业构建定制网站——作品集、电商、SaaS、MVP，以及为入选足球明星与球迷社区提供的 2026 世界杯免费集锦网站。',
+    },
+    portfolio: {
+      title: '作品集 | MoonSofts 网站与 MVP 案例',
+      description:
+        'MoonSofts 交付的精选网站、MVP 与客户端产品——从足球集锦网站、个人作品集到电商、SaaS 营销页与机构官网。',
     },
     industries: {
       title: '服务行业 | MoonSofts 软件咨询',

@@ -5,6 +5,7 @@ type RouteLoader = () => Promise<unknown>
 const exactRoutes: Record<string, RouteLoader> = {
   '/about': () => import('@/pages/AboutPage'),
   '/services': () => import('@/pages/ServicesPage'),
+  '/portfolio': () => import('@/pages/PortfolioPage'),
   '/industries': () => import('@/pages/IndustriesPage'),
   '/engineers': () => import('@/pages/EngineersPage'),
   '/news': () => import('@/pages/NewsPage'),
@@ -56,7 +57,7 @@ export function routePrefetchHandlers(path: string) {
 }
 
 export function prefetchCommonRoutes() {
-  const common = ['/services', '/industries', '/about', '/contact', ...(siteFeatures.clientVoices ? ['/clients'] : [])]
+  const common = ['/services', '/portfolio', '/industries', '/about', '/contact', ...(siteFeatures.clientVoices ? ['/clients'] : [])]
   const run = () => common.forEach(prefetchRoute)
 
   if (typeof requestIdleCallback === 'function') {

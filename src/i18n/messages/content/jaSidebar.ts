@@ -21,6 +21,11 @@ export const jaSidebar = {
     { key: 'deliveryModel', to: '/services#delivery' },
     { key: 'whyMoonsofts', to: '/services#why-moonsofts' },
   ],
+  portfolio: [
+    { key: 'selectedWork', to: '/portfolio#selected-work' },
+    { key: 'startProject', to: '/portfolio#start-project' },
+    { key: 'allServices', to: '/services' },
+  ],
   industries: [
     { key: 'overview', to: '/industries' },
     { key: 'ecommerce', to: '/industries/ecommerce' },
@@ -76,6 +81,9 @@ export const jaSidebar = {
     engagementTypes: 'エンゲージメントの種類',
     deliveryModel: '配信モデル',
     whyMoonsofts: 'なぜMoonSoftsをするのか',
+    selectedWork: '選定作品',
+    startProject: 'プロジェクトを始める',
+    allServices: 'すべてのサービス',
     overview: '概要',
     ecommerce: '電子商取引',
     logistics: 'ロジスティクス',

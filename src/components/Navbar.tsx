@@ -39,7 +39,7 @@ export function Navbar() {
 
   function trackTopMenuClick(label: string, context: 'desktop' | 'mobile') {
     const normalized = label.toLowerCase()
-    if (!['services', 'industries', 'company'].includes(normalized)) return
+    if (!['services', 'industries', 'portfolio', 'company'].includes(normalized)) return
     trackEvent('menu_button_click', {
       menu_item: normalized,
       menu_context: context,

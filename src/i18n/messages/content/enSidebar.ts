@@ -21,6 +21,11 @@ export const enSidebar = {
     { key: 'deliveryModel', to: '/services#delivery' },
     { key: 'whyMoonsofts', to: '/services#why-moonsofts' },
   ],
+  portfolio: [
+    { key: 'selectedWork', to: '/portfolio#selected-work' },
+    { key: 'startProject', to: '/portfolio#start-project' },
+    { key: 'allServices', to: '/services' },
+  ],
   industries: [
     { key: 'overview', to: '/industries' },
     { key: 'ecommerce', to: '/industries/ecommerce' },
@@ -76,6 +81,9 @@ export const enSidebar = {
     engagementTypes: 'Engagement types',
     deliveryModel: 'Delivery model',
     whyMoonsofts: 'Why MoonSofts',
+    selectedWork: 'Selected work',
+    startProject: 'Start a project',
+    allServices: 'All services',
     overview: 'Overview',
     ecommerce: 'E-commerce',
     logistics: 'Logistics',

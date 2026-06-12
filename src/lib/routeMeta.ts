@@ -21,6 +21,7 @@ const META_ROUTE_KEYS: Record<string, string> = {
   '/': 'meta.home',
   '/about': 'meta.about',
   '/services': 'meta.services',
+  '/portfolio': 'meta.portfolio',
   '/industries': 'meta.industries',
   '/clients': 'meta.clients',
   '/stack': 'meta.stack',

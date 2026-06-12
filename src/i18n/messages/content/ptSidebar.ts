@@ -21,6 +21,11 @@ export const ptSidebar = {
     { key: 'deliveryModel', to: '/services#delivery' },
     { key: 'whyMoonsofts', to: '/services#why-moonsofts' },
   ],
+  portfolio: [
+    { key: 'selectedWork', to: '/portfolio#selected-work' },
+    { key: 'startProject', to: '/portfolio#start-project' },
+    { key: 'allServices', to: '/services' },
+  ],
   industries: [
     { key: 'overview', to: '/industries' },
     { key: 'ecommerce', to: '/industries/ecommerce' },
@@ -76,6 +81,9 @@ export const ptSidebar = {
     engagementTypes: 'Tipos de engajamento',
     deliveryModel: 'Modelo de entrega',
     whyMoonsofts: 'Por que MoonSofts',
+    selectedWork: 'Trabalhos selecionados',
+    startProject: 'Iniciar um projeto',
+    allServices: 'Todos os serviços',
     overview: 'Visão geral',
     ecommerce: 'Comércio eletrônico',
     logistics: 'Logística',

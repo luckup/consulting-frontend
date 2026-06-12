@@ -10,5 +10,6 @@ export const NewsArticlePage = lazyPage(() => import('@/pages/NewsArticlePage'),
 export const TeamPage = lazyPage(() => import('@/pages/TeamPage'), 'TeamPage')
 export const ClientsPage = lazyPage(() => import('@/pages/ClientsPage'), 'ClientsPage')
 export const ServicesPage = lazyPage(() => import('@/pages/ServicesPage'), 'ServicesPage')
+export const PortfolioPage = lazyPage(() => import('@/pages/PortfolioPage'), 'PortfolioPage')
 export const IndustriesPage = lazyPage(() => import('@/pages/IndustriesPage'), 'IndustriesPage')
 export const IndustryDetailPage = lazyPage(() => import('@/pages/IndustryDetailPage'), 'IndustryDetailPage')

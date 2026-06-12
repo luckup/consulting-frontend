@@ -59,3 +59,7 @@ export function getNewsNav(locale: Locale) {
 export function getContactNav(locale: Locale) {
   return buildNavItems(locale, 'contact')
 }
+
+export function getPortfolioNav(locale: Locale) {
+  return buildNavItems(locale, 'portfolio')
+}

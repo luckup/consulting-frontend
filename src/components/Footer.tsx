@@ -33,7 +33,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-ink-900/10 bg-paper-50">
-      <div className="container-pad grid gap-[32px] py-[48px] sm:grid-cols-2 lg:grid-cols-5">
+      <div className="container-pad grid gap-[32px] py-[48px] sm:grid-cols-2 lg:grid-cols-6">
         <div className="sm:col-span-2 lg:col-span-1">
           <Link to="/" className="inline-flex items-center gap-[12px]">
             <img

@@ -136,6 +136,39 @@ export const enPages = {
     },
   },
 
+  portfolio: {
+    section: 'What we do',
+    title: 'Portfolio',
+    description:
+      'Selected websites and customer-facing products MoonSofts has designed and delivered—from fundraising platforms and e-commerce to ministry and engineering sites.',
+    breadcrumbs: [{ label: 'What we do' }, { label: 'Portfolio' }],
+    heroCta: 'Discuss your project',
+    sidebarTitle: 'In this section',
+    blocks: {
+      overview: {
+        label: 'Overview',
+        title: 'Proof of work across websites and product builds',
+        paragraphs: [
+          'MoonSofts ships customer-facing websites and early-stage products with the same discipline we bring to enterprise programs—clear scope, senior engineering, and launches your team can operate after handoff.',
+          'Browse representative project types below. Many engagements are under NDA; these samples show the breadth of what we build for founders, creators, and growing businesses.',
+        ],
+      },
+      selectedWork: {
+        label: 'Selected work',
+        title: 'Recent project types we deliver',
+        intro:
+          'Fundraising platforms, ministry tools, retail storefronts, and engineering company sites—each engagement pairs UX, engineering, and launch support.',
+      },
+      cta: {
+        label: 'Next steps',
+        title: 'Ready to add your project to the list?',
+        body: 'Tell us about your audience, timeline, and must-have features. We will recommend the right website or product scope and an honest delivery plan.',
+        primaryButton: 'Start a conversation',
+        secondaryButton: 'View all services',
+      },
+    },
+  },
+
   clients: {
     section: 'Who we are',
     title: 'Client voices',
@@ -651,6 +684,75 @@ export const enPages = {
       'satisfaction-score': {
         value: '4.8/5',
         label: 'Average delivery satisfaction score',
+      },
+    },
+
+    portfolioProjects: {
+      gvrapp: {
+        category: 'Fundraising & fintech',
+        title: 'gvr.',
+        body: 'A mobile-first fundraising platform—QR codes, donation pages, peer-to-peer campaigns, and Apple Pay checkout with campaigns live in minutes.',
+        tags: ['Fundraising', 'QR codes', 'Mobile-first'],
+        description:
+          'gvr. (gvrapp.au) is an instant fundraising platform built for real-world giving—personal fundraisers, nonprofits, teams, and events. MoonSofts delivered the marketing site and product experience: hero positioning, live campaign discovery, QR-code storytelling, mobile checkout flows, pricing comparison, and case-study proof—so organizers can launch a campaign, share a link or QR code, and start accepting donations in minutes.',
+        techStack: ['React', 'TypeScript', 'Next.js', 'Stripe', 'Tailwind CSS', 'Vercel'],
+        scope: [
+          'Homepage hero with campaign launch CTAs and platform proof metrics',
+          'Live campaign discovery grid with categories, progress, and trending signals',
+          'QR code generation and in-person giving flows for events and bulletins',
+          'Mobile-first donation checkout with Apple Pay, Google Pay, and card flows',
+          'Peer-to-peer fundraising, pricing comparison, and case-study storytelling',
+          'Real-time dashboard, donor management, and multi-currency payout foundations',
+        ],
+      },
+      sycu: {
+        category: 'Faith & education',
+        title: 'Stuff You Can Use',
+        body: 'A multi-product ministry platform—marketplace, Grow Curriculum, Lesson Builder, music library, accounts, and admin—serving thousands of kids and student ministry leaders.',
+        tags: ['Curriculum', 'Lesson Builder', 'Music', 'Accounts', 'Admin'],
+        description:
+          'Stuff You Can Use (stuffyoucanuse.org) is the home for Grow Curriculum and the tools church leaders use every week. MoonSofts delivered the public marketplace and strategy experience alongside curriculum delivery, the Grow Lesson Builder, a kids worship music library, member accounts, and internal admin tooling—one connected platform from discovery through weekly ministry execution.',
+        techStack: ['React', 'TypeScript', 'Next.js', 'Node.js', 'PostgreSQL', 'Vercel'],
+        scope: [
+          'Public marketplace with category filters, bundles, and Grow Strategy year planning',
+          'Grow Curriculum: scope & sequence, teaching series, discipleship, and event resources',
+          'Grow Lesson Builder and presentation tools for assembling lessons in minutes',
+          'Kids worship music library with video playback, playlists, and product tie-ins',
+          'Accounts: subscriptions, purchases, community access, and member self-service',
+          'Admin: catalog management, content publishing, user support, and operational dashboards',
+        ],
+      },
+      thesnuslife: {
+        category: 'Commerce',
+        title: 'The Snus Life',
+        body: 'A UK nicotine and caffeine pouch storefront—50+ brands, strength and flavour filters, bundles, subscribe-and-save, and age-verified checkout.',
+        tags: ['E-commerce', 'Subscribe & Save', 'UK retail'],
+        description:
+          'The Snus Life (thesnuslife.com) is a premium UK storefront for nicotine and caffeine pouches from 50+ brands. MoonSofts built the customer-facing experience—category and strength browsing, best sellers and bundles, subscribe-and-save merchandising, pick-and-mix promotions, and compliant age-gated checkout—so shoppers can find the right pouch and reorder in minutes.',
+        techStack: ['React', 'TypeScript', 'Shopify', 'Tailwind CSS', 'Stripe', 'Vercel'],
+        scope: [
+          'Homepage hero, brand rails, and promotional campaign zones',
+          'Snus and caffeine catalogues with strength, flavour, and brand filters',
+          'Product detail with variant strength, multi-can quantities, and cart flows',
+          'Bundles, seasonal collections, and subscribe-and-save merchandising',
+          'Age verification gate, trust signals, FAQ, and SEO-ready content structure',
+        ],
+      },
+      azeltd: {
+        category: 'Construction & engineering',
+        title: 'AZE Engineering',
+        body: 'A company website for ISO-certified structural and BIM engineering—services, landmark projects, and lead capture for clients across the UAE, KSA, and Oman.',
+        tags: ['Construction', 'BIM', 'Company website'],
+        description:
+          'AZE Engineering (azeltd.com) delivers clash-free structural design, BIM coordination, precast engineering, and façade solutions across the Middle East. MoonSofts built the public site—hero positioning, core solutions, landmark project showcase, ISO certification proof, client logos, and consultation contact flows—so prospects can evaluate capabilities and reach the team in minutes.',
+        techStack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Vercel'],
+        scope: [
+          'Homepage hero with consultation and portfolio CTAs',
+          'Core solutions grid covering structural, BIM, precast, and façade engineering',
+          'Landmark project showcase with regional market proof points',
+          'ISO certification, team scale, and global delivery trust signals',
+          'Contact form, office locations, and SEO-ready content structure',
+        ],
       },
     },
 

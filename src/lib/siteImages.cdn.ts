@@ -132,6 +132,29 @@ export const siteImages = {
     reza: cdnUrl('pages/team/moonsofts-reza-nozari.png'),
     adryan: cdnUrl('pages/team/moonsofts-adryan-andrade-daniel.png'),
   },
+  portfolio: {
+    sycu: {
+      home: cdnUrl('pages/portfolio/sycu/moonsofts-sycu-home.jpg'),
+      strategy: cdnUrl('pages/portfolio/sycu/moonsofts-sycu-strategy.jpg'),
+      marketplace: cdnUrl('pages/portfolio/sycu/moonsofts-sycu-marketplace.jpg'),
+      videos: cdnUrl('pages/portfolio/sycu/moonsofts-sycu-videos.jpg'),
+    },
+    thesnuslife: {
+      home: cdnUrl('pages/portfolio/thesnuslife/0.jpg'),
+      catalog: cdnUrl('pages/portfolio/thesnuslife/1.jpg'),
+      product: cdnUrl('pages/portfolio/thesnuslife/2.jpg'),
+    },
+    gvrapp: {
+      home: cdnUrl('pages/portfolio/gvrapp/0.jpg'),
+      campaigns: cdnUrl('pages/portfolio/gvrapp/1.jpg'),
+      caseStudy: cdnUrl('pages/portfolio/gvrapp/2.jpg'),
+    },
+    azeltd: {
+      home: cdnUrl('pages/portfolio/azeltd/0.jpg'),
+      solutions: cdnUrl('pages/portfolio/azeltd/1.jpg'),
+      projects: cdnUrl('pages/portfolio/azeltd/2.jpg'),
+    },
+  },
   services: {
     websiteOfferings: {
       'personal-portfolio': cdnUrl('pages/services/moonsofts-personal-portfolio.png'),

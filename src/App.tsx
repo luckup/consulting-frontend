@@ -9,6 +9,7 @@ import {
   IndustryDetailPage,
   NewsArticlePage,
   NewsPage,
+  PortfolioPage,
   PrivacyPage,
   ServicesPage,
   StackPage,
@@ -28,6 +29,7 @@ export default function App() {
           element={siteFeatures.clientVoices ? <ClientsPage /> : <Navigate to="/" replace />}
         />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/industries" element={<IndustriesPage />} />
         <Route path="/industries/:slug" element={<IndustryDetailPage />} />
         <Route path="/engineers" element={<EngineersPage />} />

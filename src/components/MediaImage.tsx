@@ -1,4 +1,6 @@
 import { clsx } from 'clsx'
+import { useEffect, useState } from 'react'
+import { portfolioImagePlaceholder } from '@/lib/portfolioImages'
 
 type Props = {
   src: string
@@ -23,6 +25,12 @@ export function MediaImage({
   transparentBg = false,
   priority = false,
 }: Props) {
+  const [resolvedSrc, setResolvedSrc] = useState(src)
+
+  useEffect(() => {
+    setResolvedSrc(src)
+  }, [src])
+
   return (
     <div
       className={clsx(
@@ -32,11 +40,16 @@ export function MediaImage({
       )}
     >
       <img
-        src={src}
+        src={resolvedSrc}
         alt={alt}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
         fetchPriority={priority ? 'high' : 'auto'}
+        onError={() => {
+          if (resolvedSrc !== portfolioImagePlaceholder) {
+            setResolvedSrc(portfolioImagePlaceholder)
+          }
+        }}
         className={clsx(
           'h-full w-full',
           transparentBg ? 'object-contain' : 'object-cover photo-bright',

@@ -21,6 +21,11 @@ export const zhSidebar = {
     { key: 'deliveryModel', to: '/services#delivery' },
     { key: 'whyMoonsofts', to: '/services#why-moonsofts' },
   ],
+  portfolio: [
+    { key: 'selectedWork', to: '/portfolio#selected-work' },
+    { key: 'startProject', to: '/portfolio#start-project' },
+    { key: 'allServices', to: '/services' },
+  ],
   industries: [
     { key: 'overview', to: '/industries' },
     { key: 'ecommerce', to: '/industries/ecommerce' },
@@ -76,6 +81,9 @@ export const zhSidebar = {
     engagementTypes: '合作类型',
     deliveryModel: '交付模式',
     whyMoonsofts: '为何选择 MoonSofts',
+    selectedWork: '精选作品',
+    startProject: '启动项目',
+    allServices: '全部服务',
     overview: '概览',
     ecommerce: '电子商务',
     logistics: '物流',

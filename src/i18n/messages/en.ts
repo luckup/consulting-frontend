@@ -44,6 +44,10 @@ export const enMessages = {
     agriculture: 'Agriculture & farming',
     restaurant: 'Restaurant & hospitality',
     consultingServices: 'Consulting services',
+    portfolio: 'Portfolio',
+    portfolioOverview: 'Portfolio overview',
+    selectedWork: 'Selected work',
+    startProject: 'Start a project',
     technologyPlatform: 'Technology & platform',
     legalPrivacy: 'Legal & privacy',
     newsInsights: 'News & insights',
@@ -210,6 +214,11 @@ export const enMessages = {
       title: 'Custom websites & software consulting | MoonSofts — free World Cup football sites',
       description:
         'MoonSofts builds custom websites for football players and enterprises—portfolios, e-commerce, SaaS, MVPs, and free 2026 World Cup highlight sites for selected football stars and fan communities.',
+    },
+    portfolio: {
+      title: 'Portfolio | Websites & MVPs by MoonSofts',
+      description:
+        'Selected websites and customer-facing products delivered by MoonSofts—from fundraising platforms and e-commerce to ministry and engineering sites.',
     },
     industries: {
       title: 'Industries we serve | MoonSofts software consulting',

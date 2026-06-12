@@ -2,7 +2,10 @@ import { getMessages, type Messages } from '@/i18n/translate'
 import type { Locale } from '@/i18n/types'
 import { mediumPosts as baseMediumPosts } from '@/lib/mediumPosts'
 import { openPositions as baseOpenPositions } from '@/lib/careersData'
+import { portfolioProjects as basePortfolioProjects } from '@/lib/portfolioData'
+import { getBundledPortfolioImage } from '@/lib/portfolioImages'
 import { websiteOfferings as baseOfferings } from '@/lib/servicesData'
+import { siteImages } from '@/lib/siteImages'
 
 export function getHomeFaqItems(locale: Locale) {
   return getMessages(locale).faq
@@ -90,6 +93,44 @@ export function getOutcomeCards(locale: Locale) {
 export function getTrustedIndustries(locale: Locale) {
   return getMessages(locale).pages.data.trustedIndustries
 }
+
+function portfolioGalleryImage(key: string) {
+  return getBundledPortfolioImage(key) ?? siteImages.home.whatWeDo
+}
+
+function portfolioProjectImage(id: string) {
+  return portfolioGalleryImage(id)
+}
+
+export function getPortfolioProjects(locale: Locale) {
+  const projects = getMessages(locale).pages.data.portfolioProjects
+  return basePortfolioProjects.map((base) => {
+    const copy = projects[base.id as keyof typeof projects]
+    const images = base.galleryKeys.map((key) => portfolioGalleryImage(key))
+    if (!copy) {
+      return {
+        ...base,
+        image: portfolioProjectImage(base.id),
+        images,
+        title: base.id,
+        body: '',
+        category: '',
+        tags: [] as string[],
+        description: '',
+        techStack: [] as string[],
+        scope: [] as string[],
+      }
+    }
+    return {
+      id: base.id,
+      image: portfolioProjectImage(base.id),
+      images,
+      ...copy,
+    }
+  })
+}
+
+export type LocalizedPortfolioProject = ReturnType<typeof getPortfolioProjects>[number]
 
 export function getPageContent<K extends keyof Messages['pages']>(locale: Locale, pageId: K): Messages['pages'][K] {
   return getMessages(locale).pages[pageId]

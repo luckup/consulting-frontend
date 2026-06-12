@@ -44,6 +44,10 @@ export const ptMessages = {
     agriculture: 'Agricultura e pecuária',
     restaurant: 'Restaurante e hospitalidade',
     consultingServices: 'Serviços de consultoria',
+    portfolio: 'Portfólio',
+    portfolioOverview: 'Visão geral do portfólio',
+    selectedWork: 'Trabalhos selecionados',
+    startProject: 'Iniciar um projeto',
     technologyPlatform: 'Tecnologia e plataforma',
     legalPrivacy: 'Jurídico e privacidade',
     newsInsights: 'Notícias e insights',
@@ -210,6 +214,11 @@ export const ptMessages = {
       title: 'Sites personalizados e consultoria de software | MoonSofts – sites gratuitos de futebol da Copa do Mundo',
       description:
         'MoonSofts cria sites personalizados para jogadores de futebol e empresas – portfólios, comércio eletrônico, SaaS, MVPs e sites gratuitos de destaque da Copa do Mundo de 2026 para estrelas do futebol selecionadas e comunidades de fãs.',
+    },
+    portfolio: {
+      title: 'Portfólio | Sites e MVPs da MoonSofts',
+      description:
+        'Sites, MVPs e produtos voltados ao cliente entregues pela MoonSofts — de sites de destaques de futebol e portfólios a e-commerce, páginas SaaS e sites de agências.',
     },
     industries: {
       title: 'Indústrias que atendemos | MoonSofts consultoria de software',
